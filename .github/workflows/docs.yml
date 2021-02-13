@@ -1,0 +1,42 @@
+name: Publish Docs
+
+on:
+  push:
+    branches:
+      - main
+      - master
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup
+        run: >
+          mkdir -p docs/includes &&
+          touch docs/index.html.md &&
+          docker-compose up -d
+
+      - name: Install & Build Docs
+        run: >
+          docker-compose exec -T dev yarn &&
+          docker-compose exec -T dev make docs &&
+          docker run --rm
+          -v ${{github.workspace}}/public:/srv/slate/build
+          -v ${{github.workspace}}/docs/includes:/srv/slate/source/includes
+          -v ${{github.workspace}}/static/logo.png:/srv/slate/source/images/logo.png
+          -v ${{github.workspace}}/docs/index.html.md:/srv/slate/source/index.html.md
+          slatedocs/slate
+
+      - name: Publish Docs
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cleanup
+        run: docker-compose down

@@ -1,0 +1,73 @@
+<%
+
+const sym_name = sym.name.trim();
+
+const mark_optional = (text, opt) =>
+  opt ? `(Optional) ${text}` : text;
+
+const print_parameters = () =>
+  (!sym.params
+    ? ''
+    : (`Parameter | Type | Description
+        --------- | ---- | -----------` +
+        sym.params.reduce((str, p) =>
+          str + `\n${p.name} | ${p.type} | ${mark_optional(p.description || 'N/A', p.optional)}`,
+            '')));
+
+const print_examples = () =>
+  (sym.examples
+    ? sym.examples.join('\n')
+    : '');
+
+const print_deprecation_warning = () =>
+  (!sym.deprecated
+    ? ''
+    : `<aside class="warning">
+        <strong>DEPRECATED</strong>
+        <br>${sym.deprecated}
+      </aside>`);
+
+const section_exceptions = () =>
+  (!sym.exceptions
+    ? ''
+    : sym.exceptions.map(ex =>
+      `<aside class="notice">
+        <strong>Throws:</strong> ${ex}
+      </aside>`).join('\n'));
+
+const how_to_import = () => {
+  const code_intro = '```javascript';
+  const code_outro = '```';
+  const ns = sym.memberof === 'ROOT' ? '' : `.${sym.memberof}`;
+
+  // no identation on purpose!
+  return `
+> How to import?
+
+${code_intro}
+// From Node.js
+const {${sym.name}} = require('${process.env.PACKAGE_ID}')${ns};
+// From a browser
+const {${sym.name}} = window.${process.env.BROWSER_NS}${ns};
+${code_outro}
+`;
+}
+
+%>
+
+
+## <%- sym_name %>
+
+<%- print_deprecation_warning() %>
+
+<%- sym.description %>
+
+<%- print_parameters() %>
+
+Returns `<%- sym.returns %>`.
+
+<%- section_exceptions() %>
+
+<%- how_to_import() %>
+
+<%- print_examples() %>

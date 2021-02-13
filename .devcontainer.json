@@ -1,0 +1,12 @@
+{
+  "name": "project-blueprint",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "dev",
+  "runServices": ["slate"],
+  "workspaceFolder": "/workspace/dev",
+  "initializeCommand": "mkdir -p docs/includes && touch docs/index.html.md",
+  "postCreateCommand": "yarn",
+  "settings": {
+    "terminal.integrated.shell.*": "/bin/bash"
+  }
+}

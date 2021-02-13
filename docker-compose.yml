@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+
+  dev:
+    image: customcommander/webdev
+    volumes:
+      - .:/workspace/dev
+    stdin_open: true
+    working_dir: /workspace/dev
+    env_file:
+      - .env
+
+  slate:
+    image: slatedocs/slate:v2.9.0
+    volumes:
+      - ./docs/index.html.md:/srv/slate/source/index.html.md
+      - ./docs/includes:/srv/slate/source/includes
+      - ./static/logo.png:/srv/slate/source/images/logo.png
+    command: serve
+    ports:
+      - "4567:4567"

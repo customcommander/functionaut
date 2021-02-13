@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        run: docker-compose up -d dev
+      - name: Install
+        run: docker-compose exec -T dev yarn
+      - name: Build
+        run: docker-compose exec -T dev make dist
+      - name: Test
+        run: docker-compose exec -T dev make test
+      - name: Release
+        run: docker-compose exec -T -e GH_TOKEN -e NPM_TOKEN dev yarn semantic-release --no-ci
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Cleanup
+        run: docker-compose down
