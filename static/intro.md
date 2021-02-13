@@ -1,1 +1,0 @@
-The content of this file (`static/intro.md`) is added at the top of the documentation.

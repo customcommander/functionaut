@@ -1,5 +1,5 @@
 {
-  "name": "project-blueprint",
+  "name": "functionaut",
   "dockerComposeFile": "./docker-compose.yml",
   "service": "dev",
   "runServices": ["slate"],
