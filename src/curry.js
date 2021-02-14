@@ -23,9 +23,8 @@ module.exports = {
    * @example
    * ```javascript
    * const add = curry((a, b) => a + b);
-   * const add10 = add(10);
    *
-   * [1, 2, 3].map(add10);
+   * [1, 2, 3].map(add(10));
    * //=> [11, 12, 13]
    * ```
    *
