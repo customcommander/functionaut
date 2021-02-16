@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/customcommander/functionaut/compare/v1.1.0...v1.2.0) (2021-02-16)
+
+
+### Features
+
+* implement inc and dec ([84d503c](https://github.com/customcommander/functionaut/commit/84d503cbd119300cf3b271124b531614fca7a6dc))
+
 # [1.1.0](https://github.com/customcommander/functionaut/compare/v1.0.0...v1.1.0) (2021-02-14)
 
 
