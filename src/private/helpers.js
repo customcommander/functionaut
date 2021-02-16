@@ -10,5 +10,6 @@ const assert =
 
 module.exports = {
   assert_array: assert(x => Array.isArray(x)),
-  assert_function: assert(x => typeof x === 'function')
+  assert_function: assert(x => typeof x === 'function'),
+  assert_number: assert(x => typeof x === 'number')
 };
