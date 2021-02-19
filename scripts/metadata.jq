@@ -11,6 +11,7 @@ def get_params:
       map({ type: (.type | get_type_expr)
           , name
           , optional
+          , variable
           , description })
     end);
 
