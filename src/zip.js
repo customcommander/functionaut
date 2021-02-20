@@ -76,7 +76,7 @@ module.exports = {
   zip: curry((a, b) => {
     assert_array(a, 'zip: `a` is not an array');
     assert_array(b, 'zip: `b` is not an array');
-    return _zip(a, b, null, null);
+    return _zip(a, b);
   }),
 
   /**
@@ -99,7 +99,7 @@ module.exports = {
     assert_array(a, 'zip3: `a` is not an array');
     assert_array(b, 'zip3: `b` is not an array');
     assert_array(c, 'zip3: `c` is not an array');
-    return _zip(a, b, c, null);
+    return _zip(a, b, c);
   }),
 
   /**
