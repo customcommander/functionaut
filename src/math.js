@@ -32,6 +32,7 @@ module.exports = {
    * @public
    * @param {number} x Any number
    * @return {number}
+   * @throws When `x` is not a number.
    */
   dec: x => {
     assert_number(x, 'dec: `x` is not a number');
