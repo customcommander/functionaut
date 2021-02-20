@@ -61,6 +61,7 @@ module.exports = {
    * @public
    * @param {function()} fn Function to curry.
    * @return {function()}
+   * @throws When `fn` is not a function.
    */
   curry: fn => {
     assert_function(fn, 'curry: `fn` is not a function');
