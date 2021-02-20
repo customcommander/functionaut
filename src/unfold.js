@@ -4,7 +4,7 @@
  */
 
 const {assert_function} = require('./private/helpers');
-const {curry} = require('./curry');
+const {curry} = require('./functions');
 
 /**
  * @namespace

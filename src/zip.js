@@ -3,7 +3,7 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {curry} = require('./curry');
+const {curry} = require('./functions');
 const {assert_array} = require('./private/helpers');
 
 /**
