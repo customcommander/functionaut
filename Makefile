@@ -56,4 +56,4 @@ dist/index.js: dist/__compiled.js
 
 dist/browser.min.js: dist/__compiled.js
 	mkdir -p $(@D)
-	sed 's/window.__________/window.$(BROWSER_NS)/' $< > $@
+	sed 's#window.__________#window["$(LIBRARY_NAMESPACE)"]#' $< > $@
