@@ -8,13 +8,16 @@ const mark_optional = (text, opt) =>
 const mark_var_arg = (text, varr) =>
   varr ? `...${text}` : text;
 
+const print_type = (text) =>
+  text.replace(/\|/g, ' &#124; ');
+
 const print_parameters = () =>
   (!sym.params
     ? ''
     : (`Parameter | Type | Description
         --------- | ---- | -----------` +
         sym.params.reduce((str, p) =>
-          str + `\n${mark_var_arg(p.name, p.variable)} | ${p.type} | ${mark_optional(p.description || 'N/A', p.optional)}`,
+          str + `\n${mark_var_arg(p.name, p.variable)} | ${print_type(p.type)} | ${mark_optional(p.description || 'N/A', p.optional)}`,
             '')));
 
 const print_examples = () =>
@@ -55,10 +58,19 @@ ${code_outro}
 `;
 }
 
+const section_see_also = () =>
+  (!sym.see
+    ? ''
+    : 'See also ' + sym.see.map(sy => `[${sy}](#${sy})`).join(' — '));
+
 %>
 
 
 ## <%- sym_name %>
+
+<%- how_to_import() %>
+
+<%- print_examples() %>
 
 <%- print_deprecation_warning() %>
 
@@ -68,8 +80,8 @@ ${code_outro}
 
 Returns `<%- sym.returns %>`.
 
+<%- section_see_also() %>
+
 <%- section_exceptions() %>
 
-<%- how_to_import() %>
 
-<%- print_examples() %>
