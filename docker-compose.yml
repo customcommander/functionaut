@@ -12,7 +12,7 @@ services:
       - .env
 
   slate:
-    image: slatedocs/slate:v2.9.0
+    image: slatedocs/slate:v2.10.0
     volumes:
       - ./docs/index.html.md:/srv/slate/source/index.html.md
       - ./docs/includes:/srv/slate/source/includes
