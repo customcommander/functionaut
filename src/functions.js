@@ -94,5 +94,31 @@ module.exports = {
       const [x, y, ...z] = Array.from(arguments);
       return fn(y, x, ...z);
     });
+  },
+
+  /**
+   * Takes a function `fn` of any arity and returns
+   * a (curried) version of it that takes exactly one
+   * parameter. Any extra parameters are discarded.
+   *
+   * @example
+   * ```javascript
+   * ['1', '2', '3'].map(parseInt);
+   * //=> [1, NaN, NaN]
+   * // equivalent to [parseInt('1', 0), parseInt('2', 1), parseInt('3', 2)]
+   * // array indices................^.................^.................^
+   *
+   * ['1', '2', '3'].map(unary(parseInt));
+   * //=> [1, 2, 3]
+   * // equivalent to [parseInt('1'), parseInt('2'), parseInt('3')]
+   * ```
+   * @public
+   * @param {function()} fn
+   * @return {function()}
+   * @throws When `fn` is not a function.
+   */
+  unary: fn => {
+    assert_function(fn, 'unary: `fn` is not a function');
+    return _curry(x => fn(x));
   }
 };
