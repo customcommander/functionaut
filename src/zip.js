@@ -72,6 +72,8 @@ module.exports = {
    * @param {Array} b Another array
    * @return {Array<Array>}
    * @throws If either `a` or `b` is not an array.
+   * @see zip3
+   * @see zip4
    */
   zip: curry((a, b) => {
     assert_array(a, 'zip: `a` is not an array');
@@ -94,6 +96,7 @@ module.exports = {
    * @param {Array} c
    * @return {Array<Array>}
    * @throws If either `a`, `b` or `c` is not an array.
+   * @see zip
    */
   zip3: curry((a, b, c) => {
     assert_array(a, 'zip3: `a` is not an array');
@@ -118,6 +121,7 @@ module.exports = {
    * @param {Array} d
    * @return {Array<Array>}
    * @throws If either `a`, `b`, `c` or `d` is not an array.
+   * @see zip
    */
   zip4: curry((a, b, c, d) => {
     assert_array(a, 'zip4: `a` is not an array');
