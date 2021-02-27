@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/customcommander/functionaut/compare/v1.2.0...v1.3.0) (2021-02-27)
+
+
+### Features
+
+* implement compose ([6ca623a](https://github.com/customcommander/functionaut/commit/6ca623aa7155d2c0695118df725cddad5a404126))
+* implement map, take, filter and into ([c11418d](https://github.com/customcommander/functionaut/commit/c11418db6f8f2b92156b2b881870a6630a461d50))
+
 # [1.2.0](https://github.com/customcommander/functionaut/compare/v1.1.0...v1.2.0) (2021-02-16)
 
 
