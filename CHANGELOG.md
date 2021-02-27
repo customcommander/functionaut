@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/customcommander/functionaut/compare/v1.3.0...v1.4.0) (2021-02-27)
+
+
+### Features
+
+* implement flip ([b6409df](https://github.com/customcommander/functionaut/commit/b6409dfc976d4b0daee6703830dd6c9d0c9c345a))
+* implement unary ([4d9fb3e](https://github.com/customcommander/functionaut/commit/4d9fb3e5f105a4bbce3bc2b2466059647fd27759))
+
 # [1.3.0](https://github.com/customcommander/functionaut/compare/v1.2.0...v1.3.0) (2021-02-27)
 
 
