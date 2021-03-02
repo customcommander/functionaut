@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/customcommander/functionaut/compare/v1.4.0...v1.5.0) (2021-03-02)
+
+
+### Features
+
+* implement loop/recur to design stack-safe recursive functions ([b001bce](https://github.com/customcommander/functionaut/commit/b001bceb92754ffe475bc3bd7fbc110752384bde))
+
 # [1.4.0](https://github.com/customcommander/functionaut/compare/v1.3.0...v1.4.0) (2021-02-27)
 
 
