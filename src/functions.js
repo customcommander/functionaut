@@ -120,5 +120,20 @@ module.exports = {
   unary: fn => {
     assert_function(fn, 'unary: `fn` is not a function');
     return _curry(x => fn(x));
-  }
+  },
+
+  /**
+   * Returns its argument.
+   *
+   * @example
+   * ```javascript
+   * identity(42);
+   * //=> 42
+   * ```
+   *
+   * @public
+   * @param {?} x
+   * @returns {?}
+   */
+  identity: x => x,
 };
