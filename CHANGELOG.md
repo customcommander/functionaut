@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/customcommander/functionaut/compare/v1.5.0...v1.6.0) (2021-03-07)
+
+
+### Features
+
+* implement constant ([9ea92ae](https://github.com/customcommander/functionaut/commit/9ea92ae61a75da3bfd1f274332345c881304b0bf))
+* implement identity ([5a03704](https://github.com/customcommander/functionaut/commit/5a0370457228b44c65589ed532dcc247229dc54c))
+
 # [1.5.0](https://github.com/customcommander/functionaut/compare/v1.4.0...v1.5.0) (2021-03-02)
 
 
