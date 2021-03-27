@@ -71,6 +71,38 @@ module.exports = {
    * - map
    * - take
    *
+   * @example
+   * > Map over the elements and accumulate into a string:
+   *
+   * ```javascript
+   * into('', map(inc), [10, 20, 30]);
+   * //=> '112131'
+   * ```
+   *
+   * @example
+   * > Map over the properties and accumulate into an array:
+   *
+   * ```javascript
+   * into([], map(inc), {a: 10, b: 20, c: 30});
+   * //=> [11, 21, 31]
+   * ```
+   *
+   * @example
+   * > Map over the characters and accumulate into a string:
+   *
+   * ```javascript
+   * into('', map(c => c.repeat(parseInt(c))), '1234');
+   * //=> '1223334444'
+   * ```
+   *
+   * @example
+   * > Transducer example: take only the first two elements, increment them and accumulate into a string:
+   *
+   * ```javascript
+   * into('', compose(take(2), map(inc)), [10, 20, 30]);
+   * //=> '1121'
+   * ```
+   *
    * @public
    * @param {Array|Object|string} init
    * @param {function()} transducer
