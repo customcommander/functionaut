@@ -1,6 +1,6 @@
 /**
  * @license MIT
- * @copyright (c) Julien Gonzalez <hello@spinjs.com>
+ * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
 const {assert_function} = require('./private/helpers');
