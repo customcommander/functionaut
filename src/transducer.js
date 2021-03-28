@@ -70,6 +70,7 @@ module.exports = {
    * - filter
    * - map
    * - take
+   * - drop
    *
    * @example
    * > Map over the elements and accumulate into a string:
@@ -111,6 +112,7 @@ module.exports = {
    * @see filter
    * @see map
    * @see take
+   * @see drop
    */
   into: curry((init, transducer, xs) => {
     const iter =

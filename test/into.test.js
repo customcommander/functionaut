@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const {compose, map, into, take, filter} = require('../dist');
+const {compose, map, into, take, filter, drop} = require('../dist');
 
 test('into reduces a list into another list.', t => {
   const transducer = compose(map(x => x + x), map(x => `(${x})`));
@@ -60,6 +60,27 @@ test('into: take · map', t => {
   t.end();
 });
 
+test('into: drop · map · take', t => {
+  const fn = td.function();
+  td.when(fn('a')).thenThrow(new Error('was not expecting map("a")'));
+  td.when(fn('b')).thenReturn('B');
+  td.when(fn('c')).thenThrow(new Error('was not expecting map("c")'));
+
+  const transducer = compose(drop(1), map(fn), take(1));
+
+  t.same(into('')(transducer)(['a', 'b', 'c']), 'B');
+  t.same(into('')(transducer)({x: 'a', y: 'b', z: 'c'}), 'B');
+  t.same(into('')(transducer)('abc'), 'B');
+
+  t.same(into([])(transducer)(['a', 'b', 'c']), ['B']);
+  t.same(into([])(transducer)({x: 'a', y: 'b', z: 'c'}), ['B']);
+  t.same(into([])(transducer)('abc'), ['B']);
+
+  t.same(into({})(transducer)(['a', 'b', 'c']), {1: 'B'});
+  t.same(into({})(transducer)({x: 'a', y: 'b', z: 'c'}), {y: 'B'});
+  t.same(into({})(transducer)('abc'), {1: 'B'});
+  t.end();
+});
 
 test('into: filter · map · take', t => {
   const f = td.function();
