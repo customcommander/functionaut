@@ -1,5 +1,4 @@
 const test = require('tape');
-const td = require('testdouble');
 const {take} = require('../dist');
 
 test('take returns the first nth elements of the list.', t => {
