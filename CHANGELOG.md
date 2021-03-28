@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/customcommander/functionaut/compare/v1.6.0...v1.7.0) (2021-03-28)
+
+
+### Bug Fixes
+
+* add examples for into. closes [#7](https://github.com/customcommander/functionaut/issues/7) ([88bc511](https://github.com/customcommander/functionaut/commit/88bc511e1af173a1b1d85db9d42abdb7912a1824))
+
+
+### Features
+
+* implement drop ([726a14d](https://github.com/customcommander/functionaut/commit/726a14d8a4bfa75883739c582ceea05fb239c389))
+
 # [1.6.0](https://github.com/customcommander/functionaut/compare/v1.5.0...v1.6.0) (2021-03-07)
 
 
