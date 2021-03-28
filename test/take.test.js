@@ -18,7 +18,7 @@ test('take does not mutate the original list.', t => {
   t.end();
 });
 
-test('take cannot returns more than there is in the list.', t => {
+test('take cannot return more than there is in the list.', t => {
   t.same(take(Infinity)('123'), '123');
   t.same(take(Infinity)([1, 2, 3]), [1, 2, 3]);
   t.same(take(Infinity)({a: 1, b: 2, c: 3}), {a: 1, b: 2, c: 3});
