@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/customcommander/functionaut/compare/v1.7.0...v1.8.0) (2021-06-11)
+
+
+### Features
+
+* implement add ([d0ba92a](https://github.com/customcommander/functionaut/commit/d0ba92a1e38652a5242a6920285ba48dcce54038))
+
 # [1.7.0](https://github.com/customcommander/functionaut/compare/v1.6.0...v1.7.0) (2021-03-28)
 
 
