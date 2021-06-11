@@ -1,5 +1,5 @@
 const test = require('tape');
-const {inc, dec} = require('../dist');
+const {inc, dec, add} = require('../dist');
 
 test('inc', t => {
   t.true(inc(41) === 42, 'adds 1 to a number');
@@ -18,5 +18,12 @@ test('dec', t => {
   t.true(dec(-Infinity) === -Infinity, 'works with -Infinity');
   t.throws(() => dec('43'), 'does not work with number like');
   t.throws(() => dec(new Number(43)), 'does not work with number object');
+  t.end();
+});
+
+test('add', t => {
+  t.true(add(40)(2), 42);
+  t.throws(() => add('40')(2));
+  t.throws(() => add('2')(40));
   t.end();
 });

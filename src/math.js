@@ -4,6 +4,7 @@
  */
 
 const {assert_number} = require('./private/helpers');
+const {curry} = require('./functions');
 
 
 /**
@@ -64,5 +65,29 @@ module.exports = {
   inc: x => {
     assert_number(x, 'inc: `x` is not a number');
     return x + 1;
-  }
+  },
+
+  /**
+   * Adds `a` and `b`.
+   *
+   * @example
+   * > Curried function that adds two numbers
+   *
+   * ```javascript
+   * const add10 = add(10);
+   * add10(32);
+   * //=> 42
+   * ```
+   *
+   * @public
+   * @param {number} a
+   * @param {number} b
+   * @return {number}
+   * @throws When either `a` or `b` is not a number.
+   */
+  add: curry((a, b) => {
+    assert_number(a, 'add: `a` is not a number');
+    assert_number(b, 'add: `b` is not a number');
+    return a + b;
+  })
 };
