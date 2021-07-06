@@ -1,0 +1,1430 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-a9fde460.js"></script>
+
+  </head>
+
+  <body class="index" data-languages="[&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-c465ee42.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#flight-manual" class="toc-h1 toc-link" data-title="Flight Manual">Flight Manual</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#add" class="toc-h2 toc-link" data-title="add">add</a>
+                  </li>
+                  <li>
+                    <a href="#cease" class="toc-h2 toc-link" data-title="cease">cease</a>
+                  </li>
+                  <li>
+                    <a href="#compose" class="toc-h2 toc-link" data-title="compose">compose</a>
+                  </li>
+                  <li>
+                    <a href="#cond" class="toc-h2 toc-link" data-title="cond">cond</a>
+                  </li>
+                  <li>
+                    <a href="#constant" class="toc-h2 toc-link" data-title="constant">constant</a>
+                  </li>
+                  <li>
+                    <a href="#curry" class="toc-h2 toc-link" data-title="curry">curry</a>
+                  </li>
+                  <li>
+                    <a href="#dec" class="toc-h2 toc-link" data-title="dec">dec</a>
+                  </li>
+                  <li>
+                    <a href="#drop" class="toc-h2 toc-link" data-title="drop">drop</a>
+                  </li>
+                  <li>
+                    <a href="#filter" class="toc-h2 toc-link" data-title="filter">filter</a>
+                  </li>
+                  <li>
+                    <a href="#flip" class="toc-h2 toc-link" data-title="flip">flip</a>
+                  </li>
+                  <li>
+                    <a href="#identity" class="toc-h2 toc-link" data-title="identity">identity</a>
+                  </li>
+                  <li>
+                    <a href="#inc" class="toc-h2 toc-link" data-title="inc">inc</a>
+                  </li>
+                  <li>
+                    <a href="#into" class="toc-h2 toc-link" data-title="into">into</a>
+                  </li>
+                  <li>
+                    <a href="#loop" class="toc-h2 toc-link" data-title="loop">loop</a>
+                  </li>
+                  <li>
+                    <a href="#map" class="toc-h2 toc-link" data-title="map">map</a>
+                  </li>
+                  <li>
+                    <a href="#recur" class="toc-h2 toc-link" data-title="recur">recur</a>
+                  </li>
+                  <li>
+                    <a href="#take" class="toc-h2 toc-link" data-title="take">take</a>
+                  </li>
+                  <li>
+                    <a href="#unary" class="toc-h2 toc-link" data-title="unary">unary</a>
+                  </li>
+                  <li>
+                    <a href="#unfold" class="toc-h2 toc-link" data-title="unfold">unfold</a>
+                  </li>
+                  <li>
+                    <a href="#zip" class="toc-h2 toc-link" data-title="zip">zip</a>
+                  </li>
+                  <li>
+                    <a href="#zip3" class="toc-h2 toc-link" data-title="zip3">zip3</a>
+                  </li>
+                  <li>
+                    <a href="#zip4" class="toc-h2 toc-link" data-title="zip4">zip4</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='flight-manual'>Flight Manual</h1><h2 id='add'>add</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">add</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">add</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>Curried function that adds two numbers</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">add10</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nx">add10</span><span class="p">(</span><span class="mi">32</span><span class="p">);</span>
+<span class="c1">//=&gt; 42</span>
+</code></pre></div>
+<p>Adds <code>a</code> and <code>b</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>a</td>
+<td>number</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>b</td>
+<td>number</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>number</code>.</p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When either `a` or `b` is not a number.
+      </aside>
+<h2 id='cease'>cease</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">cease</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">cease</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<p>Signal the exit condition in a <code>loop</code>-induced recursive function.
+Also hold its return value.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>?</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Object</code>.</p>
+
+<p>See also <a href="#loop">loop</a></p>
+<h2 id='compose'>compose</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">compose</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">compose</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">comp</span> <span class="o">=</span> <span class="nx">compose</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">);</span>
+<span class="nx">comp</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="c1">//=&gt; 42</span>
+</code></pre></div>
+<p>Performs a right-to-left function composition.</p>
+
+<p>Given a list of functions returns a new function that takes an indefinite number of parameters and applies
+the rightmost function to these, the result of which is fed into the second rightmost function, etc.
+Returns the return value of the leftmost function.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>...fn</td>
+<td>function</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>function</code>.</p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When called with no arguments or with some non-function arguments.
+      </aside>
+<h2 id='cond'>cond</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">cond</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">cond</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">record</span> <span class="o">=</span> <span class="nx">cond</span><span class="p">(</span> <span class="p">({</span><span class="nx">age</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">,</span>
+                       <span class="p">({</span><span class="nx">name</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="s2">`Free for </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">.`</span><span class="p">,</span>
+
+                     <span class="p">({</span><span class="nx">age</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">,</span>
+                       <span class="p">({</span><span class="nx">name</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="s2">`50% discount for </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">.`</span><span class="p">,</span>
+
+                     <span class="p">({</span><span class="nx">age</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">,</span>
+                       <span class="p">({</span><span class="nx">name</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="s2">`20% discount for </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">.`</span><span class="p">,</span>
+
+                     <span class="p">({</span><span class="nx">age</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">65</span><span class="p">,</span>
+                       <span class="p">({</span><span class="nx">name</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="s2">`Standard charge for </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">.`</span><span class="p">,</span>
+
+                     <span class="p">({</span><span class="nx">age</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">65</span><span class="p">,</span>
+                       <span class="p">({</span><span class="nx">name</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="s2">`40% discount for </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">.`</span><span class="p">);</span>
+
+<span class="nx">record</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Harry</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">2</span><span class="p">});</span>
+<span class="c1">//=&gt; 'Free for Harry.'</span>
+
+<span class="nx">record</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Jane</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">11</span><span class="p">});</span>
+<span class="c1">//=&gt; '50% discount for Jane.'</span>
+
+<span class="nx">record</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Idris</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">18</span><span class="p">});</span>
+<span class="c1">//=&gt; '20% discount for Idris.'</span>
+
+<span class="nx">record</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bob</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">40</span><span class="p">});</span>
+<span class="c1">//=&gt; 'Standard charge for Bob.'</span>
+
+<span class="nx">record</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">65</span><span class="p">});</span>
+<span class="c1">//=&gt; '40% discount for John.'</span>
+</code></pre></div>
+<p>Takes a list of predicate/function pairs and returns a function that takes
+any number of arguments and applies them to the predicates until one is
+satisfied. At which point the function associated with that predicate
+is applied to the same arguments and we take its return value.
+Predicates must return true (not truthy). Returns <code>undefined</code> when
+no predicates are satisfied.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>...fn</td>
+<td>function</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>function</code>.</p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When called with no or a non-even number of arguments or with non-function arguments.
+      </aside>
+<h2 id='constant'>constant</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">constant</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">constant</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">constant</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+
+<span class="nx">answer</span><span class="p">();</span>
+<span class="c1">//=&gt; 42</span>
+
+<span class="nx">answer</span><span class="p">(</span><span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">//=&gt; 42</span>
+</code></pre></div>
+<p>Takes a <code>x</code> and returns a function that <em>always</em> returns <code>x</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>x</td>
+<td>?</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>function</code>.</p>
+<h2 id='curry'>curry</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">curry</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">curry</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>
+
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="c1">//=&gt; [11, 12, 13]</span>
+</code></pre></div>
+<p>Returns a curried version of <code>fn</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fn</td>
+<td>function</td>
+<td>Function to curry.</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>function</code>.</p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When `fn` is not a function.
+      </aside>
+<h2 id='dec'>dec</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">dec</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">dec</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">dec</span><span class="p">(</span><span class="mi">43</span><span class="p">);</span>
+<span class="c1">//=&gt; 42</span>
+</code></pre></div>
+<blockquote>
+<p>Does not work with number objects</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">dec</span><span class="p">(</span><span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">43</span><span class="p">));</span>
+<span class="c1">// ERR!</span>
+</code></pre></div>
+<p>Takes 1 away from <code>x</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>x</td>
+<td>number</td>
+<td>Any number</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>number</code>.</p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When `x` is not a number.
+      </aside>
+<h2 id='drop'>drop</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">drop</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">drop</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>Works with arrays, objects and strings</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">drop2</span> <span class="o">=</span> <span class="nx">drop</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="nx">drop2</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+<span class="c1">//=&gt; [3]</span>
+
+<span class="nx">drop2</span><span class="p">({</span><span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">c</span><span class="p">:</span> <span class="mi">3</span><span class="p">});</span>
+<span class="c1">//=&gt; {c: 3}</span>
+
+<span class="nx">drop2</span><span class="p">(</span><span class="dl">"</span><span class="s2">🌯🍣🌮</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">//=&gt; "🌮"</span>
+</code></pre></div>
+<p>Drops the first <code>n</code> items from <code>xs</code> and returns the rest in a new list of the same type.</p>
+
+<p>When <code>n</code> is 0 or negative <code>drop</code> does nothing.
+When <code>n</code> is larger than the number of items <code>drop</code> returns an empty list of the same type.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>n</td>
+<td>number</td>
+<td>Number of items to drop.</td>
+</tr>
+<tr>
+<td>xs</td>
+<td>Array &#124; Object &#124; string</td>
+<td>List to drop from.</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Array|Object|string</code>.</p>
+
+<p>See also <a href="#into">into</a></p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When `n` is not a number.
+      </aside>
+<h2 id='filter'>filter</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">filter</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">filter</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>Works with arrays, objects and strings</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">even</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="nx">even</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+<span class="c1">//=&gt; [2, 3]</span>
+
+<span class="nx">even</span><span class="p">({</span><span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">c</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">d</span><span class="p">:</span> <span class="mi">4</span><span class="p">});</span>
+<span class="c1">//=&gt; {b: 2, d: 4}</span>
+
+<span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">🌯</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">🌯🍣🌯🍣🌯🍣</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">//=&gt; "🌯🌯🌯"</span>
+</code></pre></div>
+<p>Keeps the elements in <code>xs</code> that satisfy the predicate <code>fn</code>
+and returns a new list of the same type.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fn</td>
+<td>function</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>xs</td>
+<td>Array &#124; Object &#124; string</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Array|Object|string</code>.</p>
+
+<p>See also <a href="#take">take</a> — <a href="#into">into</a></p>
+<h2 id='flip'>flip</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">flip</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">flip</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">c</span><span class="p">;</span>
+<span class="nx">x</span><span class="p">(</span><span class="dl">'</span><span class="s1">foo</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">bar</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">baz</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">//=&gt; 'foobarbaz'</span>
+
+<span class="kd">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">flip</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="nx">y</span><span class="p">(</span><span class="dl">'</span><span class="s1">foo</span><span class="dl">'</span><span class="p">)(</span><span class="dl">'</span><span class="s1">bar</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">baz</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">//=&gt; 'barfoobaz'</span>
+</code></pre></div>
+<p>Takes a function <code>fn</code> of arity 2 (or more) and returns
+a (curried) version of it in which the first two parameters
+have been swapped.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fn</td>
+<td>function</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>function</code>.</p>
+<h2 id='identity'>identity</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">identity</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">identity</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">identity</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="c1">//=&gt; 42</span>
+</code></pre></div>
+<p>Returns its argument.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>x</td>
+<td>?</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>?</code>.</p>
+<h2 id='inc'>inc</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">inc</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">inc</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">inc</span><span class="p">(</span><span class="mi">41</span><span class="p">);</span>
+<span class="c1">//=&gt; 42</span>
+</code></pre></div>
+<blockquote>
+<p>Does not work with number objects!</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">inc</span><span class="p">(</span><span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">41</span><span class="p">));</span>
+<span class="c1">// ERR!</span>
+</code></pre></div>
+<p>Adds 1 to <code>x</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>x</td>
+<td>number</td>
+<td>Any number</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>number</code>.</p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When `x` is not a number.
+      </aside>
+<h2 id='into'>into</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">into</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">into</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>Map over the elements and accumulate into a string:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">into</span><span class="p">(</span><span class="dl">''</span><span class="p">,</span> <span class="nx">map</span><span class="p">(</span><span class="nx">inc</span><span class="p">),</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]);</span>
+<span class="c1">//=&gt; '112131'</span>
+</code></pre></div>
+<blockquote>
+<p>Map over the properties and accumulate into an array:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">into</span><span class="p">([],</span> <span class="nx">map</span><span class="p">(</span><span class="nx">inc</span><span class="p">),</span> <span class="p">{</span><span class="na">a</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">c</span><span class="p">:</span> <span class="mi">30</span><span class="p">});</span>
+<span class="c1">//=&gt; [11, 21, 31]</span>
+</code></pre></div>
+<blockquote>
+<p>Map over the characters and accumulate into a string:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">into</span><span class="p">(</span><span class="dl">''</span><span class="p">,</span> <span class="nx">map</span><span class="p">(</span><span class="nx">c</span> <span class="o">=&gt;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">c</span><span class="p">))),</span> <span class="dl">'</span><span class="s1">1234</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">//=&gt; '1223334444'</span>
+</code></pre></div>
+<blockquote>
+<p>Transducer example: take only the first two elements, increment them and accumulate into a string:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">into</span><span class="p">(</span><span class="dl">''</span><span class="p">,</span> <span class="nx">compose</span><span class="p">(</span><span class="nx">take</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nx">map</span><span class="p">(</span><span class="nx">inc</span><span class="p">)),</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]);</span>
+<span class="c1">//=&gt; '1121'</span>
+</code></pre></div>
+<p>Reduces a list into another list (not necessarily of the same type)
+by applying a serie of transformations (<code>transducer</code>) to each value
+of the list in a single iteration. The transducer is defined by composing
+list functions together. Be aware that due to the nature of transducers
+the order of execution will be left to right.</p>
+
+<p>The following functions act as transducers when composed:</p>
+
+<ul>
+<li>filter</li>
+<li>map</li>
+<li>take</li>
+<li>drop</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>init</td>
+<td>Array &#124; Object &#124; string</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>transducer</td>
+<td>function</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>xs</td>
+<td>Array &#124; Object &#124; string</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Array|Object|string</code>.</p>
+
+<p>See also <a href="#filter">filter</a> — <a href="#map">map</a> — <a href="#take">take</a> — <a href="#drop">drop</a></p>
+<h2 id='loop'>loop</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">loop</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">loop</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>Without tail call optimization recursive functions can exhaust the stack:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">nums</span> <span class="o">=</span>
+  <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">ret</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">=&gt;</span>
+    <span class="p">(</span><span class="nx">x</span> <span class="o">===</span> <span class="nx">y</span>
+      <span class="p">?</span> <span class="nx">ret</span>
+      <span class="p">:</span> <span class="nx">nums</span><span class="p">(</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="p">(</span><span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span> <span class="nx">ret</span><span class="p">)));</span>
+
+<span class="nx">nums</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="c1">//=&gt; [</span>
+<span class="c1">//=&gt;    1,  2,  3,   4,  5,  6,  7,  8,  9, 10, 11, 12,</span>
+<span class="c1">//=&gt;   13, 14, 15,  16, 17, 18, 19, 20, 21, 22, 23, 24,</span>
+<span class="c1">//=&gt;   25, 26, 27,  28, 29, 30, 31, 32, 33, 34, 35, 36,</span>
+<span class="c1">//=&gt;   37, 38, 39,  40, 41, 42, 43, 44, 45, 46, 47, 48,</span>
+<span class="c1">//=&gt;   49, 50, 51,  52, 53, 54, 55, 56, 57, 58, 59, 60,</span>
+<span class="c1">//=&gt;   61, 62, 63,  64, 65, 66, 67, 68, 69, 70, 71, 72,</span>
+<span class="c1">//=&gt;   73, 74, 75,  76, 77, 78, 79, 80, 81, 82, 83, 84,</span>
+<span class="c1">//=&gt;   85, 86, 87,  88, 89, 90, 91, 92, 93, 94, 95, 96,</span>
+<span class="c1">//=&gt;   97, 98, 99, 100,</span>
+<span class="c1">//=&gt;   ... 899 more items</span>
+<span class="c1">//=&gt; ]</span>
+
+<span class="nx">nums</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+<span class="c1">//=&gt; Uncaught RangeError: Maximum call stack size exceeded</span>
+</code></pre></div>
+<blockquote>
+<p>With loop/recur you can build the same recursive function without fear:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">nums</span> <span class="o">=</span>
+  <span class="nx">loop</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">ret</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">=&gt;</span>
+    <span class="p">(</span><span class="nx">x</span> <span class="o">===</span> <span class="nx">y</span>
+      <span class="p">?</span> <span class="nx">cease</span><span class="p">(</span><span class="nx">ret</span><span class="p">)</span>
+      <span class="p">:</span> <span class="nx">recur</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="p">(</span><span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span> <span class="nx">ret</span><span class="p">))));</span>
+
+<span class="nx">nums</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">);</span> <span class="c1">// × 10 more!</span>
+<span class="c1">//=&gt; [</span>
+<span class="c1">//=&gt;    1,  2,  3,   4,  5,  6,  7,  8,  9, 10, 11, 12,</span>
+<span class="c1">//=&gt;   13, 14, 15,  16, 17, 18, 19, 20, 21, 22, 23, 24,</span>
+<span class="c1">//=&gt;   25, 26, 27,  28, 29, 30, 31, 32, 33, 34, 35, 36,</span>
+<span class="c1">//=&gt;   37, 38, 39,  40, 41, 42, 43, 44, 45, 46, 47, 48,</span>
+<span class="c1">//=&gt;   49, 50, 51,  52, 53, 54, 55, 56, 57, 58, 59, 60,</span>
+<span class="c1">//=&gt;   61, 62, 63,  64, 65, 66, 67, 68, 69, 70, 71, 72,</span>
+<span class="c1">//=&gt;   73, 74, 75,  76, 77, 78, 79, 80, 81, 82, 83, 84,</span>
+<span class="c1">//=&gt;   85, 86, 87,  88, 89, 90, 91, 92, 93, 94, 95, 96,</span>
+<span class="c1">//=&gt;   97, 98, 99, 100,</span>
+<span class="c1">//=&gt;   ... 99899 more items</span>
+<span class="c1">//=&gt; ]</span>
+</code></pre></div>
+<p>Colloquially known as &quot;trampoline&quot; this function allows you to implement
+stack-safe recursive functions. You must use <code>recur</code> to bootstrap the next
+recursive call and <code>cease</code> to signal the exit condition and the return value.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fn</td>
+<td>function</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>function</code>.</p>
+
+<p>See also <a href="#recur">recur</a> — <a href="#cease">cease</a></p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When `fn` is not a function or does not use `cease` or `recur`.
+      </aside>
+<h2 id='map'>map</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">map</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">map</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>Works with arrays, objects and strings</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">double</span> <span class="o">=</span> <span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">x</span><span class="p">);</span>
+
+<span class="nx">double</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+<span class="c1">//=&gt; [2, 4, 6]</span>
+
+<span class="nx">double</span><span class="p">({</span><span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="na">c</span><span class="p">:</span> <span class="mi">3</span><span class="p">});</span>
+<span class="c1">//=&gt; {a: 2, b: 4, c: 6}</span>
+
+<span class="nx">double</span><span class="p">(</span><span class="dl">"</span><span class="s2">🌯🍣🌮</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">//=&gt; "🌯🌯🍣🍣🌮🌮"</span>
+</code></pre></div>
+<p>Applies <code>fn</code> to each element of <code>xs</code> and returns a new list of the same type.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fn</td>
+<td>function</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>xs</td>
+<td>Array &#124; Object &#124; string</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Array|Object|string</code>.</p>
+
+<p>See also <a href="#into">into</a></p>
+<h2 id='recur'>recur</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">recur</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">recur</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<p>Bootstrap the next recursive call in a <code>loop</code>-induced recursive function.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>...args</td>
+<td>any</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Object</code>.</p>
+
+<p>See also <a href="#loop">loop</a></p>
+<h2 id='take'>take</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">take</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">take</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>Works with arrays, objects and strings</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">take2</span> <span class="o">=</span> <span class="nx">take</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="nx">take2</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+<span class="c1">//=&gt; [1, 2]</span>
+
+<span class="nx">take2</span><span class="p">({</span><span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">c</span><span class="p">:</span> <span class="mi">3</span><span class="p">});</span>
+<span class="c1">//=&gt; {a: 1, b: 2}</span>
+
+<span class="nx">take2</span><span class="p">(</span><span class="dl">"</span><span class="s2">🌯🍣🌮</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">//=&gt; "🌯🍣"</span>
+</code></pre></div>
+<blockquote>
+<p>Emojis aren&#39;t single codepoint characters which is why these attempts at extracting the first character fails:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="dl">"</span><span class="s2">🌯🍣🌮</span><span class="dl">"</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">""</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<span class="c1">//=&gt; "�"</span>
+<span class="dl">"</span><span class="s2">🌯🍣🌮</span><span class="dl">"</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="c1">//=&gt; "�"</span>
+
+<span class="c1">// because</span>
+<span class="dl">"</span><span class="s2">🌯</span><span class="dl">"</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">2</span><span class="p">;</span>
+<span class="c1">//=&gt; true</span>
+</code></pre></div>
+<p>Takes the first <code>n</code> elements from <code>xs</code> and returns them in a new list of the same type.</p>
+
+<p>An empty list of the same type is returned when <code>n</code> is either <code>0</code>, <code>NaN</code>,
+<code>-Infinity</code> or any other negative number. A full list (of the same type)
+is returned when <code>n</code> is either Infinity or greater than the number of elements
+in <code>xs</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>n</td>
+<td>number</td>
+<td>Number of elements to take.</td>
+</tr>
+<tr>
+<td>xs</td>
+<td>Array &#124; Object &#124; string</td>
+<td>List to take from.</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Array|Object|string</code>.</p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When `n` is not a number.
+      </aside>
+<h2 id='unary'>unary</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">unary</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">unary</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">[</span><span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">3</span><span class="dl">'</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">);</span>
+<span class="c1">//=&gt; [1, NaN, NaN]</span>
+<span class="c1">// equivalent to [parseInt('1', 0), parseInt('2', 1), parseInt('3', 2)]</span>
+<span class="c1">// array indices................^.................^.................^</span>
+
+<span class="p">[</span><span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">3</span><span class="dl">'</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">unary</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">));</span>
+<span class="c1">//=&gt; [1, 2, 3]</span>
+<span class="c1">// equivalent to [parseInt('1'), parseInt('2'), parseInt('3')]</span>
+</code></pre></div>
+<p>Takes a function <code>fn</code> of any arity and returns
+a (curried) version of it that takes exactly one
+parameter. Any extra parameters are discarded.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fn</td>
+<td>function</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>function</code>.</p>
+
+<aside class="notice">
+        <strong>Throws:</strong> When `fn` is not a function.
+      </aside>
+<h2 id='unfold'>unfold</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">unfold</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">unfold</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>List of ten consecutive days starting from Wednesday.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">day</span> <span class="o">=</span>
+  <span class="nx">x</span> <span class="o">=&gt;</span>
+    <span class="p">(</span> <span class="nx">x</span> <span class="o">===</span> <span class="mi">1</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">Mon</span><span class="dl">'</span>
+    <span class="p">:</span> <span class="nx">x</span> <span class="o">===</span> <span class="mi">2</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">Tue</span><span class="dl">'</span>
+    <span class="p">:</span> <span class="nx">x</span> <span class="o">===</span> <span class="mi">3</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">Wed</span><span class="dl">'</span>
+    <span class="p">:</span> <span class="nx">x</span> <span class="o">===</span> <span class="mi">4</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">Thu</span><span class="dl">'</span>
+    <span class="p">:</span> <span class="nx">x</span> <span class="o">===</span> <span class="mi">5</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">Fri</span><span class="dl">'</span>
+    <span class="p">:</span> <span class="nx">x</span> <span class="o">===</span> <span class="mi">6</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">Sat</span><span class="dl">'</span>
+              <span class="p">:</span> <span class="dl">'</span><span class="s1">Sun</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">unfold</span><span class="p">(</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">13</span>        <span class="c1">// pred</span>
+      <span class="p">,</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">day</span><span class="p">(</span><span class="nx">x</span> <span class="o">%</span> <span class="mi">7</span><span class="p">)</span>    <span class="c1">// map</span>
+      <span class="p">,</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span>         <span class="c1">// next</span>
+      <span class="p">,</span> <span class="mi">3</span><span class="p">);</span>                <span class="c1">// x</span>
+
+<span class="c1">//=&gt; ["Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]</span>
+</code></pre></div>
+<p>Produces a list of values from <code>x</code>.</p>
+
+<p>First the predicate <code>pred</code> is applied to <code>x</code>.
+If true the result of applying <code>map</code> to <code>x</code> is added to the list.
+Then the predicate is applied to the next value of <code>x</code> which is
+obtained by applying <code>next</code> to <code>x</code> and the process repeats until
+the predicate returns false.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pred</td>
+<td>function</td>
+<td><code>unfold</code> continues whilst the predicate applied to <code>x</code> returns <code>true</code>.</td>
+</tr>
+<tr>
+<td>map</td>
+<td>function</td>
+<td><code>unfold</code> applies <code>map</code> to <code>x</code> and adds the result to the list.</td>
+</tr>
+<tr>
+<td>next</td>
+<td>function</td>
+<td><code>unfold</code> determines the next value of <code>x</code> by applying <code>next</code> to it.</td>
+</tr>
+<tr>
+<td>x</td>
+<td>*</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Array.&lt;*&gt;</code>.</p>
+
+<aside class="notice">
+        <strong>Throws:</strong> If either `pred`, `map` or `next` is not a function.
+      </aside>
+<h2 id='zip'>zip</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">zip</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">zip</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]);</span>
+<span class="c1">//=&gt; [[1, 10], [2, 20]]</span>
+</code></pre></div>
+<blockquote>
+<p>When arrays are not the same length</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]);</span>
+<span class="c1">//=&gt; [[1, 10], [2, 20]]</span>
+<span class="nx">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">]);</span>
+<span class="c1">//=&gt; [[1, 10]]</span>
+<span class="nx">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[]);</span>
+<span class="c1">//=&gt; []</span>
+<span class="nx">zip</span><span class="p">([],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]);</span>
+<span class="c1">//=&gt; []</span>
+</code></pre></div>
+<p>Takes two arrays <code>a</code> and <code>b</code> and returns a new array
+where each element of <code>a</code> and <code>b</code> at the same index are
+put together. The length of the new array is equal to the length
+of the smallest array.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>a</td>
+<td>Array</td>
+<td>An array</td>
+</tr>
+<tr>
+<td>b</td>
+<td>Array</td>
+<td>Another array</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Array.&lt;Array&gt;</code>.</p>
+
+<p>See also <a href="#zip3">zip3</a> — <a href="#zip4">zip4</a></p>
+
+<aside class="notice">
+        <strong>Throws:</strong> If either `a` or `b` is not an array.
+      </aside>
+<h2 id='zip3'>zip3</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">zip3</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">zip3</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">zip3</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">]);</span>
+<span class="c1">//=&gt; [[1, 10, 100], [2, 20, 200]]</span>
+</code></pre></div>
+<p>Same as <code>zip</code> but with three arrays.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>a</td>
+<td>Array</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>b</td>
+<td>Array</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>c</td>
+<td>Array</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Array.&lt;Array&gt;</code>.</p>
+
+<p>See also <a href="#zip">zip</a></p>
+
+<aside class="notice">
+        <strong>Throws:</strong> If either `a`, `b` or `c` is not an array.
+      </aside>
+<h2 id='zip4'>zip4</h2>
+<blockquote>
+<p>How to import?</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// From Node.js</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">zip4</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@customcommander/functionaut</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// From a browser</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">zip4</span><span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">F</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">zip4</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">]);</span>
+<span class="c1">//=&gt; [[1, 10, 100, 1000], [2, 20, 200, 2000]]</span>
+</code></pre></div>
+<p>Same as <code>zip</code> but with four arrays.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>a</td>
+<td>Array</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>b</td>
+<td>Array</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>c</td>
+<td>Array</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>d</td>
+<td>Array</td>
+<td>N/A</td>
+</tr>
+</tbody></table>
+
+<p>Returns <code>Array.&lt;Array&gt;</code>.</p>
+
+<p>See also <a href="#zip">zip</a></p>
+
+<aside class="notice">
+        <strong>Throws:</strong> If either `a`, `b`, `c` or `d` is not an array.
+      </aside>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
