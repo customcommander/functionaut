@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/customcommander/functionaut/compare/v1.8.0...v1.9.0) (2021-07-06)
+
+
+### Features
+
+* implement cond ([3d44510](https://github.com/customcommander/functionaut/commit/3d445102fd7b1e1528e097eb32fa42d16e3f02b2))
+
 # [1.8.0](https://github.com/customcommander/functionaut/compare/v1.7.0...v1.8.0) (2021-06-11)
 
 
