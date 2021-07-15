@@ -1,3 +1,13 @@
+# [1.10.0](https://github.com/customcommander/functionaut/compare/v1.9.0...v1.10.0) (2021-07-15)
+
+
+### Features
+
+* implement all ([f3d6e57](https://github.com/customcommander/functionaut/commit/f3d6e579165b38d4941f86ffb3ee345c0b84174b))
+* implement eq and ne ([12693df](https://github.com/customcommander/functionaut/commit/12693dfdc938c6c618dd83e835907f845a6c423f))
+* implement on ([482af83](https://github.com/customcommander/functionaut/commit/482af83ca9653d1cf61143973fe9e2f19e3a0e51))
+* implement upper and lower ([979fa6b](https://github.com/customcommander/functionaut/commit/979fa6bf47a067c7bc607ad7ea61306c8ffe88f9))
+
 # [1.9.0](https://github.com/customcommander/functionaut/compare/v1.8.0...v1.9.0) (2021-07-06)
 
 
