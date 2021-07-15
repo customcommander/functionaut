@@ -212,5 +212,32 @@ module.exports = {
         if (fn[i](...args) === true) return fn[i+1](...args);
       }
     };
-  }
+  },
+
+  /**
+   * Takes a binary function `f` and a unary function `g` and returns
+   * a curried binary function that takes an `a` and a `b`.
+   * Applies `f` to the result of `g(a)` and `g(b)`.
+   *
+   * @example
+   * > Building a case-insensitive string comparison function.
+   *
+   * ```javascript
+   * const streqi = on(eq, lower); // i.e. (a, b) => eq(lower(a), lower(b))
+   * 
+   * streqi('FOObar', 'fooBAR');
+   * //=> true
+   * ```
+   *
+   * @public
+   * @param {function(?, ?): ?} f
+   * @param {function(?): ?} g
+   * @return {function(?, ?): ?}
+   * @throws When either `f` or `g` is not a function.
+   */
+  on: _curry((f, g) => {
+    assert_function(f, 'on: `f` is not a function');
+    assert_function(g, 'on: `g` is not a function');
+    return _curry((a, b) => f(g(a), g(b)));
+  })
 };
