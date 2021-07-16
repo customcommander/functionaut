@@ -268,5 +268,36 @@ module.exports = {
   partial: (f, ...init) => {
     assert_function(f, 'partial: `f` is not a function');
     return (...tail) => f(...init, ...tail);
+  },
+
+  /**
+   * Takes a list of functions and returns a function that
+   * takes a list of arguments and applies each function to them.
+   * Returns an array with the results.
+   *
+   * @example
+   * > Producing a restaurant bill:
+   *
+   * ```javascript
+   * const items = (...xs) => xs.map(([i]) => i).join(', ');
+   * const total = (...xs) => xs.reduce((t, [, p]) => t + p, 0);
+   * const bill = juxt(items, total);
+   * 
+   * bill( ['burrito', 5.50]
+   *     , ['beer'   , 4.50]
+   *     , ['coffee' , 2.80]);
+   *
+   * //=> ["burrito, beer, coffee", 12.8]
+   *```
+   *
+   * @public
+   * @param  {...function(...?): ?} fn
+   * @returns {function(...?): Array<?>}
+   * @throws When called with no functions.
+   */
+  juxt: (...fn) => {
+    if (fn.length === 0) throw new Error(`juxt: called with no arguments`);
+    fn.forEach((f, i) => assert_function(f, `juxt: arg at ${i} is not a function`));
+    return (...args) => fn.map(f => f(...args));
   }
 };
