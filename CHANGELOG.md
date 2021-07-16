@@ -1,3 +1,13 @@
+# [1.11.0](https://github.com/customcommander/functionaut/compare/v1.10.0...v1.11.0) (2021-07-16)
+
+
+### Features
+
+* implement concede ([1ae7d5f](https://github.com/customcommander/functionaut/commit/1ae7d5f4b867f3301bf4823c403ac46826c401b8))
+* implement juxt ([c2209c1](https://github.com/customcommander/functionaut/commit/c2209c199d075863fdc0e44c5e8e20a16e7391c5))
+* implement partial ([71f3bd8](https://github.com/customcommander/functionaut/commit/71f3bd84d7885c7439fc8f346e34a10388da420e))
+* implement when ([c3a135e](https://github.com/customcommander/functionaut/commit/c3a135e3ae8e859cfcd22482b88699748ad7d7ed))
+
 # [1.10.0](https://github.com/customcommander/functionaut/compare/v1.9.0...v1.10.0) (2021-07-15)
 
 
