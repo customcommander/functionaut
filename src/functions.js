@@ -349,5 +349,31 @@ module.exports = {
     if (fn.length === 0) throw new Error(`juxt: called with no arguments`);
     fn.forEach((f, i) => assert_function(f, `juxt: arg at ${i} is not a function`));
     return (...args) => fn.map(f => f(...args));
-  }
+  },
+
+  /**
+   * Returns `g(x)` if `f(x)` returns `true`.
+   * Returns `undefined` otherwise.
+   *
+   * @example
+   * ```javascript
+   * when(eq(40), add(2))(40);
+   * //=> 42
+   *
+   * when(eq(40), add(2))(41);
+   * //=> undefined
+   * ```
+   *
+   * @public
+   * @param {function(?): boolean} f Predicate. Must return `true` not thruthy.
+   * @param {function(?): ?} g Function applied to `x` if predicate is satisfied.
+   * @param {?} x
+   * @returns {?}
+   * @throws When either `f` or `g` is not a function
+   */
+  when: _curry((f, g, x) => {
+    assert_function(f, 'when: `f` is not a function');
+    assert_function(g, 'when: `g` is not a function');
+    if (f(x) === true) return g(x);
+  })
 };
