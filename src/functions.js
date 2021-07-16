@@ -35,6 +35,7 @@ module.exports = {
    * @param  {...function()} fn
    * @returns {function()}
    * @throws When called with no arguments or with some non-function arguments.
+   * @see concede
    */
   compose: (...fn) => {
     if (fn.length === 0) throw new Error('compose: called with no arguments');
@@ -43,6 +44,55 @@ module.exports = {
       let i = fn.length - 1;
       let x = fn[i](...args);
       while (--i >= 0) x = fn[i](x);
+      return x;
+    };
+  },
+
+  /**
+   * Same as `compose` but avoids null pointer exception during
+   * execution by exiting as soon as nil (either `null` or `undefined`)
+   * is returned by a function in the composition. Returns either nil
+   * or the value returned by the leftmost function.
+   *
+   * @example
+   * > Reading a nested property may throw an error:
+   *
+   * ```javascript
+   * const at = k => o => o[k];
+   * const path1 = compose(at('baz'), at('bar'), at('foo'));
+   *
+   * path1({foo: {bar: {baz: 42}}});
+   * //=> 42
+   *
+   * path1({foo: {}})
+   * //=> Uncaught TypeError: Cannot read property 'baz' of undefined
+   * ```
+   *
+   * > Same with concede:
+   *
+   * ```javascript
+   * const path2 = concede(at('baz'), at('bar'), at('foo'));
+   *
+   * path2({foo: {bar: {baz: 42}}});
+   * //=> 42
+   *
+   * path2({foo: {}});
+   * //=> undefined
+   * ```
+   *
+   * @public
+   * @param  {...function()} fn
+   * @returns {function()}
+   * @throws When called with no or non-function arguments.
+   * @see compose
+   */
+  concede: (...fn) => {
+    if (fn.length === 0) throw new Error('concede: called with no arguments');
+    fn.forEach((f, i) => assert_function(f, `concede: arg at ${i} is not a function`));
+    return (...args) => {
+      let i = fn.length - 1;
+      let x = fn[i](...args);
+      while (x != null && --i >= 0) x = fn[i](x);
       return x;
     };
   },
