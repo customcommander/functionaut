@@ -265,8 +265,7 @@ module.exports = {
   },
 
   /**
-   * Takes a binary function `f` and a unary function `g` and returns
-   * a curried binary function that takes an `a` and a `b`.
+   * Takes a binary function `f`, a unary function `g` and an `a` and a `b`.
    * Applies `f` to the result of `g(a)` and `g(b)`.
    *
    * @example
@@ -285,10 +284,10 @@ module.exports = {
    * @return {function(?, ?): ?}
    * @throws When either `f` or `g` is not a function.
    */
-  on: _curry((f, g) => {
+  on: _curry((f, g, a, b) => {
     assert_function(f, 'on: `f` is not a function');
     assert_function(g, 'on: `g` is not a function');
-    return _curry((a, b) => f(g(a), g(b)));
+    return f(g(a), g(b));
   }),
 
   /**
