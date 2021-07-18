@@ -279,8 +279,10 @@ module.exports = {
    * ```
    *
    * @public
-   * @param {function(?, ?): ?} f
-   * @param {function(?): ?} g
+   * @param {function(?, ?): ?} f Binary function.
+   * @param {function(?): ?} g Unary function.
+   * @param {?} a Any value.
+   * @param {?} b Any value.
    * @return {function(?, ?): ?}
    * @throws When either `f` or `g` is not a function.
    */
