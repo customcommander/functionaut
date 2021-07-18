@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/customcommander/functionaut/compare/v1.11.0...v1.11.1) (2021-07-18)
+
+
+### Bug Fixes
+
+* function on can take all four parameters in one go ([7bc4436](https://github.com/customcommander/functionaut/commit/7bc44366ca90c98b96a8d6286972efc48e5df55b))
+
 # [1.11.0](https://github.com/customcommander/functionaut/compare/v1.10.0...v1.11.0) (2021-07-16)
 
 
