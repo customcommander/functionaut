@@ -3,8 +3,8 @@ const test = require('tape');
 const {on: sut} = require('../');
 
 test('on throws when either `f` or `g` is not a function', t => {
-  t.throws(() => sut(td.func())(42));
-  t.throws(() => sut(42)(td.func()));
+  t.throws(() => sut(td.func())(42)('a')('b'));
+  t.throws(() => sut(42)(td.func())('a')('b'));
   t.end();
 });
 
