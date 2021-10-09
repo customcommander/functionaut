@@ -1,3 +1,11 @@
+# [1.12.0](https://github.com/customcommander/functionaut/compare/v1.11.1...v1.12.0) (2021-10-09)
+
+
+### Features
+
+* implement fallback. close [#19](https://github.com/customcommander/functionaut/issues/19) ([3bce5d3](https://github.com/customcommander/functionaut/commit/3bce5d304569106686b3e5d7e17144f79eaff0d3))
+* implement nil. close [#20](https://github.com/customcommander/functionaut/issues/20) ([269b1f5](https://github.com/customcommander/functionaut/commit/269b1f54aad18554560f9684958166d3caa04537))
+
 ## [1.11.1](https://github.com/customcommander/functionaut/compare/v1.11.0...v1.11.1) (2021-07-18)
 
 
