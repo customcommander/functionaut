@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/customcommander/functionaut/compare/v1.12.0...v1.13.0) (2021-10-11)
+
+
+### Features
+
+* implement some ([0cfc779](https://github.com/customcommander/functionaut/commit/0cfc7795dc956158e2cd8637719b0c77efc54730))
+
 # [1.12.0](https://github.com/customcommander/functionaut/compare/v1.11.1...v1.12.0) (2021-10-09)
 
 
