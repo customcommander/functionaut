@@ -1,3 +1,34 @@
+# [2.0.0](https://github.com/customcommander/functionaut/compare/v1.13.0...v2.0.0) (2021-10-12)
+
+
+### Bug Fixes
+
+* the function returned by unary does not need to be curried ([cf51ece](https://github.com/customcommander/functionaut/commit/cf51ece80577967154e90f1b05012e9214b074cd))
+
+
+### chore
+
+* remove type checking. close [#17](https://github.com/customcommander/functionaut/issues/17) ([a03793f](https://github.com/customcommander/functionaut/commit/a03793fe2474a2f5bd0b8421f95730567ed5271f))
+
+
+### Features
+
+* all checks the element of a list against a predicate. close [#24](https://github.com/customcommander/functionaut/issues/24) ([8f9bc01](https://github.com/customcommander/functionaut/commit/8f9bc01382a83c7f89d4aca7caae2711f9e171b3))
+
+
+### BREAKING CHANGES
+
+* The function has been changed to accept only one predicate and a list
+of values instead of any number of parameters.
+
+Migration:
+
+v1: `all(isNum, isOdd)(1, 2, 3)`
+
+v2: `all(x => isNum(x) === true && isOdd(x) === true, [1, 2, 3])`
+* Type checking parameters is gone.
+See corresponding Architecture Decision Record (ADR).
+
 # [1.13.0](https://github.com/customcommander/functionaut/compare/v1.12.0...v1.13.0) (2021-10-11)
 
 
