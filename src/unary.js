@@ -3,8 +3,6 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {curry} = require('./curry');
-
 /**
  * @namespace
  * @alias ROOT
@@ -31,5 +29,5 @@ module.exports = {
    * @param {function()} fn
    * @return {function()}
    */
-  unary: fn => curry(x => fn(x))
+  unary: fn => x => fn(x)
 };
