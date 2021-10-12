@@ -4,26 +4,10 @@
  */
 
 /**
-* @namespace
-* @alias ROOT
-*/
+ * @namespace
+ * @alias ROOT
+ */
 module.exports = {
-  /**
-   * Returns `s` uppercased.
-   *
-   * @example
-   * ```javascript
-   * upper('foo');
-   * //=> 'FOO'
-   * ```
-   *
-   * @public
-   * @param {string} s
-   * @return {string}
-   * @see lower
-   */
-  upper: s => s.toUpperCase(),
-
   /**
   * Returns `s` lowercased.
   *

@@ -5,8 +5,8 @@
 
 const {isArray, isString, isObject} = require('./_internal');
 const {Transformer} = require('./_transformer');
-const {curry} = require('./functions');
-const {into} = require('./transducer');
+const {curry} = require('./curry');
+const {into} = require('./into');
 
 /** @constructor */
 function Drop(n, xf) {

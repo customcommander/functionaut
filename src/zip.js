@@ -3,7 +3,7 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {curry} = require('./functions');
+const {curry} = require('./curry');
 
 /**
  * @param {Array} a
@@ -39,7 +39,6 @@ const _zip =
  * @alias ROOT
  */
 module.exports = {
-
   /**
    * Takes two arrays `a` and `b` and returns a new array
    * where each element of `a` and `b` at the same index are

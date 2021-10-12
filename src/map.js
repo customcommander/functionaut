@@ -5,8 +5,8 @@
 
 const {isArray, isObject, isString} = require("./_internal");
 const {Transformer} = require('./_transformer');
-const {curry} = require("./functions");
-const {into} = require("./transducer");
+const {curry} = require("./curry");
+const {into} = require("./into");
 
 /** @constructor */
 function Mapper(fn, xf) {
@@ -23,7 +23,6 @@ Transformer(Mapper, function(acc, value, key) {
  * @alias ROOT
  */
 module.exports = {
-
   /**
    * Applies `fn` to each element of `xs` and returns a new list of the same type.
    *
