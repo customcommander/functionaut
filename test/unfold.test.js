@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const {unfold} = require('../dist');
+const {unfold} = require('..');
 
 test('unfold', t => {
   const noop = () => { /* empty */ };
@@ -26,15 +26,6 @@ test('unfold', t => {
 
   t.deepEquals(unfold(pred)(map)(next)(1), ['one', 'two', 'three'],
     'apply `pred`, `map` and `next` to all values of `x`');
-
-  t.throws(() => unfold([])(noop)(noop)(42),
-    'throw if `pred` is not a function');
-
-  t.throws(() => unfold(noop)([])(noop)(42),
-    'throw if `map` is not a function');
-
-  t.throws(() => unfold(noop)(noop)([])(42),
-    'throw if `next` is not a function');
 
   t.end();
 });

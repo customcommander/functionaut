@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const {map} = require('../dist');
+const {map} = require('..');
 
 test('map applies the function to each element of the list.', t => {
   const translate = td.function();
@@ -37,10 +37,5 @@ test('map returns null when not given a list.', t => {
   const noop = td.function();
   t.same(map(noop)(null), null);
   td.verify(noop(/* … */), {ignoreExtraArgs: true, times: 0});
-  t.end();
-});
-
-test('map fails when not given a function.', t => {
-  t.throws(() => map([])(noop));
   t.end();
 });

@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const {filter} = require('../dist');
+const {filter} = require('..');
 
 test('filter keeps the elements that satisfy the predicate.', t => {
   const pred = td.function();
@@ -48,12 +48,5 @@ test('filter returns null when not given a list.', t => {
   const pred = td.function();
   t.same(filter(pred)(null), null);
   td.verify(pred(/* … */), {ignoreExtraArgs: true, times: 0});
-  t.end();
-});
-
-test('filter fails when not given a function.', t => {
-  t.throws(() => filter([])('123'));
-  t.throws(() => filter([])([1, 2, 3]));
-  t.throws(() => filter([])({a: 1, b: 2, c: 3}));
   t.end();
 });

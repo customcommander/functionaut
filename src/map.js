@@ -3,7 +3,6 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {assert_function} = require("./private/helpers");
 const {isArray, isObject, isString} = require("./_internal");
 const {Transformer} = require('./_transformer');
 const {curry} = require("./functions");
@@ -51,7 +50,6 @@ module.exports = {
    * @see into
    */
   map: curry((fn, xs) => {
-    assert_function(fn, 'map: `fn` is not a function');
     const transducer = xf => new Mapper(fn, xf);
     return ( isArray(xs)        ? into([], transducer, xs)
            : isObject(xs)       ? into({}, transducer, xs)

@@ -3,8 +3,6 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {assert_function} = require('./private/helpers');
-
 const _curry =
   fn => (...args) =>
     args.length >= fn.length
@@ -16,7 +14,6 @@ const _curry =
  * @alias ROOT
  */
 module.exports = {
-
   /**
    * Performs a right-to-left function composition.
    *
@@ -34,18 +31,13 @@ module.exports = {
    * @public
    * @param  {...function()} fn
    * @returns {function()}
-   * @throws When called with no arguments or with some non-function arguments.
    * @see concede
    */
-  compose: (...fn) => {
-    if (fn.length === 0) throw new Error('compose: called with no arguments');
-    fn.forEach((f, i) => assert_function(f, `compose: arg at ${i} is not a function`));
-    return (...args) => {
-      let i = fn.length - 1;
-      let x = fn[i](...args);
-      while (--i >= 0) x = fn[i](x);
-      return x;
-    };
+  compose: (...fn) => (...args) => {
+    let i = fn.length - 1;
+    let x = fn[i](...args);
+    while (--i >= 0) x = fn[i](x);
+    return x;
   },
 
   /**
@@ -83,18 +75,13 @@ module.exports = {
    * @public
    * @param  {...function()} fn
    * @returns {function()}
-   * @throws When called with no or non-function arguments.
    * @see compose
    */
-  concede: (...fn) => {
-    if (fn.length === 0) throw new Error('concede: called with no arguments');
-    fn.forEach((f, i) => assert_function(f, `concede: arg at ${i} is not a function`));
-    return (...args) => {
-      let i = fn.length - 1;
-      let x = fn[i](...args);
-      while (x != null && --i >= 0) x = fn[i](x);
-      return x;
-    };
+  concede: (...fn) => (...args) => {
+    let i = fn.length - 1;
+    let x = fn[i](...args);
+    while (x != null && --i >= 0) x = fn[i](x);
+    return x;
   },
 
   /**
@@ -111,12 +98,8 @@ module.exports = {
    * @public
    * @param {function()} fn Function to curry.
    * @return {function()}
-   * @throws When `fn` is not a function.
    */
-  curry: fn => {
-    assert_function(fn, 'curry: `fn` is not a function');
-    return _curry(fn);
-  },
+  curry: fn => _curry(fn),
 
   /**
    * Takes a function `fn` of arity 2 (or more) and returns
@@ -138,13 +121,10 @@ module.exports = {
    * @param {function()} fn
    * @return {function()}
    */
-  flip: fn => {
-    assert_function(fn, 'flip: `fn` is not a function');
-    return _curry(function (a, b) {
-      const [x, y, ...z] = Array.from(arguments);
-      return fn(y, x, ...z);
-    });
-  },
+  flip: fn => _curry(function (a, b) {
+    const [x, y, ...z] = Array.from(arguments);
+    return fn(y, x, ...z);
+  }),
 
   /**
    * Takes a function `fn` of any arity and returns
@@ -165,12 +145,8 @@ module.exports = {
    * @public
    * @param {function()} fn
    * @return {function()}
-   * @throws When `fn` is not a function.
    */
-  unary: fn => {
-    assert_function(fn, 'unary: `fn` is not a function');
-    return _curry(x => fn(x));
-  },
+  unary: fn => _curry(x => fn(x)),
 
   /**
    * Returns its argument.
@@ -251,17 +227,11 @@ module.exports = {
    * @public
    * @param  {...function()} fn
    * @return {function()}
-   * @throws When called with no or a non-even number of arguments or with non-function arguments.
    */
-  cond: (...fn) => {
-    fn.forEach((f, i) => assert_function(f, `cond: arg at ${i} is not a function.`));
-    if (fn.length === 0) throw new Error('cond: called with no arguments.');
-    if (fn.length % 2 !== 0) throw new Error('cond: called with uneven number of arguments.');
-    return (...args) => {
-      for (let i=0; i<fn.length; i+=2) {
-        if (fn[i](...args) === true) return fn[i+1](...args);
-      }
-    };
+  cond: (...fn) => (...args) => {
+    for (let i=0; i<fn.length; i+=2) {
+      if (fn[i](...args) === true) return fn[i+1](...args);
+    }
   },
 
   /**
@@ -284,13 +254,8 @@ module.exports = {
    * @param {?} a Any value.
    * @param {?} b Any value.
    * @return {function(?, ?): ?}
-   * @throws When either `f` or `g` is not a function.
    */
-  on: _curry((f, g, a, b) => {
-    assert_function(f, 'on: `f` is not a function');
-    assert_function(g, 'on: `g` is not a function');
-    return f(g(a), g(b));
-  }),
+  on: _curry((f, g, a, b) => f(g(a), g(b))),
 
   /**
    * Allows the partial application of a non-curried function.
@@ -314,12 +279,8 @@ module.exports = {
    * @param  {...?} init The initial list of arguments
    * @returns {function(...?): ?} A function that takes the remaining arguments
    *                              then applies `f` to both lists of arguments.
-   * @throws When `f` is not a function
    */
-  partial: (f, ...init) => {
-    assert_function(f, 'partial: `f` is not a function');
-    return (...tail) => f(...init, ...tail);
-  },
+  partial: (f, ...init) => (...tail) => f(...init, ...tail),
 
   /**
    * Takes a list of functions and returns a function that
@@ -344,13 +305,8 @@ module.exports = {
    * @public
    * @param  {...function(...?): ?} fn
    * @returns {function(...?): Array<?>}
-   * @throws When called with no functions.
    */
-  juxt: (...fn) => {
-    if (fn.length === 0) throw new Error(`juxt: called with no arguments`);
-    fn.forEach((f, i) => assert_function(f, `juxt: arg at ${i} is not a function`));
-    return (...args) => fn.map(f => f(...args));
-  },
+  juxt: (...fn) => (...args) => fn.map(f => f(...args)),
 
   /**
    * Returns `g(x)` if `f(x)` returns `true`.
@@ -370,11 +326,6 @@ module.exports = {
    * @param {function(?): ?} g Function applied to `x` if predicate is satisfied.
    * @param {?} x
    * @returns {?}
-   * @throws When either `f` or `g` is not a function
    */
-  when: _curry((f, g, x) => {
-    assert_function(f, 'when: `f` is not a function');
-    assert_function(g, 'when: `g` is not a function');
-    if (f(x) === true) return g(x);
-  })
+  when: _curry((f, g, x) => f(x) === true ? g(x) : undefined)
 };

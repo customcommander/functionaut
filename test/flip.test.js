@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const {flip} = require('../dist');
+const {flip} = require('..');
 
 test('flip inverts the order of the first two parameters.', t => {
   const fn = td.function();
@@ -19,10 +19,5 @@ test('flip forwards the rest of the parameters.', t => {
   td.verify(fn('bar', 'foo', 'baz'));
   flipped('foo', 'bar', 'baz', 'bat');
   td.verify(fn('bar', 'foo', 'baz', 'bat'));
-  t.end();
-});
-
-test('flip fails when not given a function.', t => {
-  t.throws(() => flip([]));
   t.end();
 });

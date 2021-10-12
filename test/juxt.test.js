@@ -2,12 +2,6 @@ const td = require('testdouble');
 const test = require('tape');
 const {juxt: sut} = require('..');
 
-test('juxt throws when called with no functions', t => {
-  t.throws(() => sut());
-  t.throws(() => sut(td.func(), 42));
-  t.end();
-});
-
 test('juxt applies a list of functions to a list of arguments', t => {
   const f = td.func();
   const g = td.func();

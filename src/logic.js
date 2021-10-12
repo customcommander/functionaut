@@ -3,7 +3,6 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {assert_function} = require('./private/helpers');
 const {curry} = require('./functions');
 
 /**
@@ -101,11 +100,6 @@ module.exports = {
    * @public
    * @param  {...function(?): boolean} fn
    * @returns {function(...?): boolean}
-   * @throws When called with no or non-function predicates.
    */
-  all: (...fn) => {
-    if (fn.length === 0) throw new Error('all: called with no predicates.');
-    fn.forEach((f, i) => assert_function(f, `all: arg at ${i} is not a function.`));
-    return (...arg) => arg.every(a => fn.every(f => f(a) === true));
-  }
+  all: (...fn) => (...arg) => arg.every(a => fn.every(f => f(a) === true))
 };

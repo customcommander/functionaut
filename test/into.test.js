@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const {compose, map, into, take, filter, drop} = require('../dist');
+const {compose, map, into, take, filter, drop} = require('..');
 
 test('into reduces a list into another list.', t => {
   const transducer = compose(map(x => x + x), map(x => `(${x})`));

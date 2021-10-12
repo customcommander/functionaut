@@ -3,19 +3,9 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {assert_function} = require('./private/helpers');
-
 const SYM_RECUR = '@@functionaut/recur';
 const SYM_ARGS = '@@functionaut/args';
 const SYM_VALUE = '@@functionaut/value';
-
-const _loop = fn => (...init) => {
-  let res = fn(...init);
-  const enabled = typeof res?.[SYM_RECUR] === 'boolean';
-  if (!enabled) throw new Error('loop: function must use `recur` and `cease`.');
-  while (res[SYM_RECUR]) res = fn(...res[SYM_ARGS]);
-  return res[SYM_VALUE];
-};
 
 /**
  * @namespace
@@ -83,13 +73,13 @@ module.exports = {
    * @public
    * @param {function()} fn 
    * @return {function()}
-   * @throws When `fn` is not a function or does not use `cease` or `recur`.
    * @see recur
    * @see cease
    */
-  loop: fn => {
-    assert_function(fn, 'loop: `fn` is not a function.');
-    return _loop(fn);
+  loop: fn => (...init) => {
+    let res = fn(...init);
+    while (res[SYM_RECUR]) res = fn(...res[SYM_ARGS]);
+    return res[SYM_VALUE];
   },
 
   /**

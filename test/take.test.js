@@ -1,5 +1,5 @@
 const test = require('tape');
-const {take} = require('../dist');
+const {take} = require('..');
 
 test('take returns the first nth elements of the list.', t => {
   t.same(take(2)('🌯🍣🌮'), '🌯🍣');
@@ -42,12 +42,5 @@ test('take returns null when not given a list.', t => {
   t.same(take(2)(null), null);
   t.same(take(2)(true), null);
   t.same(take(2)(1), null);
-  t.end();
-});
-
-test('take fails when not given a number.', t => {
-  t.throws(() => take([])('123'));
-  t.throws(() => take([])([1, 2, 3]));
-  t.throws(() => take([])({a: 1, b: 2, c: 3}));
   t.end();
 });
