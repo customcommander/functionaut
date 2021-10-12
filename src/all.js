@@ -3,33 +3,36 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
+const {isArray, isString, isObject} = require('./_internal');
+const {curry} = require('./curry');
+
 /**
  * @namespace
  * @alias ROOT
  */
 module.exports = {
   /**
-   * Takes a list of predicates and returns a function that takes
-   * any number of arguments and returns true if and only if
-   * all predicates return true for all arguments.
-   * Returns true when called with no arguments.
-   * Predicates must return `true` (not truthy).
+   * Returns true if all elements of xs have satisfied given predicate.
+   * Returns false as soon as one element didn't.
+   * A predicate must return `true` not truthy.
    *
    * @example
-   * > Check all elements are odd numbers (Vanilla JS):
+   * > Assert that a list is made of 'x'.
    *
    * ```javascript
-   * const isNum = x => typeof x === 'number';
-   * const isOdd = x => x % 2 !== 0;
+   * const allx = all(x => x === 'x');
    *
-   * const xs = [1, "3", 5];
-   * const ys = [1, 3, 5];
+   * allx(['x']);                   //=> true
+   * allx(['x', 'x']);              //=> true
+   * allx(['x', 'y', 'x']);         //=> false
    *
-   * xs.every(x => isNum(x) && isOdd(x));
-   * //=> false
+   * allx('x');                     //=> true
+   * allx('xx');                    //=> true
+   * allx('xyx');                   //=> false
    *
-   * ys.every(x => isNum(x) && isOdd(x));
-   * //=> true
+   * allx({a:'x'});                 //=> true
+   * allx({a:'x', b: 'x'});         //=> true
+   * allx({a:'x', b: 'y', c: 'x'}); //=> false
    * ```
    *
    * > With all:
@@ -51,8 +54,15 @@ module.exports = {
    * ```
    *
    * @public
-   * @param  {...function(?): boolean} fn
-   * @returns {function(...?): boolean}
+   * @param {function(?): boolean} pred Predicate
+   * @param {Array|Object|string} xs List of values
+   * @returns {boolean}
    */
-  all: (...fn) => (...arg) => arg.every(a => fn.every(f => f(a) === true))
+  all: curry((pred, xs) => {
+    const ys = (  isArray(xs) ? xs
+               : isObject(xs) ? Object.values(xs)
+               : isString(xs) ? [...xs]
+                              : xs);
+    return ys.every(y => pred(y) === true);
+  })
 };
