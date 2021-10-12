@@ -3,7 +3,6 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {assert_function} = require('./private/helpers');
 const {curry} = require('./functions');
 
 /**
@@ -49,12 +48,8 @@ module.exports = {
    * @param {function(*): *} next `unfold` determines the next value of `x` by applying `next` to it.
    * @param {*} x
    * @return {Array<*>} The result of applying `map` to `x` and all its subsequent values.
-   * @throws If either `pred`, `map` or `next` is not a function.
    */
   unfold: curry((pred, map, next, x) => {
-    assert_function(pred, 'unfold: `pred` is not a function');
-    assert_function(map, 'unfold: `map` is not a function');
-    assert_function(next, 'unfold: `next` is not a function');
     const ret = [];
     for (let y = x; pred(y) === true; y = next(y)) ret.push(map(y));
     return ret;

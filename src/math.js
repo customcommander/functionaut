@@ -3,9 +3,7 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {assert_number} = require('./private/helpers');
 const {curry} = require('./functions');
-
 
 /**
  * @namespace
@@ -33,12 +31,8 @@ module.exports = {
    * @public
    * @param {number} x Any number
    * @return {number}
-   * @throws When `x` is not a number.
    */
-  dec: x => {
-    assert_number(x, 'dec: `x` is not a number');
-    return x - 1;
-  },
+  dec: x => x - 1,
 
   /**
    * Adds 1 to `x`.
@@ -60,12 +54,8 @@ module.exports = {
    * @public
    * @param {number} x Any number
    * @return {number}
-   * @throws When `x` is not a number.
    */
-  inc: x => {
-    assert_number(x, 'inc: `x` is not a number');
-    return x + 1;
-  },
+  inc: x => x + 1,
 
   /**
    * Adds `a` and `b`.
@@ -83,11 +73,6 @@ module.exports = {
    * @param {number} a
    * @param {number} b
    * @return {number}
-   * @throws When either `a` or `b` is not a number.
    */
-  add: curry((a, b) => {
-    assert_number(a, 'add: `a` is not a number');
-    assert_number(b, 'add: `b` is not a number');
-    return a + b;
-  })
+  add: curry((a, b) => a + b)
 };

@@ -2,12 +2,6 @@ const td = require('testdouble');
 const test = require('tape');
 const {when: sut} =  require('..');
 
-test('when throws an error when either `f` or `g` is not a function', t => {
-  t.throws(() => sut(td.func())(42)('x'));
-  t.throws(() => sut(42)(td.func())('x'));
-  t.end();
-});
-
 test('when returns `g(x)` if `f(x)` returns `true`', t => {
   const f = td.func();
   const g = td.func();

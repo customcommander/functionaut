@@ -1,5 +1,5 @@
 const test = require('tape');
-const {drop} = require('../dist');
+const {drop} = require('..');
 
 test('drop ignores the first nth items of the list.', t => {
   t.same(drop(2)('🌯🍣🌮'), '🌮');
@@ -42,12 +42,5 @@ test('drop returns null when not given a list.', t => {
   t.same(drop(2)(null), null);
   t.same(drop(2)(true), null);
   t.same(drop(2)(1), null);
-  t.end();
-});
-
-test('drop fails when not given a number.', t => {
-  t.throws(() => drop([])('123'));
-  t.throws(() => drop([])([1, 2, 3]));
-  t.throws(() => drop([])({a: 1, b: 2, c: 3}));
   t.end();
 });

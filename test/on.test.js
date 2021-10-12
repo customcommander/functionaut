@@ -1,12 +1,6 @@
 const td = require('testdouble');
 const test = require('tape');
-const {on: sut} = require('../');
-
-test('on throws when either `f` or `g` is not a function', t => {
-  t.throws(() => sut(td.func())(42)('a')('b'));
-  t.throws(() => sut(42)(td.func())('a')('b'));
-  t.end();
-});
+const {on: sut} = require('..');
 
 test('on returns a binary function and applies `f` to `g(a)` and `g(b)`', t => {
   const f = td.func();

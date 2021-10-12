@@ -3,7 +3,6 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {assert_function} = require('./private/helpers');
 const {isArray, isString, isObject} = require('./_internal');
 const {Transformer} = require('./_transformer');
 const {curry} = require('./functions');
@@ -26,7 +25,6 @@ Transformer(Filter, function(acc, value, key) {
  * @alias ROOT
  */
 module.exports = {
-
   /**
    * Keeps the elements in `xs` that satisfy the predicate `fn`
    * and returns a new list of the same type.
@@ -55,7 +53,6 @@ module.exports = {
    * @see into
    */
   filter: curry((fn, xs) => {
-    assert_function(fn, 'filter: `fn` is not a function');
     const transducer = xf => new Filter(fn, xf);
     return ( isArray(xs)        ? into([], transducer, xs)
            : isString(xs)       ? into('', transducer, xs)

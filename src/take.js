@@ -3,7 +3,6 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {assert_number} = require('./private/helpers');
 const {isArray, isString, isObject} = require('./_internal');
 const {Transformer} = require('./_transformer');
 const {curry} = require('./functions');
@@ -70,10 +69,8 @@ module.exports = {
    * @param {number} n Number of elements to take.
    * @param {Array|Object|string} xs List to take from.
    * @return {Array|Object|string}
-   * @throws When `n` is not a number.
    */
   take: curry((n, xs) => {
-    assert_number(n, 'take: `n` is not a number');
     const transducer = xf => new Take(n, xf);
     return ( isArray(xs)        ? into([], transducer, xs)
            : isString(xs)       ? into('', transducer, xs)

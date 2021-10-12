@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const {compose} = require('../dist');
+const {compose} = require('..');
 
 test('compose', t => {
   const f = td.func();
@@ -13,9 +13,6 @@ test('compose', t => {
 
   const comp = compose(f, g, h);
   t.true(comp(30, 10) === 42, 'compose(f, g, h)(x) === f(g(h(x)))');
-
-  t.throws(() => compose(), 'throws when called with no arguments');
-  t.throws(() => compose(() => 42, [], () => 42), 'throws when called with non-function arguments');
 
   t.end();
 });

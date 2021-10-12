@@ -2,16 +2,6 @@ const td = require('testdouble');
 const test = require('tape');
 const {all: sut} = require('..');
 
-test('all throws when called with no predicates', t => {
-  t.throws(() => sut());
-  t.end();
-});
-
-test('all throws when called with non-function arguments', t => {
-  t.throws(() => sut(td.func(), 42, td.func()));
-  t.end();
-});
-
 test('all returns true when there are no arguments to verify', t => {
   const p = td.func();
   t.same(sut(p)(), true);

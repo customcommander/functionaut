@@ -2,12 +2,6 @@ const td = require('testdouble');
 const test = require('tape');
 const {concede: sut} = require('..');
 
-test('concede throws when called with no or non-function arguments', t => {
-  t.throws(() => sut());
-  t.throws(() => sut(td.func(), 42));
-  t.end();
-});
-
 test('concede returns the value from the rightmost function', t => {
   const f = td.func();
   const g = td.func();

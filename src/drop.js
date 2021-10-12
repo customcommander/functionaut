@@ -3,7 +3,6 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {assert_number} = require('./private/helpers');
 const {isArray, isString, isObject} = require('./_internal');
 const {Transformer} = require('./_transformer');
 const {curry} = require('./functions');
@@ -29,7 +28,6 @@ Transformer(Drop, function(acc, value, key) {
  * @alias ROOT
  */
 module.exports = {
-
   /**
    * Drops the first `n` items from `xs` and returns the rest in a new list of the same type.
    *
@@ -56,11 +54,9 @@ module.exports = {
    * @param {number} n Number of items to drop.
    * @param {Array|Object|string} xs List to drop from.
    * @return {Array|Object|string}
-   * @throws When `n` is not a number.
    * @see into
    */
   drop: curry((n, xs) => {
-    assert_number(n, 'drop: `n` is not a number');
     const transducer = xf => new Drop(n, xf);
     return ( isArray(xs)        ? into([], transducer, xs)
            : isString(xs)       ? into('', transducer, xs)

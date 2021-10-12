@@ -1,19 +1,6 @@
 const td = require('testdouble');
 const test = require('tape');
-const {cond: sut} = require('../dist');
-
-test('cond throws when not called correctly.', t => {
-  t.throws(() => sut(),
-    'throws when called with no arguments.');
-
-  t.throws(() => sut(td.func(), {}),
-    'throws when called with non-function arguments.');
-
-  t.throws(() => sut(td.func()),
-    'throws when called with a non-even number of arguments.');
-
-  t.end();
-});
+const {cond: sut} = require('..');
 
 test('cond returns a function.', t => {
   t.true(typeof sut(td.func(), td.func()) === 'function');
