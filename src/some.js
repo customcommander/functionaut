@@ -46,7 +46,7 @@ module.exports = {
    * @param {...function()} fn
    * @return {?}
    */
-  some: function some() {
+  some: function _some() {
     const fns = Array.from(arguments);
     return (...args) => {
       let ret;
