@@ -11,14 +11,15 @@ module.exports = {
   /**
    * Performs a right-to-left function composition.
    *
-   * Given a list of functions returns a new function that takes an indefinite number of parameters and applies
-   * the rightmost function to these, the result of which is fed into the second rightmost function, etc.
+   * Given a list of functions returns a new function that takes any number of parameters and applies
+   * the rightmost function to them, the result of which is fed into the second rightmost function, etc.
    * Returns the return value of the leftmost function.
    *
    * @example
    * ```javascript
-   * const comp = compose(x => x + 2, (x, y) => x + y);
-   * comp(30, 10);
+   * const answer = compose(inc, inc, add);
+   *
+   * answer(30, 10);
    * //=> 42
    * ```
    *
