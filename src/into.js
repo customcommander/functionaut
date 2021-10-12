@@ -5,7 +5,7 @@
 
 const {isArray, isString, isObject} = require('./_internal');
 const {Transformer} = require('./_transformer');
-const {curry} = require('./functions');
+const {curry} = require('./curry');
 
 /** @constructor */
 function Push() {};

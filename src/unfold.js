@@ -3,14 +3,13 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {curry} = require('./functions');
+const {curry} = require('./curry');
 
 /**
  * @namespace
  * @alias ROOT
  */
 module.exports = {
-
   /**
    * Produces a list of values from `x`.
    *

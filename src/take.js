@@ -5,8 +5,8 @@
 
 const {isArray, isString, isObject} = require('./_internal');
 const {Transformer} = require('./_transformer');
-const {curry} = require('./functions');
-const {into} = require('./transducer');
+const {curry} = require('./curry');
+const {into} = require('./into');
 
 /** @constructor */
 function Take(n, xf) {
@@ -26,7 +26,6 @@ Transformer(Take, function(acc, value, key) {
  * @alias ROOT
  */
 module.exports = {
-
   /**
    * Takes the first `n` elements from `xs` and returns them in a new list of the same type.
    *

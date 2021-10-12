@@ -3,12 +3,12 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {curry} = require('./functions');
+const {curry} = require('./curry');
 
 /**
-* @namespace
-* @alias ROOT
-*/
+ * @namespace
+ * @alias ROOT
+ */
 module.exports = {
   /**
    * Returns `x` if and only if `y` is nil.
