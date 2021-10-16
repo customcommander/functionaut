@@ -35,24 +35,6 @@ module.exports = {
    * allx({a:'x', b: 'y', c: 'x'}); //=> false
    * ```
    *
-   * > With all:
-   *
-   * ```javascript
-   * const oddNumber = all(isNum, isOdd);
-   *
-   * xs.every(x => oddNumber(x));
-   * //=> false
-   *
-   * ys.every(y => oddNumber(y));
-   * //=> true
-   *
-   * oddNumber(...xs);
-   * //=> false
-   *
-   * oddNumber(...ys);
-   * //=> true
-   * ```
-   *
    * @public
    * @param {function(?): boolean} pred Predicate
    * @param {Array|Object|string} xs List of values
