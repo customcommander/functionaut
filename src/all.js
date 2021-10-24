@@ -3,7 +3,7 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {isArray, isString, isObject} = require('./_internal');
+const iter = require('./_iterable');
 const {curry} = require('./curry');
 
 /**
@@ -41,10 +41,7 @@ module.exports = {
    * @returns {boolean}
    */
   all: curry((pred, xs) => {
-    const ys = (  isArray(xs) ? xs
-               : isObject(xs) ? Object.values(xs)
-               : isString(xs) ? [...xs]
-                              : xs);
-    return ys.every(y => pred(y) === true);
+    for (let [_, v] of iter(xs)) if (pred(v) !== true) return false;
+    return true;
   })
 };
