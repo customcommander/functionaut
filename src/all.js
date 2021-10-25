@@ -39,6 +39,7 @@ module.exports = {
    * @param {function(?): boolean} pred Predicate
    * @param {Array|Object|string} xs List of values
    * @returns {boolean}
+   * @see any
    * @see none
    */
   all: curry((pred, xs) => {
