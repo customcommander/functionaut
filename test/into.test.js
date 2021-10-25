@@ -1,22 +1,53 @@
 const test = require('tape');
 const td = require('testdouble');
-const {compose, map, into, take, filter, drop} = require('..');
+const {compose, map, into, take, filter, drop, identity} = require('..');
 
-test('into reduces a list into another list.', t => {
-  const transducer = compose(map(x => x + x), map(x => `(${x})`));
+test('into(ys)(transducer)(xs) -> ys is not mutated', t => {
+  const arr = [];
+  into(arr)(map(identity))([1, 2, 3]);
+  t.same(arr, []);
 
-  t.same(into([])(transducer)(['a', 'b']), ['(aa)', '(bb)']);
-  t.same(into('')(transducer)(['a', 'b']), '(aa)(bb)');
-  t.same(into({})(transducer)(['a', 'b']), {0: '(aa)', 1: '(bb)'});
+  const obj = {};
+  into(obj)(map(identity))({a:1,b:2,c:3});
+  t.same(obj, {});
 
-  t.same(into([])(transducer)('ab'), ['(aa)', '(bb)']);
-  t.same(into('')(transducer)('ab'), '(aa)(bb)');
-  t.same(into({})(transducer)('ab'), {0: '(aa)', 1: '(bb)'});
+  t.end();
+});
 
-  t.same(into([])(transducer)({x: 'a', y: 'b'}), ['(aa)', '(bb)']);
-  t.same(into('')(transducer)({x: 'a', y: 'b'}), '(aa)(bb)');
-  t.same(into({})(transducer)({x: 'a', y: 'b'}), {x: '(aa)', y: '(bb)'});
 
+test('into(ys)(transducer)(xs) -> from any list to any other list', t => {
+  const f = td.func();
+  const g = td.func();
+
+  const transducer = compose(map(f), map(g));
+  td.when(f('a')).thenReturn('aa');
+  td.when(f('b')).thenReturn('bb');
+  td.when(g('aa')).thenReturn('(aa)');
+  td.when(g('bb')).thenReturn('(bb)');
+
+  const into_arr = into([])(transducer);
+  t.same(into_arr(['a', 'b'])      , ['(aa)', '(bb)']);
+  t.same(into_arr('ab')            , ['(aa)', '(bb)']);
+  t.same(into_arr({x: 'a', y: 'b'}), ['(aa)', '(bb)']);
+
+  const into_str = into('')(transducer);
+  t.same(into_str(['a', 'b'])      , '(aa)(bb)');
+  t.same(into_str('ab')            , '(aa)(bb)');
+  t.same(into_str({x: 'a', y: 'b'}), '(aa)(bb)');
+
+  const into_obj = into({})(transducer);
+  t.same(into_obj(['a', 'b'])      , {0: '(aa)', 1: '(bb)'});
+  t.same(into_obj('ab')            , {0: '(aa)', 1: '(bb)'});
+  t.same(into_obj({x: 'a', y: 'b'}), {x: '(aa)', y: '(bb)'});
+
+  t.end();
+});
+
+test('into(ys)(transducer)(xs) -> ys can be non-empty', t => {
+  const transducer = map(identity);
+  t.same(into([0])(transducer)([1,2,3]), [0,1,2,3]);
+  t.same(into('0')(transducer)('123'), '0123');
+  t.same(into({a:0})(transducer)({b:1,c:2,d:3}), {a:0,b:1,c:2,d:3});
   t.end();
 });
 
