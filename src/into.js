@@ -131,6 +131,11 @@ module.exports = {
 
     if (!xf) return null;
 
-    return iter(xf, init, xs);
+    const start =
+      ( isArray(init)  ? [...init]
+      : isObject(init) ? {...init}
+                       : init);
+
+    return iter(xf, start, xs);
   })
 };
