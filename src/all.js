@@ -39,6 +39,7 @@ module.exports = {
    * @param {function(?): boolean} pred Predicate
    * @param {Array|Object|string} xs List of values
    * @returns {boolean}
+   * @see none
    */
   all: curry((pred, xs) => {
     for (let [_, v] of iter(xs)) if (pred(v) !== true) return false;
