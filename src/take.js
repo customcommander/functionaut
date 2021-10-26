@@ -3,10 +3,9 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {isArray, isString, isObject} = require('./_internal');
 const {Transformer} = require('./_transformer');
 const {curry} = require('./curry');
-const {into} = require('./into');
+const {into, SameListType} = require('./into');
 
 /** @constructor */
 function Take(n, xf) {
@@ -71,10 +70,8 @@ module.exports = {
    */
   take: curry((n, xs) => {
     const transducer = xf => new Take(n, xf);
-    return ( isArray(xs)        ? into([], transducer, xs)
-           : isString(xs)       ? into('', transducer, xs)
-           : isObject(xs)       ? into({}, transducer, xs)
-           : Transformer.is(xs) ? transducer(xs)
-                                : null);
+    return (Transformer.is(xs)
+              ? transducer(xs)
+              : into(SameListType, transducer, xs));
   })
 };

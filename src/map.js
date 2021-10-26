@@ -3,10 +3,9 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {isArray, isObject, isString} = require("./_internal");
 const {Transformer} = require('./_transformer');
 const {curry} = require("./curry");
-const {into} = require("./into");
+const {into, SameListType} = require("./into");
 
 /** @constructor */
 function Mapper(fn, xf) {
@@ -50,10 +49,8 @@ module.exports = {
    */
   map: curry((fn, xs) => {
     const transducer = xf => new Mapper(fn, xf);
-    return ( isArray(xs)        ? into([], transducer, xs)
-           : isObject(xs)       ? into({}, transducer, xs)
-           : isString(xs)       ? into('', transducer, xs)
-           : Transformer.is(xs) ? transducer(xs)
-                                : null);
+    return (Transformer.is(xs)
+              ? transducer(xs)
+              : into(SameListType, transducer, xs));
   })
 };

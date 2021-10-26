@@ -43,10 +43,3 @@ test('filter does not call the predicate when the list is empty.', t => {
   td.verify(pred(/* … */), {ignoreExtraArgs: true, times: 0});
   t.end();
 });
-
-test('filter returns null when not given a list.', t => {
-  const pred = td.function();
-  t.same(filter(pred)(null), null);
-  td.verify(pred(/* … */), {ignoreExtraArgs: true, times: 0});
-  t.end();
-});
