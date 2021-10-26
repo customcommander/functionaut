@@ -2,7 +2,7 @@ const test = require('tape');
 const td = require('testdouble');
 const {compose, map, into, take, filter, drop, identity} = require('..');
 
-test('into(ys)(transducer)(xs) -> ys is not mutated', t => {
+test('into(ys)(transducer)(xs) -> do not mutate ys', t => {
   const arr = [];
   into(arr)(map(identity))([1, 2, 3]);
   t.same(arr, []);
@@ -14,31 +14,18 @@ test('into(ys)(transducer)(xs) -> ys is not mutated', t => {
   t.end();
 });
 
-
 test('into(ys)(transducer)(xs) -> from any list to any other list', t => {
-  const f = td.func();
-  const g = td.func();
+  t.same(into([])(map(identity))([1,2,3])      , [1,2,3]);
+  t.same(into([])(map(identity))('🌯🍣🌮')      , ['🌯','🍣','🌮']);
+  t.same(into([])(map(identity))({x:1,y:2,z:3}), [1,2,3]);
 
-  const transducer = compose(map(f), map(g));
-  td.when(f('a')).thenReturn('aa');
-  td.when(f('b')).thenReturn('bb');
-  td.when(g('aa')).thenReturn('(aa)');
-  td.when(g('bb')).thenReturn('(bb)');
+  t.same(into('')(map(identity))([1,2,3])      , '123');
+  t.same(into('')(map(identity))('🌯🍣🌮')      , '🌯🍣🌮');
+  t.same(into('')(map(identity))({x:1,y:2,z:3}), '123');
 
-  const into_arr = into([])(transducer);
-  t.same(into_arr(['a', 'b'])      , ['(aa)', '(bb)']);
-  t.same(into_arr('ab')            , ['(aa)', '(bb)']);
-  t.same(into_arr({x: 'a', y: 'b'}), ['(aa)', '(bb)']);
-
-  const into_str = into('')(transducer);
-  t.same(into_str(['a', 'b'])      , '(aa)(bb)');
-  t.same(into_str('ab')            , '(aa)(bb)');
-  t.same(into_str({x: 'a', y: 'b'}), '(aa)(bb)');
-
-  const into_obj = into({})(transducer);
-  t.same(into_obj(['a', 'b'])      , {0: '(aa)', 1: '(bb)'});
-  t.same(into_obj('ab')            , {0: '(aa)', 1: '(bb)'});
-  t.same(into_obj({x: 'a', y: 'b'}), {x: '(aa)', y: '(bb)'});
+  t.same(into({})(map(identity))([1,2,3])      , {0:1,1:2,2:3});
+  t.same(into({})(map(identity))('🌯🍣🌮')      , {0:'🌯',1:'🍣',2:'🌮'});
+  t.same(into({})(map(identity))({x:1,y:2,z:3}), {x:1,y:2,z:3});
 
   t.end();
 });
@@ -51,93 +38,22 @@ test('into(ys)(transducer)(xs) -> ys can be non-empty', t => {
   t.end();
 });
 
-test('into returns null when not given a list.', t => {
-  const transducer = td.function();
-  t.same(into('')(transducer)(null), null);
-  t.same(into([])(transducer)(null), null);
-  t.same(into({})(transducer)(null), null);
-  td.verify(transducer(/* … */), {ignoreExtraArgs: true, times: 0});
-  t.end();
-});
+test('into(ys)(transducer)(xs) -> can compose transducers', t => {
+  const f = td.func();
+  const g = td.func();
+  const transducer = compose(drop(1), map(f), filter(g), take(2));
 
-test('into returns null when not given a list to reduce into.', t => {
-  const transducer = td.function();
-  t.same(into(null)(transducer)(''), null);
-  t.same(into(null)(transducer)([]), null);
-  t.same(into(null)(transducer)({}), null);
-  td.verify(transducer(/* … */), {ignoreExtraArgs: true, times: 0});
-  t.end();
-});
+  td.when(f('1')).thenDo(() => t.fail(`Expected '1' to have been dropped`));
+  td.when(f('2')).thenReturn('two');
+  td.when(f('3')).thenReturn('three');
+  td.when(f('4')).thenReturn('four');
+  td.when(f('5')).thenDo(() => t.fail(`Expected '5' to have been ignored since two elements have been taken already`));
+  td.when(g('two')).thenReturn(true);
+  td.when(g('three')).thenReturn(false);
+  td.when(g('four')).thenReturn(true);
 
-test('into: take · map', t => {
-  const fn = td.function();
-  td.when(fn('a')).thenReturn('A');
-  td.when(fn('b')).thenReturn('B');
-  td.when(fn('c')).thenThrow(new Error('was not expecting that call'));
-
-  const transducer = compose(take(2), map(fn));
-
-  t.equals(into('')(transducer)(['a', 'b', 'c']), 'AB');
-  t.equals(into('')(transducer)({x: 'a', y: 'b', z: 'c'}), 'AB');
-  t.equals(into('')(transducer)('abc'), 'AB');
-
-  t.deepEquals(into([])(transducer)(['a', 'b', 'c']), ['A', 'B']);
-  t.deepEquals(into([])(transducer)('abc'), ['A', 'B']);
-  t.deepEquals(into([])(transducer)({x: 'a', y: 'b', z: 'c'}), ['A', 'B']);
-
-  t.deepEquals(into({})(transducer)('abc'), {0: 'A', 1: 'B'});
-  t.deepEquals(into({})(transducer)(['a', 'b', 'c']), {0: 'A', 1: 'B'});
-  t.deepEquals(into({})(transducer)({x: 'a', y: 'b', z: 'c'}), {x: 'A', y: 'B'});
-  t.end();
-});
-
-test('into: drop · map · take', t => {
-  const fn = td.function();
-  td.when(fn('a')).thenThrow(new Error('was not expecting map("a")'));
-  td.when(fn('b')).thenReturn('B');
-  td.when(fn('c')).thenThrow(new Error('was not expecting map("c")'));
-
-  const transducer = compose(drop(1), map(fn), take(1));
-
-  t.same(into('')(transducer)(['a', 'b', 'c']), 'B');
-  t.same(into('')(transducer)({x: 'a', y: 'b', z: 'c'}), 'B');
-  t.same(into('')(transducer)('abc'), 'B');
-
-  t.same(into([])(transducer)(['a', 'b', 'c']), ['B']);
-  t.same(into([])(transducer)({x: 'a', y: 'b', z: 'c'}), ['B']);
-  t.same(into([])(transducer)('abc'), ['B']);
-
-  t.same(into({})(transducer)(['a', 'b', 'c']), {1: 'B'});
-  t.same(into({})(transducer)({x: 'a', y: 'b', z: 'c'}), {y: 'B'});
-  t.same(into({})(transducer)('abc'), {1: 'B'});
-  t.end();
-});
-
-test('into: filter · map · take', t => {
-  const f = td.function();
-  td.when(f('🌯')).thenReturn(true);
-  td.when(f('🌮')).thenReturn(false);
-  td.when(f('🍣')).thenReturn(true);
-  td.when(f('🍤')).thenReturn(true);
-  
-  const m = td.function();
-  td.when(m('🌯')).thenReturn('burrito');
-  td.when(m('🌮')).thenReturn('oops1');
-  td.when(m('🍣')).thenReturn('sushi');
-  td.when(m('🍤')).thenReturn('oops2');
-
-  const transducer = compose(filter(f), map(m), take(2));
-
-  t.equals(into('')(transducer)('🌯🌮🍣🍤'), 'burritosushi');
-  t.deepEquals(into('')(transducer)(['🌯', '🌮', '🍣', '🍤']), 'burritosushi');
-  t.deepEquals(into('')(transducer)({a: '🌯', b: '🌮', c: '🍣', d: '🍤'}), 'burritosushi');
-
-  t.deepEquals(into([])(transducer)('🌯🌮🍣🍤'), ['burrito', 'sushi']);
-  t.deepEquals(into([])(transducer)(['🌯', '🌮', '🍣', '🍤']), ['burrito', 'sushi']);
-  t.deepEquals(into([])(transducer)({a: '🌯', b: '🌮', c: '🍣', d: '🍤'}), ['burrito', 'sushi']);
-
-  t.deepEquals(into({})(transducer)('🌯🌮🍣🍤'), {0: 'burrito', 2: 'sushi'});
-  t.deepEquals(into({})(transducer)(['🌯', '🌮', '🍣', '🍤']), {0: 'burrito', 2: 'sushi'});
-  t.deepEquals(into({})(transducer)({a: '🌯', b: '🌮', c: '🍣', d: '🍤'}), {a: 'burrito', c: 'sushi'});
+  t.same(into([])(transducer)('12345')                        , ['two', 'four']);
+  t.same(into([])(transducer)(['1','2','3','4','5'])          , ['two', 'four']);
+  t.same(into([])(transducer)({a:'1',b:'2',c:'3',d:'4',e:'5'}), ['two', 'four']);
   t.end();
 });
