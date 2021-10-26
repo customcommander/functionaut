@@ -37,10 +37,3 @@ test('drop returns a new list if `n` <= 0 or NaN.', t => {
   t.same(drop(NaN)({a: 1, b: 2, c: 3}), {a: 1, b: 2, c: 3});
   t.end();
 });
-
-test('drop returns null when not given a list.', t => {
-  t.same(drop(2)(null), null);
-  t.same(drop(2)(true), null);
-  t.same(drop(2)(1), null);
-  t.end();
-});

@@ -3,10 +3,9 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {isArray, isString, isObject} = require('./_internal');
 const {Transformer} = require('./_transformer');
 const {curry} = require('./curry');
-const {into} = require('./into');
+const {into, SameListType} = require('./into');
 
 /** @constructor */
 function Filter(fn, xf) {
@@ -54,10 +53,8 @@ module.exports = {
    */
   filter: curry((fn, xs) => {
     const transducer = xf => new Filter(fn, xf);
-    return ( isArray(xs)        ? into([], transducer, xs)
-           : isString(xs)       ? into('', transducer, xs)
-           : isObject(xs)       ? into({}, transducer, xs)
-           : Transformer.is(xs) ? transducer(xs)
-                                : null);
+    return (Transformer.is(xs)
+              ? transducer(xs)
+              : into(SameListType, transducer, xs));
   })
 };

@@ -3,7 +3,7 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {isArray, isString, isObject} = require('./_internal');
+const iter = require('./_iterable');
 const {Transformer} = require('./_transformer');
 const {curry} = require('./curry');
 
@@ -27,37 +27,37 @@ Transformer(Assoc, function(acc, value, key) {
   return acc;
 });
 
-const iterList = (xf, init, xs) => {
-  let acc = init;
-  let key = 0;
-  for (const value of xs) {
-    acc = Transformer.step(xf, acc, value, key);
-    if (Transformer.isReduced(acc)) {
-      acc = Transformer.Value(acc);
-      break;
-    }
-    key++;
-  }
-  return Transformer.result(xf, acc);
-};
-
-const iterObject = (xf, init, xs) => {
-  let acc = init;
-  for (const [key, value] of Object.entries(xs)) {
-    acc = Transformer.step(xf, acc, value, key);
-    if (Transformer.isReduced(acc)) {
-      acc = Transformer.Value(acc);
-      break;
-    }
-  }
-  return Transformer.result(xf, acc);
-};
+const SameListType = Symbol();
 
 /**
  * @namespace
  * @alias ROOT
  */
 module.exports = {
+  /**
+   * !! FOR LIBRARY CONTRIBUTORS ONLY. NOT PART OF THE PUBLIC API. !!
+   *
+   * Can be used where `into` is used to convert a list
+   * into another list of the **same** type:
+   *
+   * ```javascript
+   * // Instead of this:
+   *
+   * if (typeof xs == 'string') {
+   *   into('', map(foo), xs);
+   * } else if (Array.isArray(xs)) {
+   *   into([], map(foo), xs);
+   * }
+   *
+   * // Do this:
+   *
+   * into(SameListType, map(foo), xs);
+   * ```
+   *
+   * @private
+   */
+  SameListType,
+
   /**
    * Reduces a list into another list (not necessarily of the same type)
    * by applying a serie of transformations (`transducer`) to each value
@@ -115,27 +115,22 @@ module.exports = {
    * @see drop
    */
   into: curry((init, transducer, xs) => {
-    const iter =
-      ( isArray(xs)  ? iterList
-      : isString(xs) ? iterList
-      : isObject(xs) ? iterObject
-                     : null);
-
-    if (!iter) return null;
-
-    const xf =
-      ( isArray(init)  ? transducer(new Push())
-      : isString(init) ? transducer(new Append())
-      : isObject(init) ? transducer(new Assoc())
-                       : null);
-
-    if (!xf) return null;
-
+    const dest = Object.prototype.toString.call(init === SameListType ? xs : init);
     const start =
-      ( isArray(init)  ? [...init]
-      : isObject(init) ? {...init}
-                       : init);
+      { '[object Array]':  () => [transducer(new Push())  , (init === SameListType ? [] : [...init])]
+      , '[object String]': () => [transducer(new Append()), (init === SameListType ? '' : init)     ]
+      , '[object Object]': () => [transducer(new Assoc()) , (init === SameListType ? {} : {...init})]};
 
-    return iter(xf, start, xs);
+    let [xf, acc] = start[dest]();
+
+    for (let [key, value] of iter(xs)) {
+      acc = Transformer.step(xf, acc, value, key);
+      if (Transformer.isReduced(acc)) {
+        acc = Transformer.Value(acc);
+        break;
+      }
+    }
+
+    return Transformer.result(xf, acc);
   })
 };

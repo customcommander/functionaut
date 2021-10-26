@@ -37,10 +37,3 @@ test('take returns an empty list when asked to take nothing or less.', t => {
   t.same(take(-Infinity)({a: 1, b: 2, c: 3}), {});
   t.end();
 });
-
-test('take returns null when not given a list.', t => {
-  t.same(take(2)(null), null);
-  t.same(take(2)(true), null);
-  t.same(take(2)(1), null);
-  t.end();
-});
