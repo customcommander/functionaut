@@ -1,3 +1,16 @@
+# [2.1.0](https://github.com/customcommander/functionaut/compare/v2.0.0...v2.1.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* into: stop mutating init ([5295494](https://github.com/customcommander/functionaut/commit/52954940b32ff3fa32ecfda1e3e90d2bac9d0a5e))
+
+
+### Features
+
+* implement any ([077261e](https://github.com/customcommander/functionaut/commit/077261e0b3799790915f7c080278ae2d302035dc))
+* implement none ([0530a94](https://github.com/customcommander/functionaut/commit/0530a944a4085e06e420545fd14ef00463d3934f))
+
 # [2.0.0](https://github.com/customcommander/functionaut/compare/v1.13.0...v2.0.0) (2021-10-12)
 
 
