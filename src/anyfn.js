@@ -32,6 +32,8 @@ module.exports = {
    * @public
    * @param {...function(...?): boolean} fn One or more predicates
    * @returns {function(...?): boolean}
+   * @see allfn
+   * @see nonefn
    */
   anyfn: (...fn) => (...args) => fn.some(f => f(...args) === true)
 };
