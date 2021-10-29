@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/customcommander/functionaut/compare/v2.1.0...v2.2.0) (2021-10-29)
+
+
+### Features
+
+* implement allfn ([472b596](https://github.com/customcommander/functionaut/commit/472b59649ce7c750e83006b99f615b996eff3aeb))
+* implement anyfn ([14c0f64](https://github.com/customcommander/functionaut/commit/14c0f64e58501022338194ced3f3b261343ea253))
+* implement nonefn ([e5b9172](https://github.com/customcommander/functionaut/commit/e5b9172f1ad35048a4c9654520cc2e318473be98))
+
 # [2.1.0](https://github.com/customcommander/functionaut/compare/v2.0.0...v2.1.0) (2021-10-27)
 
 
