@@ -1,6 +1,6 @@
 CC=java -jar /devtools/closure-compiler/compiler.jar
 
-src_files = $(shell find src -type f -name "*.js" | sort)
+src_files = $(shell find src -type f -name "*.js" | sort --ignore-case)
 api_files = $(filter-out src/_%.js,$(src_files))
 dist_files = $(patsubst src/%,dist/%,$(src_files))
 api_docs = $(patsubst src/%.js,build/docs/api/%.md,$(api_files))
