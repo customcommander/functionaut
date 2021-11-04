@@ -4,6 +4,7 @@
  */
 
 const curry = require('./curry');
+const T = require('./T');
 
 /**
  * @summary
@@ -22,4 +23,7 @@ const curry = require('./curry');
  * @param {?} x
  * @returns {?}
  */
-module.exports = curry((f, g, x) => f(x) === true ? g(x) : undefined);
+module.exports = curry(function (f, g, x /* <- x is needed to maintain the function arity */) {
+  const [/*f*/,/*g*/,...xs] = Array.from(arguments);
+  return T(f(...xs)) ? g(...xs) : undefined;
+});
