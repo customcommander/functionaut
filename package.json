@@ -25,7 +25,7 @@
     "ejs": "^3.1.6",
     "jsdoc": "^3.6.7",
     "semantic-release": "^18.0.1",
-    "tape": "^5.3.1",
+    "tape": "^5.3.2",
     "testdouble": "^3.16.3"
   },
   "publishConfig": {
