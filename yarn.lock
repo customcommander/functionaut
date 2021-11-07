@@ -1681,12 +1681,12 @@ globby@^11.0.0, globby@^11.0.1:
     merge2 "^1.3.0"
     slash "^3.0.0"
 
-graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
+graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-graceful-fs@^4.1.9, graceful-fs@^4.2.3, graceful-fs@^4.2.8:
+graceful-fs@^4.2.3, graceful-fs@^4.2.8:
   version "4.2.8"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
   integrity sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==
@@ -3400,13 +3400,13 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
-quibble@^0.6.4:
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/quibble/-/quibble-0.6.5.tgz#455f606ab3396d04f2384a2ba7f6ce564c4158ed"
-  integrity sha512-L3/bDHWjHm9zdG0Aqj7lhmp6Q5RFjXeitO9CGzWKP83d6BlGS0lLo9oswxgq62gwuIF7apT9tO0dw9kNuvb9eg==
+quibble@^0.6.6:
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/quibble/-/quibble-0.6.6.tgz#4834554c37e98cbe384320552b3bfc80c9301387"
+  integrity sha512-qYLELbjh2TagaPEs+sDobJnw166zlYHtT8YibCYxxUYl+pGoDqEVjZZhgQXYPhIivb8CrDtEMP9Oshfu8y6jAQ==
   dependencies:
-    lodash "^4.17.14"
-    resolve "^1.11.1"
+    lodash "^4.17.21"
+    resolve "^1.20.0"
 
 quick-lru@^4.0.1:
   version "4.0.1"
@@ -3590,7 +3590,7 @@ resolve@^1.10.0, resolve@^1.17.0:
     is-core-module "^2.1.0"
     path-parse "^1.0.6"
 
-resolve@^1.11.1:
+resolve@^1.20.0:
   version "1.20.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
   integrity sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==
@@ -4101,13 +4101,13 @@ tempy@^1.0.0:
     type-fest "^0.16.0"
     unique-string "^2.0.0"
 
-testdouble@^3.16.2:
-  version "3.16.2"
-  resolved "https://registry.yarnpkg.com/testdouble/-/testdouble-3.16.2.tgz#7ce45d46423fe6cd07926e2371b96ad9e09c1a5b"
-  integrity sha512-oPVoKBXrkP/SaTsF2W7Tpe77whd/jRKbeAVZok1lQKkZ2lFjjFrulpxuHOVF84tMr8PrN8GUUr24Nto/9vs1Lw==
+testdouble@^3.16.3:
+  version "3.16.3"
+  resolved "https://registry.yarnpkg.com/testdouble/-/testdouble-3.16.3.tgz#44ebb4a9930b61858fe9671363772479b2e39c40"
+  integrity sha512-oxGJ9KFuAJBNrpQEGDLj3OD4jRKLV+NhujRnuw5gYelkkZEFzUExijPi8O26RoVMdhc9C3OanKjvZXinmHWqow==
   dependencies:
     lodash "^4.17.15"
-    quibble "^0.6.4"
+    quibble "^0.6.6"
     stringify-object-es5 "^2.5.0"
     theredoc "^1.0.0"
 
