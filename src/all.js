@@ -5,10 +5,11 @@
 
 const iter = require('./_iterable');
 const curry = require('./curry');
+const F = require('./F');
 
 /**
  * @summary
- * Returns true if each element of a list passed given predicate.
+ * Returns true if `pred` has returned logical true for all elements of `xs`.
  *
  * @example
  * // This example shows that `all` can with arrays, objects and strings.
@@ -35,6 +36,6 @@ const curry = require('./curry');
  * @returns {boolean}
  */
 module.exports = curry((pred, xs) => {
-  for (let [_, v] of iter(xs)) if (pred(v) !== true) return false;
+  for (let [_, v] of iter(xs)) if (F(pred(v))) return false;
   return true;
 });
