@@ -3,30 +3,23 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {curry} = require('./curry');
+const curry = require('./curry');
 
 /**
- * @namespace
- * @alias ROOT
+ * @summary
+ * True if `a` and `b` are not equal. Use `Object.is`.
+ *
+ * @example
+ * ne(null, undefined);
+ * //=> true
+ *
+ * ne(NaN, NaN);
+ * //=> false
+ *
+ * @curried
+ * @param {?} a
+ * @param {?} b
+ * @return {boolean}
+ * @see eq
  */
-module.exports = {
-  /**
-   * True if `a` and `b` are not equal. Use `Object.is`.
-   *
-   * @example
-   * ```javascript
-   * ne(null, undefined);
-   * //=> true
-   *
-   * ne(NaN, NaN);
-   * //=> false
-   * ```
-   *
-   * @public
-   * @param {?} a
-   * @param {?} b
-   * @return {boolean}
-   * @see eq
-   */
-  ne: curry((a, b) => Object.is(a, b) == false)
-};
+module.exports = curry((a, b) => Object.is(a, b) == false);

@@ -1,0 +1,72 @@
+<%
+
+const ME = process.env.FUNC;
+const DATA = locals.filter(x => x.function_name == ME)[0];
+
+const inlinecode = x => '`'+x+'`';
+
+const enumerate = xs => {
+  if (xs.length == 1) return xs[0];
+  const last = xs.pop();
+  return `${xs.join(', ')} or ${last}`;
+}
+
+const find_other_transducers = () => {
+  const transducers = locals.filter(x => x.function_name != ME && x.is_transducer);
+  return enumerate(transducers.map(({function_name: fn}) => `[${fn}](../${fn})`));
+}
+
+%>
+
+# <%- DATA.function_name %>
+
+!!! summary
+
+    <%- DATA.summary %>
+
+<% if (DATA.is_curried) { %>
+!!! tip
+
+    This function is curried.
+<% } %>
+
+<% if (DATA.is_transducer) { %>
+!!! tip
+
+    Act as a transducer when composed with <%- find_other_transducers() %>.
+<% } %>
+
+<% if (DATA.description) { %>
+## Description
+
+<%- DATA.description %>
+
+<% } %>
+
+## Examples
+
+<% DATA.examples.forEach(ex => { %>
+
+<%- (ex.description ?? '').trim() %>
+
+``` javascript linenums="1"
+<%- ex.code %>
+```
+
+<% (ex.annotations ?? []).forEach(({ref, text}) => { %>
+<%- `${ref}.    ${text}`%>
+<% }); %>
+
+<% }); %>
+
+## Parameters
+
+| Name          | Type                                     | Description         |
+|:--------------|:-----------------------------------------|:--------------------|
+<% DATA.params.forEach(p => { _%>
+| <%- p.name %> | <%- enumerate(p.type.map(inlinecode)) %> | <%- p.description %>|
+<% }); %>
+
+## Return
+
+<%- enumerate(DATA.returns.type.map(inlinecode)) %>

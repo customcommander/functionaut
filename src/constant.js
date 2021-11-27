@@ -4,27 +4,19 @@
  */
 
 /**
- * @namespace
- * @alias ROOT
+ * @summary
+ * Takes a `x` and returns a function that _always_ returns `x`.
+ *
+ * @example
+ * const answer = constant(42);
+ *
+ * answer();
+ * //=> 42
+ *
+ * answer('foobar');
+ * //=> 42
+ *
+ * @param {?} x
+ * @returns {function(): ?}
  */
-module.exports = {
-  /**
-   * Takes a `x` and returns a function that _always_ returns `x`.
-   *
-   * @example
-   * ```javascript
-   * const answer = constant(42);
-   *
-   * answer();
-   * //=> 42
-   *
-   * answer('foobar');
-   * //=> 42
-   * ```
-   *
-   * @public
-   * @param {?} x
-   * @returns {function(): ?}
-   */
-  constant: x => () => x
-};
+module.exports = x => () => x;

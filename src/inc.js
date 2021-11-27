@@ -4,22 +4,14 @@
  */
 
 /**
- * @namespace
- * @alias ROOT
+ * @summary
+ * Add 1 to `x`.
+ *
+ * @example
+ * inc(41);
+ * //=> 42
+ *
+ * @param {number} x Any number
+ * @return {number}
  */
-module.exports = {
-  /**
-   * Adds 1 to `x`.
-   *
-   * @example
-   * ```javascript
-   * inc(41);
-   * //=> 42
-   * ```
-   *
-   * @public
-   * @param {number} x Any number
-   * @return {number}
-   */
-  inc: x => x + 1
-};
+module.exports = x => x + 1;
