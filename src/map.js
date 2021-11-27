@@ -4,8 +4,9 @@
  */
 
 const {Transformer} = require('./_transformer');
-const {curry} = require("./curry");
-const {into, SameListType} = require("./into");
+const {SameListType} = require('./_symbols');
+const curry = require("./curry");
+const into = require("./into");
 
 /** @constructor */
 function Mapper(fn, xf) {
@@ -18,39 +19,36 @@ Transformer(Mapper, function(acc, value, key) {
 });
 
 /**
- * @namespace
- * @alias ROOT
+ * @summary
+ * Apply a function to each element of a list.
+ *
+ * @description
+ * Take a function `fn` then a list `xs`.
+ * Return a list of the same type with the result of applying `fn` to each element of `xs`.
+ *
+ * @example
+ * // Works with arrays, objects and strings:
+ * const double = map(x => x + x);
+ *
+ * double([1, 2, 3]);
+ * //=> [2, 4, 6]
+ *
+ * double({a: 1, b: 2, c: 3});
+ * //=> {a: 2, b: 4, c: 6}
+ *
+ * double("🌯🍣🌮");
+ * //=> "🌯🌯🍣🍣🌮🌮"
+ *
+ * @curried
+ * @transducer
+ * @param {function()} fn
+ * @param {Array|Object|string} xs
+ * @return {Array|Object|string}
+ * @see into
  */
-module.exports = {
-  /**
-   * Applies `fn` to each element of `xs` and returns a new list of the same type.
-   *
-   * @example
-   * > Works with arrays, objects and strings
-   *
-   * ```javascript
-   * const double = map(x => x + x);
-   *
-   * double([1, 2, 3]);
-   * //=> [2, 4, 6]
-   *
-   * double({a: 1, b: 2, c: 3});
-   * //=> {a: 2, b: 4, c: 6}
-   *
-   * double("🌯🍣🌮");
-   * //=> "🌯🌯🍣🍣🌮🌮"
-   * ```
-   *
-   * @public
-   * @param {function()} fn
-   * @param {Array|Object|string} xs
-   * @return {Array|Object|string}
-   * @see into
-   */
-  map: curry((fn, xs) => {
-    const transducer = xf => new Mapper(fn, xf);
-    return (Transformer.is(xs)
-              ? transducer(xs)
-              : into(SameListType, transducer, xs));
-  })
-};
+module.exports = curry((fn, xs) => {
+  const transducer = xf => new Mapper(fn, xf);
+  return (Transformer.is(xs)
+            ? transducer(xs)
+            : into(SameListType, transducer, xs));
+});

@@ -18,6 +18,7 @@
   "main": "dist/index.js",
   "browser": "dist/browser.min.js",
   "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "^10.0.0",
@@ -30,5 +31,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {}
+  "scripts": {
+    "start": "./init.sh && docker-compose up",
+    "stop": "docker-compose down",
+    "cmd": "docker-compose exec dev bash"
+  }
 }

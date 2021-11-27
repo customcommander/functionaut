@@ -7,16 +7,17 @@ services:
     volumes:
       - .:/workspace/dev
     stdin_open: true
+    tty: true
     working_dir: /workspace/dev
     env_file:
       - .env
 
-  slate:
-    image: slatedocs/slate:v2.11.0
+  docs:
+    image: squidfunk/mkdocs-material
+    working_dir: /workspace
     volumes:
-      - ./docs/index.html.md:/srv/slate/source/index.html.md
-      - ./docs/includes:/srv/slate/source/includes
-      - ./static/logo.png:/srv/slate/source/images/logo.png
-    command: serve
+      - ./build:/workspace
+      - ./README.md:/workspace/docs/README.md
+      - ./CONTRIBUTING.md:/workspace/docs/CONTRIBUTING.md
     ports:
-      - "4567:4567"
+      - 4567:8000

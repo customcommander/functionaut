@@ -14,27 +14,24 @@ jobs:
 
       - name: Setup
         run: >
-          mkdir -p docs/includes &&
-          touch docs/index.html.md &&
+          ./init.sh
           docker-compose up -d
 
       - name: Install & Build Docs
         run: >
           docker-compose exec -T dev yarn &&
-          docker-compose exec -T dev make docs &&
+          docker-compose exec -T dev make build/docs &&
           docker run --rm
-          -v ${{github.workspace}}/public:/srv/slate/build
-          -v ${{github.workspace}}/docs/includes:/srv/slate/source/includes
-          -v ${{github.workspace}}/static/logo.png:/srv/slate/source/images/logo.png
-          -v ${{github.workspace}}/docs/index.html.md:/srv/slate/source/index.html.md
-          slatedocs/slate
+          -v ${{github.workspace}}:/workspace
+          -w /workspace/build
+          squidfunk/mkdocs-material build
 
       - name: Publish Docs
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
-          build_dir: public
+          build_dir: build/site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

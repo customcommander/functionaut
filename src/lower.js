@@ -4,23 +4,15 @@
  */
 
 /**
- * @namespace
- * @alias ROOT
+ * @summary
+ * Returns `s` lowercased.
+ *
+ * @example
+ * lower('FOO');
+ * //=> 'foo'
+ *
+ * @param {string} s
+ * @return {string}
+ * @see upper
  */
-module.exports = {
-  /**
-  * Returns `s` lowercased.
-  *
-  * @example
-  * ```javascript
-  * lower('FOO');
-  * //=> 'foo'
-  * ```
-  *
-  * @public
-  * @param {string} s
-  * @return {string}
-  * @see upper
-  */
-  lower: s => s.toLowerCase()
-};
+module.exports = s => s.toLowerCase();

@@ -1,5 +1,5 @@
 .DS_Store
+api.json
+build/
 dist/
-docs/
 node_modules/
-tmp/

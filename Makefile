@@ -1,35 +1,24 @@
 CC=java -jar /devtools/closure-compiler/compiler.jar
-EJS=yarn -s ejs --no-with
 
 src_files = $(shell find src -type f -name "*.js")
+api_files = $(filter-out src/_%.js,$(src_files))
 dist_files = $(patsubst src/%,dist/%,$(src_files))
-meta_files = $(patsubst src/%.js,tmp/%.meta.json,$(src_files))
+api_docs = $(patsubst src/%.js,build/docs/api/%.md,$(api_files))
 
-clean:; rm -rf tmp dist docs
+clean:; rm -rf dist
 
-.PHONY: docs
-docs: docs/includes docs/index.html.md
+.PHONY: build/docs
+build/docs: $(api_docs) build/mkdocs.yml
 
-docs/includes: tmp/__fullmeta.json scripts/slate-include.ejs
-	mkdir -p $@
-	for inc in `jq --raw-output '.[].name' $<`; do \
-		$(MAKE) docs/includes/_$$inc.md; \
-	done
+build/mkdocs.yml: docs/mkdocs.yml docs/nav.jq api.json
+	jq --raw-output -f docs/nav.jq api.json | cat $< - >$@
 
-docs/includes/%.json: tmp/__fullmeta.json
-	jq 'map(select(.name=="$*"))[0]' $< > $@
+build/docs/api/%.md: api.json docs/rtfm.ejs
+	mkdir -p $(@D)
+	FUNC=$* npx ejs --no-with -f $^ >$@
 
-docs/includes/_%.md: docs/includes/%.json scripts/slate-include.ejs
-	$(EJS) \
-		--data-file $< \
-		--locals-name sym \
-			scripts/slate-include.ejs > $@
-
-docs/index.html.md: tmp/__fullmeta.json scripts/slate-index.ejs
-	$(EJS) \
-		--data-file $< \
-		--locals-name syms \
-			scripts/slate-index.ejs > $@
+api.json: api.jq $(api_files) 
+	npx jsdoc -X $^ | jq -f $< >$@
 
 .PHONY: test
 test: dist
@@ -42,50 +31,29 @@ dist/%: src/%
 	mkdir -p $(@D)
 	cp $< $@
 
-dist/__exports.js: $(dist_files) tmp/__exports.json scripts/externs.jq scripts/exports.ejs
-	jq \
-		-f scripts/externs.jq \
-		--raw-output \
-			tmp/__exports.json > dist/__externs.js
-	$(EJS) \
-		--locals-name exports \
-		--data-file tmp/__exports.json \
-		--output-file dist/__exports-raw.js \
-			scripts/exports.ejs
-	$(CC) \
-		--compilation_level ADVANCED_OPTIMIZATIONS \
-		--language_in ECMASCRIPT_NEXT \
-		--module_resolution NODE \
-		--process_common_js_modules \
-		--isolation_mode IIFE \
-		--externs dist/__externs.js \
-		--js $(dist_files) dist/__exports-raw.js \
-		--js_output_file $@
+dist/__externs.js: api.json
+	mkdir -p $(@D)
+	jq --raw-output '"var __________;", (.[].function_name | "var \(.);")' $< >$@
 
-dist/index.js: dist/__exports.js
+dist/__exports.js: api.json
+	mkdir -p $(@D)
+	jq --raw-output '"window.__________ = {", (.[].function_name | "  \(.): require(\"./\(.)\"),"),"};"' $< >$@
+
+dist/__compiled.js: $(dist_files) dist/__exports.js dist/__externs.js
+	mkdir -p $(@D)
+	$(CC) --compilation_level ADVANCED_OPTIMIZATIONS \
+				--language_in ECMASCRIPT_NEXT \
+				--module_resolution NODE \
+				--process_common_js_modules \
+				--isolation_mode IIFE \
+				--externs dist/__externs.js \
+				--js $(dist_files) dist/__exports.js \
+				--js_output_file $@
+
+dist/index.js: dist/__compiled.js
+	mkdir -p $(@D)
 	sed 's/window.__________/module.exports/' $< > $@
 
-dist/browser.min.js: dist/__exports.js
-	sed 's/window.__________/window.$(BROWSER_NS)/' $< > $@
-
-# For each file in `src` we have a corresponding file in `tmp` e.g.,
-# src/foo.js -> tmp/foo.raw.json
-# src/utils/bar.js -> tmp/utils/bar.raw.json
-# Each *.raw.json file contains the output of JSDoc running
-# against the corresponding file in the src directory.
-# The *.raw.json files are automatically deleted by Make
-# when these targets are called implicitly (i.e. in order to make other targets).
-# However if you'd like to see their content you can call them
-# explicitly. e.g., `make tmp/foo.raw.json`.
-tmp/%.raw.json: src/%.js
+dist/browser.min.js: dist/__compiled.js
 	mkdir -p $(@D)
-	yarn -s jsdoc --configure jsdoc.json --explain $< > $@
-
-tmp/%.meta.json: tmp/%.raw.json scripts/metadata.jq
-	jq -f scripts/metadata.jq $< > $@
-
-tmp/__exports.json: $(meta_files) scripts/exports.jq
-	jq -f scripts/exports.jq --raw-output -M --slurp $(meta_files) > $@
-
-tmp/__fullmeta.json: $(meta_files)
-	jq 'map(select(.namespace != null and .exports != null) | .exports[])' --slurp $^ > $@
+	sed 's/window.__________/window.$(BROWSER_NS)/' $< > $@

@@ -3,32 +3,24 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {curry} = require('./curry');
+const curry = require('./curry');
 
 /**
- * @namespace
- * @alias ROOT
+ * @summary
+ * Takes a `x` then a `y`. Returns `x` if `y` is nil. Otherwise returns `y`.
+ *
+ * @example
+ * const your_name = fallback('john doe');
+ * 
+ * your_name('tom');
+ * //=> 'tom'
+ * 
+ * your_name(null);
+ * //=> 'john doe'
+ *
+ * @curried
+ * @param {?} x Any
+ * @param {?} y Any
+ * @return {?}
  */
-module.exports = {
-  /**
-   * Returns `x` if and only if `y` is nil.
-   * Otherwise returns `y`.
-   *
-   * @example
-   * ```javascript
-   * const your_name = fallback('john doe');
-   * 
-   * your_name('tom');
-   * //=> 'tom'
-   *
-   * your_name(null);
-   * //=> 'john doe'
-   * ```
-   *
-   * @public
-   * @param {?} x Any
-   * @param {?} y Any
-   * @return {?}
-   */
-  fallback: curry((x, y) => y == null ? x : y)
-};
+module.exports = curry((x, y) => y == null ? x : y);

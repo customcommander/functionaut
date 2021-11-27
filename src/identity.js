@@ -4,22 +4,14 @@
  */
 
 /**
- * @namespace
- * @alias ROOT
+ * @summary
+ * Return its argument.
+ *
+ * @example
+ * identity(42);
+ * //=> 42
+ *
+ * @param {?} x
+ * @returns {?}
  */
-module.exports = {
-  /**
-   * Returns its argument.
-   *
-   * @example
-   * ```javascript
-   * identity(42);
-   * //=> 42
-   * ```
-   *
-   * @public
-   * @param {?} x
-   * @returns {?}
-   */
-  identity: x => x
-};
+module.exports = x => x;

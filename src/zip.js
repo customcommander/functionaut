@@ -3,111 +3,39 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {curry} = require('./curry');
+const _zip = require('./_zip');
+const curry = require('./curry');
 
 /**
- * @param {Array} a
- * @param {Array} b
- * @param {?Array} c
- * @param {?Array} d
+ * @summary
+ * Combine each element at the same index of two arrays.
+ * 
+ * @description
+ * Takes two arrays `a` and `b` and returns a new array
+ * where each element of `a` and `b` at the same index are
+ * put together. The length of the new array is equal to the length
+ * of the smallest array.
+ *
+ * @example
+ * zip([1, 2], [10, 20]);
+ * //=> [[1, 10], [2, 20]]
+ *
+ * @example
+ * // When arrays are not the same length
+ * zip([1, 2], [10, 20, 30]);
+ * //=> [[1, 10], [2, 20]]
+ * zip([1, 2], [10]);
+ * //=> [[1, 10]]
+ * zip([1, 2], []);
+ * //=> []
+ * zip([], [10, 20, 30]);
+ * //=> []
+ *
+ * @curried
+ * @param {Array} a An array
+ * @param {Array} b Another array
  * @return {Array<Array>}
+ * @see zip3
+ * @see zip4
  */
-const _zip =
-  (a, b, c = null, d = null) => {
-    const zip3 = c !== null && d === null;
-    const zip4 = c !== null && d !== null;
-
-    const zipN =
-      ( zip4 ? i => [a[i], b[i], c[i], d[i]]
-      : zip3 ? i => [a[i], b[i], c[i]]
-             : i => [a[i], b[i]]);
-
-    // smallest array length is the maximum number
-    // of items we can take from each array.
-    const len =
-      ( zip4 ? Math.min(a.length, b.length, c.length, d.length)
-      : zip3 ? Math.min(a.length, b.length, c.length)
-             : Math.min(a.length, b.length));
-
-    const ret = [];
-    for (let i = 0; i < len; i += 1) ret.push(zipN(i));
-    return ret;
-  };
-
-/**
- * @namespace
- * @alias ROOT
- */
-module.exports = {
-  /**
-   * Takes two arrays `a` and `b` and returns a new array
-   * where each element of `a` and `b` at the same index are
-   * put together. The length of the new array is equal to the length
-   * of the smallest array.
-   *
-   * @example
-   * ```javascript
-   * zip([1, 2], [10, 20]);
-   * //=> [[1, 10], [2, 20]]
-   * ```
-   *
-   * @example
-   * > When arrays are not the same length
-   *
-   * ```javascript
-   * zip([1, 2], [10, 20, 30]);
-   * //=> [[1, 10], [2, 20]]
-   * zip([1, 2], [10]);
-   * //=> [[1, 10]]
-   * zip([1, 2], []);
-   * //=> []
-   * zip([], [10, 20, 30]);
-   * //=> []
-   * ```
-   *
-   * @public
-   * @param {Array} a An array
-   * @param {Array} b Another array
-   * @return {Array<Array>}
-   * @see zip3
-   * @see zip4
-   */
-  zip: curry((a, b) => _zip(a, b)),
-
-  /**
-   * Same as `zip` but with three arrays.
-   *
-   * @example
-   * ```javascript
-   * zip3([1, 2], [10, 20], [100, 200]);
-   * //=> [[1, 10, 100], [2, 20, 200]]
-   * ```
-   *
-   * @public
-   * @param {Array} a
-   * @param {Array} b
-   * @param {Array} c
-   * @return {Array<Array>}
-   * @see zip
-   */
-  zip3: curry((a, b, c) => _zip(a, b, c)),
-
-  /**
-   * Same as `zip` but with four arrays.
-   *
-   * @example
-   * ```javascript
-   * zip4([1, 2], [10, 20], [100, 200], [1000, 2000]);
-   * //=> [[1, 10, 100, 1000], [2, 20, 200, 2000]]
-   * ```
-   *
-   * @public
-   * @param {Array} a
-   * @param {Array} b
-   * @param {Array} c
-   * @param {Array} d
-   * @return {Array<Array>}
-   * @see zip
-   */
-  zip4: curry((a, b, c, d) => _zip(a, b, c, d))
-};
+module.exports = curry((a, b) => _zip(a, b));

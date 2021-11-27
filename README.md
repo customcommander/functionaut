@@ -3,4 +3,12 @@
 
 # Functionaut
 
-A functional journey.
+General purpose library for the functional programming hobbyist.
+
+## Installation
+
+```
+npm i @customcommander/functionaut
+```
+
+A browser bundle is available and exports the library under the `window.F` namespace. See `dist/browser.min.js`.

@@ -3,29 +3,20 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const {curry} = require('./curry');
+const curry = require('./curry');
 
 /**
- * @namespace
- * @alias ROOT
+ * @summary
+ * Returns the sum of `a` and `b`.
+ *
+ * @example
+ * // Add 42 to all numbers.
+ * [0, 1, 2].map(add(42));
+ * //=> [42, 43, 44]
+ *
+ * @curried
+ * @param {number} a
+ * @param {number} b
+ * @return {number}
  */
-module.exports = {
-  /**
-   * Adds `a` and `b`.
-   *
-   * @example
-   * > Curried function that adds two numbers
-   *
-   * ```javascript
-   * const add10 = add(10);
-   * add10(32);
-   * //=> 42
-   * ```
-   *
-   * @public
-   * @param {number} a
-   * @param {number} b
-   * @return {number}
-   */
-  add: curry((a, b) => a + b)
-};
+module.exports = curry((a, b) => a + b);
