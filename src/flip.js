@@ -25,7 +25,6 @@ const curry = require('./curry');
  * y('foo')('bar', 'baz');
  * //=> 'barfoobaz'
  *
- * @curried
  * @param {function(?, ?, ...?): ?} fn
  * @return {function(?, ?, ...?): ?}
  */
