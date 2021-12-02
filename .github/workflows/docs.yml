@@ -22,10 +22,11 @@ jobs:
         run: >
           docker-compose exec -T dev yarn &&
           docker-compose exec -T dev make build/docs &&
-          docker run -it --rm
-            -v ${{github.workspace}}:/workspace
-              -w /workspace/build
-                squidfunk/mkdocs-material build
+          docker run -it
+          --rm
+          -v ${{github.workspace}}:/workspace
+          -w /workspace/build
+          squidfunk/mkdocs-material build
 
       - name: Publish Docs
         if: success()
