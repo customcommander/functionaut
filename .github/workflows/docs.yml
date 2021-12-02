@@ -18,6 +18,7 @@ jobs:
           docker-compose up -d
 
       - name: Install & Build Docs
+        shell: bash {0}
         run: >
           docker-compose exec -T dev yarn &&
           docker-compose exec -T dev make build/docs &&
