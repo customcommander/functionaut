@@ -34,6 +34,9 @@
   "scripts": {
     "start": "./init.sh && docker-compose up",
     "stop": "docker-compose down",
-    "cmd": "docker-compose exec dev bash"
+    "cmd": "docker-compose exec dev bash",
+    "dist": "docker-compose exec dev make dist",
+    "test": "docker-compose exec dev make test",
+    "docs": "docker-compose exec dev make build/docs"
   }
 }
