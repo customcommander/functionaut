@@ -17,13 +17,16 @@ jobs:
           ./init.sh
           docker-compose up -d
 
-      - name: Install & Build Docs
-        run: >
-          docker-compose exec dev yarn &&
-          docker-compose exec dev make build/docs &&
-          docker-compose exec docs mkdocs build
+      - name: Install
+        run: docker-compose exec -T dev yarn
 
-      - name: Publish Docs
+      - name: Build Docs
+        run: docker-compose exec -T dev make build/docs
+
+      - name: Build Site
+        run: docker-compose exec -T docs mkdocs build
+
+      - name: Publish Site
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
         with:
