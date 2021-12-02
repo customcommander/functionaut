@@ -1,1 +1,1 @@
-"  - 'Flight Manual':", (.[].function_name | "    - \(.): 'api/\(.).md'")
+"  - 'Flight Manual':", (.[].function_name | "    - '\(.)': 'api/\(.).md'")
