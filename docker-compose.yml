@@ -14,10 +14,10 @@ services:
 
   docs:
     image: squidfunk/mkdocs-material
-    working_dir: /workspace
+    working_dir: /workspace/build
     volumes:
-      - ./build:/workspace
-      - ./README.md:/workspace/docs/README.md
-      - ./CONTRIBUTING.md:/workspace/docs/CONTRIBUTING.md
+      - .:/workspace
+      - ./README.md:/workspace/build/docs/README.md
+      - ./CONTRIBUTING.md:/workspace/build/docs/CONTRIBUTING.md
     ports:
       - 4567:8000
