@@ -22,7 +22,7 @@ jobs:
         run: docker-compose exec -T dev make build/docs
 
       - name: Publish Site
-        run: docker-compose exec -T docs gh-deploy --force
+        run: docker-compose exec -T docs mkdocs gh-deploy --force
 
       - name: Cleanup
         run: docker-compose down
