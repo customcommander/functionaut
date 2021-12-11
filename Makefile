@@ -22,7 +22,7 @@ api.json: api.jq $(api_files)
 
 .PHONY: test
 test: dist
-	yarn -s tape test/*.js
+	yarn -s tape test/*.test.js
 
 .PHONY: dist
 dist: $(dist_files) dist/index.js dist/browser.min.js
