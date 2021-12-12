@@ -1,14 +1,5 @@
-const test = require('tape');
+const testcheck = require('./_check');
 const {F: sut} = require('..');
 
-test('F(x) -> true if x is either nil or false', t => {
-  t.same(sut(false)    , true);
-  t.same(sut(null)     , true);
-  t.same(sut(undefined), true);
-  t.same(sut({})       , false);
-  t.same(sut([])       , false);
-  t.same(sut(0)        , false);
-  t.same(sut('')       , false);
-  t.same(sut(NaN)      , false);
-  t.end();
-});
+testcheck('F(x) -> true when x is logical false', ['logicf'], x => sut(x) === true);
+testcheck('F(x) -> false when x is not logical false', ['logict'], x => sut(x) === false);
