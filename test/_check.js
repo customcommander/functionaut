@@ -2,21 +2,19 @@ const test = require('tape');
 const jsc = require('jsverify');
 
 const LogicalFalseArbitrary =
-  jsc.nonshrink(jsc.elements([ false
-                             , null
-                             , undefined]));
+  jsc.nonshrink(jsc.elements([false, null, undefined]));
 
 const LogicalTrueArbitrary =
   jsc.oneof([ jsc.integer
             , jsc.string
-            , jsc.nonshrink(jsc.elements([ true
-                                         , NaN
-                                         , []
-                                         , {}]))]);
+            , jsc.nonshrink(jsc.elements([true, NaN]))]);
 
 const jscEnv = {
   logicf: LogicalFalseArbitrary,
-  logict: LogicalTrueArbitrary
+  logict: LogicalTrueArbitrary,
+  xs: jsc.oneof( jsc.array(jsc.char)
+               , jsc.string
+               , jsc.dict(jsc.char))
 };
 
 module.exports = (statement, arbitraries, verifn) => {
