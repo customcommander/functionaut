@@ -3,6 +3,8 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
+const T = require('./T');
+
 /**
  * @summary
  * Returns a function that returns true if all predicates have passed when applied to its arguments.
@@ -10,7 +12,7 @@
  * @description
  * Takes one or more predicates and returns a function
  * that takes any number of arguments and returns `true`
- * if each predicate has returned `true` when applied
+ * if each predicate has returned logical true when applied
  * to these arguments.
  *
  * @example
@@ -36,4 +38,4 @@
  * @see anyfn
  * @see nonefn
  */
-module.exports = (...fn) => (...args) => fn.every(f => f(...args) === true);
+module.exports = (...fn) => (...args) => fn.every(f => T(f(...args)));
