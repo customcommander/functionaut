@@ -5,17 +5,18 @@
 
 const {Transformer} = require('./_transformer');
 const {SameListType} = require('./_symbols');
+const T = require('./T');
 const curry = require('./curry');
 const into = require('./into');
 
 /** @constructor */
-function Filter(fn, xf) {
-  this.fn = fn;
+function Filter(pred, xf) {
+  this.pred = pred;
   this.xf = xf;
 }
 
 Transformer(Filter, function(acc, value, key) {
-  return (this.fn(value) === true
+  return (T(this.pred(value))
             ? Transformer.step(this.xf, acc, value, key)
             : acc);
 });
@@ -26,7 +27,7 @@ Transformer(Filter, function(acc, value, key) {
  *
  * @description
  * Keeps the elements in `xs` that satisfied the predicate `fn`
- * and returns a new list of the same type.
+ * and returns a new list of the same type. The predicate must return logical true.
  *
  * @example
  * // Works with arrays, objects and strings
@@ -43,12 +44,12 @@ Transformer(Filter, function(acc, value, key) {
  *
  * @curried
  * @transducer
- * @param {function(*): boolean} fn
+ * @param {function(*): boolean} pred
  * @param {Array|Object|string} xs
  * @return {Array|Object|string}
  */
-module.exports = curry((fn, xs) => {
-  const transducer = xf => new Filter(fn, xf);
+module.exports = curry((pred, xs) => {
+  const transducer = xf => new Filter(pred, xf);
   return (Transformer.is(xs)
             ? transducer(xs)
             : into(SameListType, transducer, xs));
