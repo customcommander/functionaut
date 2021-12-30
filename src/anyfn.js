@@ -3,14 +3,16 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
+const T = require('./T');
+
 /**
  * @summary
- * True if one predicate passed when applied to arguments.
+ * True if one predicate returned logical true when applied to arguments.
  *
  * @description
  * Takes one or more predicates and returns a function
  * that takes any number of arguments and returns `true`
- * if one predicate passed when applied to these arguments.
+ * if one predicate returned logical true when applied to these arguments.
  * Returns `false` if none did.
  *
  * @example
@@ -30,4 +32,4 @@
  * @see allfn
  * @see nonefn
  */
-module.exports = (...fn) => (...args) => fn.some(f => f(...args) === true);
+module.exports = (...fn) => (...args) => fn.some(f => T(f(...args)));
