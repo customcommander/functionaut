@@ -2,58 +2,68 @@ const td = require('testdouble');
 const test = require('tape');
 const {cond: sut} = require('..');
 
-test('cond returns a function.', t => {
-  t.true(typeof sut(td.func(), td.func()) === 'function');
-  t.end();
-});
+test('cond(...fn)(...args)', t => {
 
-test('cond\'ed function skips all functions until a predicate is true then skips the rest.', t => {
-  const pred1 = td.func();
-  td.when(pred1(40, 2)).thenReturn(false);
+  t.test('invokes predicates until one returns logical true', st => {
+    const a = Symbol();
+    const b = Symbol();
+    const f1 = td.func();
+    const f2 = td.func();
+    const g1 = td.func();
+    const g2 = td.func();
+    const h1 = td.func();
+    const h2 = td.func();
+    td.when(f1(a, b)).thenDo(() => (st.pass('1st predicate invoked'), false));
+    td.when(g1(a, b)).thenDo(() => (st.pass('2nd predicate invoked'), 0));
+    sut(f1, f2, g1, g2, h1, h2)(a, b);
+    st.true(td.explain(h1).callCount === 0);
+    st.end();
+  });
 
-  const fn1 = td.func();
-  td.when(fn1(40, 2)).thenThrow(new Error('should not have been called'));
+  t.test('skips functions until a predicate has returned logical true', st => {
+    const a = Symbol();
+    const b = Symbol();
+    const f1 = td.func();
+    const f2 = td.func();
+    const g1 = td.func();
+    const g2 = td.func();
+    const h1 = td.func();
+    const h2 = td.func();
+    td.when(g1(a, b)).thenReturn(0);
+    sut(f1, f2, g1, g2, h1, h2)(a, b);
+    st.true(td.explain(f2).callCount === 0, '1st function skipped');
+    st.true(td.explain(h2).callCount === 0, '3rd function skipped');
+    st.end();
+  });
 
-  const pred2 = td.func();
-  td.when(pred2(40, 2)).thenReturn(true);
+  t.test('returns the value returned by the function when applied to the arguments', st => {
+    const a = Symbol();
+    const b = Symbol();
+    const c = Symbol();
+    const f1 = td.func();
+    const f2 = td.func();
+    const g1 = td.func();
+    const g2 = td.func();
+    const h1 = td.func();
+    const h2 = td.func();
+    td.when(g1(a, b)).thenReturn(0);
+    td.when(g2(a, b)).thenReturn(c);
+    st.true(sut(f1, f2, g1, g2, h1, h2)(a, b) === c);
+    st.end();
+  });
 
-  const fn2 = td.func();
-  td.when(fn2(40, 2)).thenReturn('ok!');
+  t.test('returns undefined when no predicates passed', st => {
+    const a = Symbol();
+    const b = Symbol();
+    const f1 = td.func();
+    const f2 = td.func();
+    const g1 = td.func();
+    const g2 = td.func();
+    const h1 = td.func();
+    const h2 = td.func();
+    st.true(sut(f1, f2, g1, g2, h1, h2)(a, b) === undefined);
+    st.end();
+  });
 
-  const pred3 = td.func();
-  const fn3 = td.func();
-
-  const conded = sut(pred1, fn1, pred2, fn2, pred3, fn3);
-
-  t.same(conded(40, 2), 'ok!');
-  td.verify(pred3(), {ignoreExtraArgs: true, times: 0});
-  td.verify(fn3(), {ignoreExtraArgs: true, times: 0});
-
-  t.end();
-});
-
-test('cond\'ed function ignores truthy predicates.', t => {
-  const pred1 = td.func();
-  td.when(pred1(40, 2)).thenReturn(1);
-
-  const fn1 = td.func();
-  td.when(fn1(40, 2)).thenThrow(new Error('should not have been called'));
-
-  const pred2 = td.func();
-  td.when(pred2(40, 2)).thenReturn(true);
-
-  const fn2 = td.func();
-  td.when(fn2(40, 2)).thenReturn('ok!');
-
-  t.same(sut(pred1, fn1, pred2, fn2)(40, 2), 'ok!');
-  t.end();
-});
-
-test('cond\'ed function returns undefined when no predicates are true.', t => {
-  const pred = td.func();
-  const fn = td.func();
-  td.when(pred(40, 2)).thenReturn(false);
-
-  t.same(sut(pred, fn)(40, 2), undefined);
   t.end();
 });
