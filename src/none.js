@@ -5,21 +5,23 @@
 
 const iter = require('./_iterable');
 const curry = require('./curry');
+const T = require('./T');
 
 /**
  * @summary
  * True if no elements of a list satisfied given predicate.
  *
  * @description
- * True if all elements of `xs` didn't satisfy predicate `pred`.
- * Otherwise returns false as soon as one did.
+ * Returns true if predicate returned logical false
+ * for all elements of the list. When a predicate returns
+ * logical true, the function returns false immediately.
  *
  * @example
  * // Check that a list does not contain any 'x'
  * const no_x = none(x => x === 'x');
  *
- * no_x(['a','b','c']);            //=> true
- * no_x(['a','x','c']);            //=> false
+ * no_x(['a', 'b', 'c']);          //=> true
+ * no_x(['a', 'x', 'c']);          //=> false
  *
  * no_x('abc');                    //=> true
  * no_x('axc');                    //=> false
@@ -35,6 +37,6 @@ const curry = require('./curry');
  * @see any
  */
 module.exports = curry((pred, xs) => {
-  for (let [_, v] of iter(xs)) if (pred(v) === true) return false;
+  for (let [_, v] of iter(xs)) if (T(pred(v))) return false;
   return true;
 });
