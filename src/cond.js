@@ -3,6 +3,8 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
+const T = require('./T');
+
 /**
  * @summary
  * Functional equivalent of a `switch` statement.
@@ -12,7 +14,7 @@
  * any number of arguments and applies them to the predicates until one is
  * satisfied. At which point the function associated with that predicate
  * is applied to the same arguments and we take its return value.
- * Predicates must return true (not truthy). Returns `undefined` when
+ * Predicates must return logical true. Returns `undefined` when
  * no predicates are satisfied.
  *
  * @example
@@ -51,6 +53,6 @@
  */
 module.exports = (...fn) => (...args) => {
   for (let i=0; i<fn.length; i+=2) {
-    if (fn[i](...args) === true) return fn[i+1](...args);
+    if (T(fn[i](...args))) return fn[i+1](...args);
   }
 };
