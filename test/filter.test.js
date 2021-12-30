@@ -1,45 +1,27 @@
 const test = require('tape');
 const td = require('testdouble');
-const {filter} = require('..');
+const {filter: sut} = require('..');
 
-test('filter keeps the elements that satisfy the predicate.', t => {
-  const pred = td.function();
-  td.when(pred('🌯')).thenReturn(true);
-  td.when(pred('🍣')).thenReturn(true);
-  td.when(pred('🌮')).thenReturn(false);
-  t.same(filter(pred)('🌯🍣🌮'), '🌯🍣');
-  t.same(filter(pred)(['🌯', '🍣', '🌮']), ['🌯', '🍣']);
-  t.same(filter(pred)({a: '🌯', b: '🍣', c: '🌮'}), {a: '🌯', b: '🍣'});
-  td.verify(pred(/* … */), {ignoreExtraArgs: true, times: 9});
-  t.end();
-});
+test('filter(pred)(xs)', t => {
 
-test('filter does not mutate the original list.', t => {
-  const pred = td.function();
-  td.when(pred(td.matchers.anything())).thenReturn(false);
-  const str = "123";
-  const arr = [1, 2, 3];
-  const obj = {a: 1, b: 2, c: 3};
-  t.notSame(str, filter(pred)(str));
-  t.notSame(arr, filter(pred)(arr));
-  t.notSame(obj, filter(pred)(obj));
-  t.end();
-});
+  t.test('keeps each element for which the predicate has returned logical true', st => {
+    const assert = (xs, expected) => st_ => {
+      const pred = td.function();
+      td.when(pred('🌯')).thenReturn(0);
+      td.when(pred('🍣')).thenReturn('');
+      td.when(pred('🌮')).thenReturn(false);
+      const result = sut(pred)(xs);
+      st_.same(result, expected);
+      st_.notSame(xs, expected, 'did not mutate the original list');
+      st_.true(td.explain(pred).callCount === 3);
+      st_.end();
+    };
 
-test('filter works with predicates that return true (not truthy).', t => {
-  const pred = td.function();
-  td.when(pred(td.matchers.anything())).thenReturn(1);
-  t.same(filter(pred)("123"), '');
-  t.same(filter(pred)([1, 2, 3]), []);
-  t.same(filter(pred)({a: 1, b:2, c: 3}), {});
-  t.end();
-});
+    st.test('works with strings', assert('🌯🍣🌮', '🌯🍣'));
+    st.test('works with arrays', assert(['🌯', '🍣', '🌮'], ['🌯', '🍣']));
+    st.test('works with objects', assert({a: '🌯', b: '🍣', c: '🌮'}, {a: '🌯', b: '🍣'}));
+    st.end();
+  });
 
-test('filter does not call the predicate when the list is empty.', t => {
-  const pred = td.function();
-  filter(pred)('');
-  filter(pred)([]);
-  filter(pred)({});
-  td.verify(pred(/* … */), {ignoreExtraArgs: true, times: 0});
   t.end();
 });
