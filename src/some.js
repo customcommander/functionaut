@@ -3,16 +3,18 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
+const F = require('./F');
+
 /**
  * @summary
- * Apply functions to arguments until one returns truthy.
+ * Apply functions to arguments until one returns logical true.
  *
  * @description
  * Takes one or more functions and returns another function
  * that takes any number of parameters.
  *
  * Starting with the leftmost function applies each to
- * the parameters until one returns a truthy value in which
+ * the parameters until one returns logical true in which
  * case all other functions are ignored and we return that value.
  *
  * Otherwise returns whatever the last function has returned.
@@ -45,6 +47,6 @@
 module.exports = (...fns) => (...args) => {
   let ret;
   let i = 0;
-  do ret = fns[i](...args); while (!ret && ++i<fns.length);
+  do ret = fns[i](...args); while (F(ret) && ++i<fns.length);
   return ret;
 };
