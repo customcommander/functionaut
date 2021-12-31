@@ -4,6 +4,7 @@
  */
 
 const curry = require('./curry');
+const T = require('./T');
 
 /**
  * @summary
@@ -11,10 +12,10 @@ const curry = require('./curry');
  *
  * @description
  * First the predicate `pred` is applied to `x`.
- * If true the result of applying `map` to `x` is added to the list.
+ * If logical true the result of applying `map` to `x` is added to the list.
  * Then the predicate is applied to the next value of `x` which is
  * obtained by applying `next` to `x` and the process repeats until
- * the predicate returns false.
+ * the predicate returns logical false.
  *
  * @example
  * // List of ten consecutive days starting from Wednesday.
@@ -49,6 +50,6 @@ const curry = require('./curry');
  */
 module.exports = curry((pred, map, next, x) => {
   const ret = [];
-  for (let y = x; pred(y) === true; y = next(y)) ret.push(map(y));
+  for (let y = x; T(pred(y)); y = next(y)) ret.push(map(y));
   return ret;
 });
