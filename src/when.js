@@ -8,7 +8,7 @@ const T = require('./T');
 
 /**
  * @summary
- * Returns `g(x)` if `f(x)` returns `true`. Returns `undefined` otherwise.
+ * Returns `fn(...x)` if `pred(...x)` has returned logical true. Otherwise returns `undefined`.
  *
  * @example
  * when(eq(40), add(2))(40);
@@ -18,12 +18,12 @@ const T = require('./T');
  * //=> undefined
  *
  * @curried
- * @param {function(?): boolean} f Predicate. Must return `true` not thruthy.
- * @param {function(?): ?} g Function applied to `x` if predicate is satisfied.
- * @param {?} x
+ * @param {function(...?): boolean} pred Predicate. Must return logical true.
+ * @param {function(...?): ?} fn Function applied to the arguments if predicate is satisfied
+ * @param {...?} x One or more arguments
  * @returns {?}
  */
-module.exports = curry(function (f, g, x /* <- x is needed to maintain the function arity */) {
-  const [/*f*/,/*g*/,...xs] = Array.from(arguments);
-  return T(f(...xs)) ? g(...xs) : undefined;
+module.exports = curry(function (pred, fn, x /* <- x is needed to maintain the function arity */) {
+  const [,,...xs] = Array.from(arguments);
+  return T(pred(...xs)) ? fn(...xs) : undefined;
 });
