@@ -2,7 +2,7 @@ const td = require('testdouble');
 const test = require('tape');
 const {when: sut} =  require('..');
 
-test('when(f)(g)(...x)', t => {
+test('when(pred)(fn)(...x)', t => {
   // parameters symbols
   const a = Symbol();
   const b = Symbol();
@@ -12,39 +12,39 @@ test('when(f)(g)(...x)', t => {
   // return symbol
   const z = Symbol();
 
-  const f = td.func();
-  const g = td.func();
+  const pred = td.func();
+  const fn = td.func();
 
   // logical true
-  td.when(f(a, a)).thenReturn(true);
-  td.when(f(a, b)).thenReturn(NaN);
-  td.when(f(a, c)).thenReturn(0);
-  td.when(f(a, d)).thenReturn('');
+  td.when(pred(a, a)).thenReturn(true);
+  td.when(pred(a, b)).thenReturn(NaN);
+  td.when(pred(a, c)).thenReturn(0);
+  td.when(pred(a, d)).thenReturn('');
 
   // logical false
-  td.when(f(b, b)).thenReturn(false);
-  td.when(f(b, c)).thenReturn(null);
-  td.when(f(b, d)).thenReturn(undefined);
+  td.when(pred(b, b)).thenReturn(false);
+  td.when(pred(b, c)).thenReturn(null);
+  td.when(pred(b, d)).thenReturn(undefined);
 
-  td.when(g(a, a)).thenReturn(z);
-  td.when(g(a, b)).thenReturn(z);
-  td.when(g(a, c)).thenReturn(z);
-  td.when(g(a, d)).thenReturn(z);
+  td.when(fn(a, a)).thenReturn(z);
+  td.when(fn(a, b)).thenReturn(z);
+  td.when(fn(a, c)).thenReturn(z);
+  td.when(fn(a, d)).thenReturn(z);
 
-  t.same(sut(f)(g)(a, a), z, 'Returns `g(a, a)` as `f(a, a)` is logical true (`true`).');
-  t.same(sut(f)(g)(a, b), z, 'Returns `g(a, b)` as `f(a, b)` is logical true (`NaN`).');
-  t.same(sut(f)(g)(a, c), z, 'Returns `g(a, c)` as `f(a, c)` is logical true (`0`).');
-  t.same(sut(f)(g)(a, d), z, 'Returns `g(a, d)` as `f(a, d)` is logical true (``).');
+  t.same(sut(pred)(fn)(a, a), z, 'Returns `fn(a, a)` as `pred(a, a)` is logical true (`true`).');
+  t.same(sut(pred)(fn)(a, b), z, 'Returns `fn(a, b)` as `pred(a, b)` is logical true (`NaN`).');
+  t.same(sut(pred)(fn)(a, c), z, 'Returns `fn(a, c)` as `pred(a, c)` is logical true (`0`).');
+  t.same(sut(pred)(fn)(a, d), z, 'Returns `fn(a, d)` as `pred(a, d)` is logical true (``).');
 
-  t.same(sut(f)(g)(b, b), undefined, 'Returns `undefined` as `f(b, b)` is logical false (`false`).');
-  t.same(sut(f)(g)(b, c), undefined, 'Returns `undefined` as `f(b, c)` is logical false (`null`).');
-  t.same(sut(f)(g)(b, d), undefined, 'Returns `undefined` as `f(b, d)` is logical false (`undefined`).');
+  t.same(sut(pred)(fn)(b, b), undefined, 'Returns `undefined` as `pred(b, b)` is logical false (`false`).');
+  t.same(sut(pred)(fn)(b, c), undefined, 'Returns `undefined` as `pred(b, c)` is logical false (`null`).');
+  t.same(sut(pred)(fn)(b, d), undefined, 'Returns `undefined` as `pred(b, d)` is logical false (`undefined`).');
 
-  td.verify(g(b, b), {times: 0, ignoreExtraArgs: true});
-  td.verify(g(b, c), {times: 0, ignoreExtraArgs: true});
-  td.verify(g(b, d), {times: 0, ignoreExtraArgs: true});
+  td.verify(fn(b, b), {times: 0, ignoreExtraArgs: true});
+  td.verify(fn(b, c), {times: 0, ignoreExtraArgs: true});
+  td.verify(fn(b, d), {times: 0, ignoreExtraArgs: true});
 
-  t.same(sut(f, g, a, a), z, 'Can supply one or more `x` immediately.');
+  t.same(sut(pred, fn, a, a), z, 'Can supply one or more `x` immediately.');
 
   t.end();
 });
