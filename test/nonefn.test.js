@@ -2,34 +2,49 @@ const test = require('tape');
 const td = require('testdouble');
 const {nonefn: sut} = require('..');
 
-test('nonefn(...fn)(...args) -> true when no predicate passed', t => {
-  const a = Symbol();
-  const b = Symbol();
+test('nonefn(...pred)(...args)', t => {
 
-  const f = td.func();
-  const g = td.func();
-  const h = td.func();
-  td.when(f(a, b)).thenReturn(false);
-  td.when(g(a, b)).thenReturn(false);
-  td.when(h(a, b)).thenReturn(1); // Truthy check. This is not a boolean so should be considered as failed.
+  t.test('true when no predicate returned logical true', st => {
+    // args
+    const a = Symbol();
+    const b = Symbol();
+    // predicates
+    const f = td.func();
+    const g = td.func();
+    const h = td.func();
 
-  t.same(sut(f, g, h)(a, b), true);
-  td.verify(f(), {times:1, ignoreExtraArgs: true});
-  td.verify(g(), {times:1, ignoreExtraArgs: true});
-  td.verify(h(), {times:1, ignoreExtraArgs: true});
+    td.when(f(a, b)).thenDo(() => (st.pass('f(a, b) returned logical false'), false));
+    td.when(g(a, b)).thenDo(() => (st.pass('g(a, b) returned logical false'), null));
+    td.when(h(a, b)).thenDo(() => (st.pass('h(a, b) returned logical false'), undefined));
 
-  t.end();
-});
+    const result = sut(f, g, h)(a, b);
 
-test('nonefn(...fn)(...args) -> false when one predicate passed', t => {
-  const a = Symbol();
-  const b = Symbol();
+    st.plan(7);
+    st.true(result === true);
+    st.true(td.explain(f).callCount === 1);
+    st.true(td.explain(g).callCount === 1);
+    st.true(td.explain(h).callCount === 1);
+    st.end();
+  });
 
-  const f = td.func();
-  td.when(f(a, b)).thenReturn(true);
+  t.test('false when one predicate returned logical true', st => {
+    // args
+    const a = Symbol();
+    const b = Symbol();
+    // predicates
+    const f = td.func();
+    const g = td.func();
 
-  t.same(sut(f, f, f)(a, b), false);
-  td.verify(f(), {times:1, ignoreExtraArgs: true});
+    td.when(f(a, a)).thenReturn(0);
+    td.when(f(a, b)).thenReturn('');
+    td.when(f(b, b)).thenReturn(NaN);
+
+    st.true(sut(f, g)(a, a) === false);
+    st.true(sut(f, g)(a, b) === false);
+    st.true(sut(f, g)(b, b) === false);
+    st.true(td.explain(g).callCount === 0);
+    st.end();
+  });
 
   t.end();
 });
