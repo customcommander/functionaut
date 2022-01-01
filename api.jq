@@ -14,9 +14,13 @@ def is_transducer:
   (.tags // [])
     | contains([{title: "transducer"}]);
 
+# Search for words that can be linked to the glossary.
+def glossary:
+  gsub("(?<w>predicates?)"; "[\(.w)](/manual/glossary/)"; "i");
+
 def params:
   .params
-    | map(.type |= .names);
+    | map(.type |= .names | .description |= (. // "" | glossary));
 
 def returns:
   .returns[0]
@@ -50,12 +54,18 @@ def examples:
     annotations: example_annotations
   });
 
+def summary:
+  .summary | glossary;
+
+def description:
+  .description // "" | glossary;
+
 map(select(.longname == "module.exports") | {
   function_name: function_name,
   is_curried: is_curried,
   is_transducer: is_transducer,
-  summary,
-  description,
+  summary: summary,
+  description: description,
   params: params,
   returns: returns,
   examples: examples
