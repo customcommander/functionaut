@@ -1,14 +1,13 @@
 CC=java -jar /devtools/closure-compiler/compiler.jar
 
-src_files = $(shell find src -type f -name "*.js" | sort --ignore-case)
-api_files = $(filter-out src/_%.js,$(src_files))
+src_files = $(shell find src -type f -name "*.js")
 dist_files = $(patsubst src/%,dist/%,$(src_files))
-api_docs = $(patsubst src/%.js,build/docs/api/%.md,$(api_files))
 
 clean:; rm -rf dist
 
 .PHONY: build/docs
-build/docs: $(api_docs) build/mkdocs.yml
+build/docs: api.json build/mkdocs.yml
+	jq --raw-output '.[].function_name' $< | xargs -I {} $(MAKE) build/docs/api/{}.md
 
 build/mkdocs.yml: docs/mkdocs.yml docs/nav.jq api.json
 	jq --raw-output -f docs/nav.jq api.json | cat $< - >$@
@@ -17,8 +16,8 @@ build/docs/api/%.md: api.json docs/rtfm.ejs
 	mkdir -p $(@D)
 	FUNC=$* npx ejs --no-with -f $^ >$@
 
-api.json: api.jq $(api_files) 
-	npx jsdoc -X $^ | jq -f $< >$@
+api.json: api.jq $(dist_files) 
+	npx jsdoc -c jsdoc.json -X $^ | jq -f $< >$@
 
 .PHONY: test
 test: dist

@@ -1,1 +1,1 @@
-"  - 'Flight Manual':", (.[].function_name | "    - '\(.)': 'api/\(.).md'")
+"  - 'Flight Manual':", (map(.function_name) | sort_by(ascii_downcase) | .[]  | "    - '\(.)': 'api/\(.).md'")
