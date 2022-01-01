@@ -31,29 +31,29 @@ dist/%: src/%
 	mkdir -p $(@D)
 	cp $< $@
 
-dist/__externs.js: api.json
+dist/_externs.js: api.json
 	mkdir -p $(@D)
 	jq --raw-output '"var __________;", (.[].function_name | "var \(.);")' $< >$@
 
-dist/__exports.js: api.json
+dist/_exports.js: api.json
 	mkdir -p $(@D)
 	jq --raw-output '"window.__________ = {", (.[].function_name | "  \(.): require(\"./\(.)\"),"),"};"' $< >$@
 
-dist/__compiled.js: $(dist_files) dist/__exports.js dist/__externs.js
+dist/_compiled.js: $(dist_files) dist/_exports.js dist/_externs.js
 	mkdir -p $(@D)
 	$(CC) --compilation_level ADVANCED_OPTIMIZATIONS \
 				--language_in ECMASCRIPT_NEXT \
 				--module_resolution NODE \
 				--process_common_js_modules \
 				--isolation_mode IIFE \
-				--externs dist/__externs.js \
-				--js $(dist_files) dist/__exports.js \
+				--externs dist/_externs.js \
+				--js $(dist_files) dist/_exports.js \
 				--js_output_file $@
 
-dist/index.js: dist/__compiled.js
+dist/index.js: dist/_compiled.js
 	mkdir -p $(@D)
 	sed 's/window.__________/module.exports/' $< > $@
 
-dist/browser.min.js: dist/__compiled.js
+dist/browser.min.js: dist/_compiled.js
 	mkdir -p $(@D)
 	sed 's#window.__________#window["$(LIBRARY_NAMESPACE)"]#' $< > $@
