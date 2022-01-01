@@ -9,7 +9,7 @@ const F = require('./F');
 
 /**
  * @summary
- * Returns true if `pred` has returned logical true for all elements of `xs`.
+ * Returns `true` if predicate passed for all elements of the list.
  *
  * @example
  * // This example shows that `all` can with arrays, objects and strings.
