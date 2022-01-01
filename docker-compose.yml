@@ -18,7 +18,7 @@ services:
     volumes:
       - .:/workspace
       - ./README.md:/workspace/build/docs/README.md
-      - ./docs/manual:/workspace/build/docs/manual
       - ./CONTRIBUTING.md:/workspace/build/docs/CONTRIBUTING.md
+      - ./docs/manual/glossary.md:/workspace/build/docs/manual/glossary.md
     ports:
       - 4567:8000
