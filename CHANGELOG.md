@@ -1,3 +1,42 @@
+# [3.0.0](https://github.com/customcommander/functionaut/compare/v2.2.0...v3.0.0) (2022-01-01)
+
+
+### chore
+
+* use same namespace in browser. close [#30](https://github.com/customcommander/functionaut/issues/30) ([9ee9363](https://github.com/customcommander/functionaut/commit/9ee9363bb9abae5d59d36f9fef109ee870a413c0))
+
+
+### Features
+
+* all: predicate must return logical true ([9629716](https://github.com/customcommander/functionaut/commit/9629716d183baf98d8bd611e78734b0113749d69))
+* allfn: predicates can return logical true ([25f351d](https://github.com/customcommander/functionaut/commit/25f351d7f88265fba792fd1cbb781925de3b2a4a))
+* any: predicate can return logical true ([e51a716](https://github.com/customcommander/functionaut/commit/e51a716de2a8a63594fc13b7568322abfdc1c77a))
+* anyfn: functions can return logical true ([cbd906f](https://github.com/customcommander/functionaut/commit/cbd906f8c9043924afc10acf9dfadf6126043ee6))
+* cond: predicates can return logical true ([c0769cc](https://github.com/customcommander/functionaut/commit/c0769cc5cd1c02cc6da4da08f70c402475891f39))
+* filter: predicate can return logical true ([aff27d3](https://github.com/customcommander/functionaut/commit/aff27d3cd92e574f25259caa981bcba64692af01))
+* implement T & F. see [#29](https://github.com/customcommander/functionaut/issues/29) ([d3bd940](https://github.com/customcommander/functionaut/commit/d3bd9407e89595ba69a71ce40cdd7dcaedc31a72))
+* none: predicate can return logical true ([f7f0215](https://github.com/customcommander/functionaut/commit/f7f0215876d4c6660a320dbe59725387971efb8d))
+* nonefn: predicates can return logical true ([ff97496](https://github.com/customcommander/functionaut/commit/ff97496b61659c993be432beb533867142b0eb89))
+* some: functions can return logical true ([bea45ab](https://github.com/customcommander/functionaut/commit/bea45ab9045b45e6ae92a9498fd4d02199dd0cd2))
+* unfold: predicate can return logical true ([7ec376f](https://github.com/customcommander/functionaut/commit/7ec376fa833086263a129cdffe4ea228556be507))
+* when: allow one or more `x` to be given to `f` and `g` ([a571489](https://github.com/customcommander/functionaut/commit/a571489953aea5194ffc5ad28ff61aedb9c7582f))
+
+
+### BREAKING CHANGES
+
+* unfold(pred)(map)(next)(x): predicate can return logical true
+* some(...fn)(...args): functions can return logical true
+* nonefn(...pred)(...args): predicates can return logical true
+* none(pred)(xs): predicate can return logical true
+* filter(pred)(xs): predicate can return logical true
+* cond(...fn)(...args): predicates can return logical true
+* anyfn(...fn)(...args): functions can return logical true
+* any(pred)(xs): pred can return logical true
+* allfn(...pred)(...args): predicates can return logical true
+* all(pred)(xs): predicate can return logical true
+* when(pred)(...x): predicate can return logical true. see #29
+* the library is now available at `window['@customcommander/functionaut']` in a browser environment
+
 # [2.2.0](https://github.com/customcommander/functionaut/compare/v2.1.0...v2.2.0) (2021-10-29)
 
 
