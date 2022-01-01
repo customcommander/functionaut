@@ -33,7 +33,7 @@ dist/%: src/%
 
 dist/_externs.js: api.json
 	mkdir -p $(@D)
-	jq --raw-output '"var __________;", (.[].function_name | "var \(.);")' $< >$@
+	jq --raw-output '"/** @externs */", "var __________;", (.[].function_name | "var \(.);")' $< >$@
 
 dist/_exports.js: api.json
 	mkdir -p $(@D)
@@ -46,8 +46,7 @@ dist/_compiled.js: $(dist_files) dist/_exports.js dist/_externs.js
 				--module_resolution NODE \
 				--process_common_js_modules \
 				--isolation_mode IIFE \
-				--externs dist/_externs.js \
-				--js $(dist_files) dist/_exports.js \
+				--js $^ \
 				--js_output_file $@
 
 dist/index.js: dist/_compiled.js
