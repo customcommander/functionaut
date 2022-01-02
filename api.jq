@@ -6,20 +6,27 @@ def function_name:
   .meta.filename
     | rtrimstr(".js");
 
-def is_curried:
-  (.tags // [])
-    | contains([{title: "curried"}]);
-
-def is_transducer:
-  (.tags // [])
-    | contains([{title: "transducer"}]);
-
 # Search for words that can be linked to the glossary.
 def glossary:
     gsub("(?<w>predicates?)"; "[\(.w)](../manual/glossary.md#predicate)"; "i")
   | gsub("(?<w>`?nil`?)"; "[\(.w)](../manual/glossary.md#nil)"; "i")
   | gsub("(?<w>logical (true|truth))"; "[\(.w)](../manual/glossary.md#logical-truth)"; "i")
-  | gsub("(?<w>logical (false|falsity))"; "[\(.w)](../manual/glossary.md#logical-falsity)"; "i");
+  | gsub("(?<w>logical (false|falsity))"; "[\(.w)](../manual/glossary.md#logical-falsity)"; "i")
+  | gsub("(?<w>operator function)"; "[\(.w)](../manual/glossary.md#operator-function)"; "i")
+  | gsub("(?<w>functional placeholder)"; "[\(.w)](../manual/glossary.md#functional-placeholder)"; "i");
+
+def is_curried:
+  (.tags // [])
+    | contains([{title: "curried"}]);
+
+def is_operator:
+  if (.tags // [] | contains([{title: "operator"}]) | not) then null else
+    "This is an operator function." | glossary
+  end;
+
+def is_transducer:
+  (.tags // [])
+    | contains([{title: "transducer"}]);
 
 def params:
   if (.params | not) then null else
@@ -70,6 +77,7 @@ def description:
 map(select(.longname == "module.exports") | {
   function_name: function_name,
   is_curried: is_curried,
+  is_operator: is_operator,
   is_transducer: is_transducer,
   summary: summary,
   description: description,
