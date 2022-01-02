@@ -30,6 +30,12 @@ const find_other_transducers = () => {
     This function is curried.
 <% } %>
 
+<% if (DATA.is_operator) { %>
+!!! tip
+
+    <%- DATA.is_operator %>
+<% } %>
+
 <% if (DATA.is_transducer) { %>
 !!! tip
 
