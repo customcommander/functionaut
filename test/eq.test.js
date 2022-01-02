@@ -1,12 +1,14 @@
-const test = require('tape');
-const {eq} = require('..');
+const testcheck = require('./_check');
+const {eq: sut, __} = require('..');
 
-test('eq returns true if both parameters are equal', t => {
-  const run = (a, b) => t.same(eq(a)(b), Object.is(a, b));
-  run(1, '1');
-  run(0, false);
-  run(+0, -0);
-  run(NaN, NaN);
-  run(null, undefined);
-  t.end();
-});
+testcheck('eq(a, b)',
+  ['primitive', 'primitive'], (a, b) =>
+    sut(a, b) === Object.is(a, b));
+
+testcheck('eq(b)(a)',
+  ['primitive', 'primitive'], (a, b) =>
+    sut(b)(a) === Object.is(a, b));
+
+testcheck('eq(a, __)(b)',
+  ['primitive', 'primitive'], (a, b) =>
+    sut(a, __)(b) === Object.is(a, b));

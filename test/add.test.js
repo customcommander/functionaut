@@ -1,7 +1,14 @@
-const test = require('tape');
-const {add} = require('..');
+const testcheck = require('./_check');
+const {add: sut, __} = require('..');
 
-test('add', t => {
-  t.true(add(40)(2), 42);
-  t.end();
-});
+testcheck('add(a, b)',
+  ['number', 'number'], (a, b) =>
+    sut(a, b) === a + b);
+
+testcheck('add(b)(a)',
+  ['number', 'number'], (a, b) =>
+    sut(b)(a) === a + b);
+
+testcheck('add(a, __)(b)',
+  ['number', 'number'], (a, b) =>
+    sut(a, __)(b) === a + b);

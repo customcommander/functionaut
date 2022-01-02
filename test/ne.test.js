@@ -1,12 +1,14 @@
-const test = require('tape');
-const {ne} = require('..');
+const testcheck = require('./_check');
+const {ne: sut, __} = require('..');
 
-test('ne returns true if both parameters are not equal', t => {
-  const run = (a, b) => t.same(ne(a)(b), Object.is(a, b) == false);
-  run(1, '1');
-  run(0, false);
-  run(+0, -0);
-  run(NaN, NaN);
-  run(null, undefined);
-  t.end();
-});
+testcheck('ne(a, b)',
+  ['primitive', 'primitive'], (a, b) =>
+    sut(a, b) === !Object.is(a, b));
+
+testcheck('ne(b)(a)',
+  ['primitive', 'primitive'], (a, b) =>
+    sut(b)(a) === !Object.is(a, b));
+
+testcheck('ne(a, _)(b)',
+  ['primitive', 'primitive'], (a, b) =>
+    sut(a, __)(b) === !Object.is(a, b));

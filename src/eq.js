@@ -3,11 +3,11 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const curry = require('./curry');
+const op = require('./_operator');
 
 /**
  * @summary
- * True if `a` and `b` are equal as per `Object.is`.
+ * Functional equivalent of `a === b`. Use `Object.is`.
  *
  * @example
  * const eq42 = eq(42);
@@ -18,10 +18,11 @@ const curry = require('./curry');
  *
  * // 1: **failed:** not the same type
  *
- * @curried
+ * @operator
+ * @function
  * @param {?} a
  * @param {?} b
  * @return {boolean}
  * @see ne
  */
-module.exports = curry((a, b) => Object.is(a, b) == true);
+module.exports = op((a, b) => Object.is(a, b) == true);
