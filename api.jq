@@ -19,12 +19,16 @@ def glossary:
   gsub("(?<w>predicates?)"; "[\(.w)](../manual/glossary.md)"; "i");
 
 def params:
-  .params
-    | map(.type |= .names | .description |= (. // "" | glossary));
+  if (.params | not) then null else
+    .params |
+      map(.type |= .names | .description |= (. // "" | glossary))
+  end;
 
 def returns:
-  .returns[0]
-    | .type |= .names;
+  if (.returns | not) then null else
+    .returns[0]
+      | .type |= .names
+  end;
 
 def example_description:
   .[0] | if startswith("//") | not then null else

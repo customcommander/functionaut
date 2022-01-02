@@ -59,6 +59,8 @@ const find_other_transducers = () => {
 
 <% }); %>
 
+<% if (DATA.params) { %>
+
 ## Parameters
 
 | Name          | Type                                     | Description         |
@@ -67,6 +69,12 @@ const find_other_transducers = () => {
 | <%- p.name %> | <%- enumerate(p.type.map(inlinecode)) %> | <%- p.description %>|
 <% }); %>
 
+<% } %>
+
+<% if (DATA.returns) { %>
+
 ## Return
 
 <%- enumerate(DATA.returns.type.map(inlinecode)) %>
+
+<% } %>
