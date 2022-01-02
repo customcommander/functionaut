@@ -16,7 +16,7 @@ def is_transducer:
 
 # Search for words that can be linked to the glossary.
 def glossary:
-  gsub("(?<w>predicates?)"; "[\(.w)](../manual/glossary.md)"; "i");
+  gsub("(?<w>predicates?)"; "[\(.w)](../manual/glossary.md#predicate)"; "i");
 
 def params:
   if (.params | not) then null else
