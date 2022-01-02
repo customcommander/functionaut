@@ -9,9 +9,8 @@
  * 
  * @description
  * Same as `compose` but avoids null pointer exception during
- * execution by exiting as soon as nil (either `null` or `undefined`)
- * is returned by a function in the composition. Returns either nil
- * or the value returned by the leftmost function.
+ * execution by exiting as soon as `nil` is returned by a function in the composition.
+ * Returns either `nil` or the value returned by the leftmost function.
  *
  * @example
  * // Reading a nested property may throw an error:

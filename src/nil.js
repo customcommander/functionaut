@@ -5,7 +5,7 @@
 
 /**
  * @summary
- * True if `x` is either `null` or `undefined`.
+ * True if `x` is `nil`.
  *
  * @example
  * nil(null);
