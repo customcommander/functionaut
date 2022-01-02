@@ -17,7 +17,9 @@ def is_transducer:
 # Search for words that can be linked to the glossary.
 def glossary:
     gsub("(?<w>predicates?)"; "[\(.w)](../manual/glossary.md#predicate)"; "i")
-  | gsub("(?<w>`?nil`?)"; "[\(.w)](../manual/glossary.md#nil)"; "i");
+  | gsub("(?<w>`?nil`?)"; "[\(.w)](../manual/glossary.md#nil)"; "i")
+  | gsub("(?<w>logical (true|truth))"; "[\(.w)](../manual/glossary.md#logical-truth)"; "i")
+  | gsub("(?<w>logical (false|falsity))"; "[\(.w)](../manual/glossary.md#logical-falsity)"; "i");
 
 def params:
   if (.params | not) then null else
