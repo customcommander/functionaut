@@ -25,5 +25,5 @@ markdown_extensions:
 nav:
   - Home:
     - README: 'README.md'
-    - Glossary: 'manual/glossary.md'
     - Contribute: 'CONTRIBUTING.md'
+  - Glossary: 'manual/glossary.md'
