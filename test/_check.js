@@ -19,8 +19,8 @@ const jscEnv = {
 
 module.exports = (statement, arbitraries, verifn) => {
   test(statement, t => {
-    const res = jsc.check(jsc.forall(...arbitraries, jscEnv, verifn));
-    t.same(res, true);
+    const res = jsc.check(jsc.forall(...arbitraries, jscEnv, verifn), {quiet: true});
+    t.same(res, true, 'checked ✓');
     t.end();
   });
 };
