@@ -14,7 +14,12 @@ const jscEnv = {
   logict: LogicalTrueArbitrary,
   xs: jsc.oneof( jsc.array(jsc.char)
                , jsc.string
-               , jsc.dict(jsc.char))
+               , jsc.dict(jsc.char)),
+  primitive: jsc.oneof( jsc.integer
+                      , jsc.string
+                      , jsc.char
+                      , jsc.bool
+                      , jsc.falsy)
 };
 
 module.exports = (statement, arbitraries, verifn) => {
