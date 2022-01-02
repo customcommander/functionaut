@@ -7,7 +7,7 @@ const curry = require('./curry');
 
 /**
  * @summary
- * Takes a `x` then a `y`. Returns `x` if `y` is nil. Otherwise returns `y`.
+ * Returns `x` if `y` is `nil`. Otherwise returns `y`.
  *
  * @example
  * const your_name = fallback('john doe');
