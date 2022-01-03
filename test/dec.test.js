@@ -1,10 +1,6 @@
-const test = require('tape');
-const {dec} = require('..');
+const testcheck = require('./_check');
+const {dec: sut} = require('..');
 
-test('dec', t => {
-  t.true(dec(43) === 42, 'takes 1 away from a number');
-  t.true(Object.is(NaN, dec(NaN)), 'works with NaN');
-  t.true(dec(Infinity) === Infinity, 'works with Infinity');
-  t.true(dec(-Infinity) === -Infinity, 'works with -Infinity');
-  t.end();
-});
+testcheck('dec(x)',
+  ['number'], x =>
+    Object.is(sut(x), x - 1));
