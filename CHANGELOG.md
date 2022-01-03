@@ -1,3 +1,16 @@
+# [3.1.0](https://github.com/customcommander/functionaut/compare/v3.0.0...v3.1.0) (2022-01-03)
+
+
+### Features
+
+* implement 'and' as an operator function ([872b809](https://github.com/customcommander/functionaut/commit/872b809a9888ff020aa8ba57e97d9fa9d6e7cf56))
+* implement 'gte' as an operator function ([0a2f3d7](https://github.com/customcommander/functionaut/commit/0a2f3d7dc174f97039048b7ba521fee4de61425d))
+* implement 'or' as an operator function ([fa09cbd](https://github.com/customcommander/functionaut/commit/fa09cbdcaf3353ab75c97733e0f06a87cf58818d))
+* implement `gt` as an operator function ([44616ff](https://github.com/customcommander/functionaut/commit/44616ffda00a98873b89ff4193890b3dea57f922))
+* implement `lt` as an operator function ([c3a6dd2](https://github.com/customcommander/functionaut/commit/c3a6dd2deef37564797155df7830fd37ba48569b))
+* implement `lte` as an operator function ([06db5ff](https://github.com/customcommander/functionaut/commit/06db5ffd79fafc3559300923c81f7ba17ed5e77f))
+* implement `subtract` as an operator function ([608b408](https://github.com/customcommander/functionaut/commit/608b408462260bff2bd6aa67891bf08756f15e42))
+
 # [3.0.0](https://github.com/customcommander/functionaut/compare/v2.2.0...v3.0.0) (2022-01-01)
 
 
