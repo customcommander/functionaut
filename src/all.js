@@ -12,8 +12,8 @@ const F = require('./F');
  * Returns `true` if predicate passed for all elements of the list.
  *
  * @example
- * // This example shows that `all` can with arrays, objects and strings.
- * const allx = all(x => x === 'x');
+ * // Returns `true` if all elements of a list are equal to `x`:
+ * const allx = all(eq('x'));
  *
  * // Checking arrays
  * allx(['x']);                   //=> true
