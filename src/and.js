@@ -4,7 +4,7 @@
  */
 
 const op = require('./_operator');
-const T = require('./T');
+const F = require('./F');
 
 /**
  * @summary
@@ -21,4 +21,4 @@ const T = require('./T');
  * @return {?}
  * @see __
  */
-module.exports = op((a, b) => T(a) && T(b) ? b : a);
+module.exports = op((a, b) => F(a) ? a : b);

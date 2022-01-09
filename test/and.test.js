@@ -1,9 +1,11 @@
 const testcheck = require('./_check');
-const {and: sut, __, T} = require('..');
+const {and: sut, __, F} = require('..');
 
-const verify =
-  (res, a, b) =>
-    Object.is(res, T(a) && T(b) ? b : a);
+const verify = (res, a, b) => (
+  F(a)
+    ? Object.is(res, a)
+    : Object.is(res, b)
+);
 
 testcheck('and(a, b)',
   ['primitive', 'primitive'], (a, b) =>
