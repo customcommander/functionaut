@@ -18,7 +18,7 @@ const T = require('./T');
  *
  * @example
  * // Check that a list does not contain any 'x'
- * const no_x = none(x => x === 'x');
+ * const no_x = none(eq('x'));
  *
  * no_x(['a', 'b', 'c']);          //=> true
  * no_x(['a', 'x', 'c']);          //=> false
