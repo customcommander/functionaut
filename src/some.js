@@ -20,26 +20,17 @@ const F = require('./F');
  * Otherwise returns whatever the last function has returned.
  *
  * @example
- * const grade = some( when(x => x >=    1, constant('Perfect'))
- *                   , when(x => x >= 0.85, constant('Good'))
- *                   , when(x => x >= 0.60, constant('Medium'))
- *                   , when(x => x >= 0.34, constant('Poor'))
- *                   ,                      constant('No'));
+ * const grade = some( when(gte(1)   , constant('Perfect'))
+ *                   , when(gte(0.85), constant('Good'))
+ *                   , when(gte(0.60), constant('Medium'))
+ *                   , when(gte(0.34), constant('Poor'))
+ *                   ,                 constant('No'));
  *
- * grade(1);
- * //=> 'Perfect'
- *
- * grade(0.92);
- * //=> 'Good'
- *
- * grade(0.70);
- * //=> 'Medium'
- *
- * grade(0.50);
- * //=> 'Poor'
- *
- * grade(0.20);
- * //=> 'No'
+ * grade(1);    //=> 'Perfect'
+ * grade(0.92); //=> 'Good'
+ * grade(0.70); //=> 'Medium'
+ * grade(0.50); //=> 'Poor'
+ * grade(0.20); //=> 'No'
  *
  * @param {...function(...?): ?} fns
  * @return {function(...?): ?}
