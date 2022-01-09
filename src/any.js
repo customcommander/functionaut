@@ -13,7 +13,7 @@ const T = require('./T');
  *
  * @example
  * // Check that a list does contain at least one 'x'.
- * const has_x = any(x => x === 'x');
+ * const has_x = any(eq('x'));
  *
  * has_x(['a','b','c']);            //=> false
  * has_x(['a','x','c']);            //=> true
