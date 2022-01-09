@@ -1,3 +1,17 @@
+# [3.2.0](https://github.com/customcommander/functionaut/compare/v3.1.0...v3.2.0) (2022-01-09)
+
+
+### Bug Fixes
+
+* fix bug in return condition for `and` ([178bdfc](https://github.com/customcommander/functionaut/commit/178bdfca1b170705e6b351de06554a76d49a4eb1))
+
+
+### Features
+
+* implement `div` as an operator function ([67a4003](https://github.com/customcommander/functionaut/commit/67a4003d3b9482c001d8f961c824e662e1200dd9))
+* implement `exp` as an operator function ([bd930aa](https://github.com/customcommander/functionaut/commit/bd930aa1c78d4241d4cc2cfdff44a54c141781ff))
+* implement `mod` as an operator function ([b3eed71](https://github.com/customcommander/functionaut/commit/b3eed71a32cabdc08260f41f8fe6f78e2781e58c))
+
 # [3.1.0](https://github.com/customcommander/functionaut/compare/v3.0.0...v3.1.0) (2022-01-03)
 
 
