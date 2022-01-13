@@ -4,12 +4,12 @@
  */
 
 /**
-* @param {Array} a
-* @param {Array} b
-* @param {?Array} c
-* @param {?Array} d
-* @return {Array<Array>}
-*/
+ * @param {Array} a
+ * @param {Array} b
+ * @param {?Array} c
+ * @param {?Array} d
+ * @return {Array<Array>}
+ */
 module.exports = (a, b, c = null, d = null) => {
   const zip3 = c !== null && d === null;
   const zip4 = c !== null && d !== null;

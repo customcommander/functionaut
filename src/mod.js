@@ -1,7 +1,7 @@
 /**
-* @license MIT
-* @copyright (c) 2022 Julien Gonzalez <hello@spinjs.com>
-*/
+ * @license MIT
+ * @copyright (c) 2022 Julien Gonzalez <hello@spinjs.com>
+ */
 
 const op = require('./_operator');
 
