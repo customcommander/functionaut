@@ -11,4 +11,15 @@ General purpose library for the functional programming hobbyist.
 npm i @customcommander/functionaut
 ```
 
-A browser bundle is available and exports the library under the `window['@customcommander/functionaut']` namespace. See `dist/browser.min.js`.
+### Browser
+
+A browser bundle is available and exports the library under the `window['@customcommander/functionaut']` namespace:
+
+```html
+<script src="./node_modules/@customcommander/functionaut/dist/browser.min.js"></script>
+<script>
+  const {map, add} = window['@customcommander/functionaut'];
+  map(add(42))([0, 1, 2]);
+  //=> [42, 43, 44]
+</script>
+```
