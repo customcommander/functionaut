@@ -62,11 +62,13 @@ def example_annotations:
             | {ref: .[0], text: .[1]});
 
 def examples:
-  (.examples // []) | map(split("\n") | {
-    description: example_description,
-    code: example_code,
-    annotations: example_annotations
-  });
+  if .examples | not then null else
+    .examples | map(split("\n") | {
+      description: example_description,
+      code: example_code,
+      annotations: example_annotations
+    })
+  end;
 
 def summary:
   .summary | glossary;

@@ -49,6 +49,9 @@ const find_other_transducers = () => {
 
 <% } %>
 
+
+<% if (DATA.examples) { %>
+
 ## Examples
 
 <% DATA.examples.forEach(ex => { %>
@@ -64,6 +67,8 @@ const find_other_transducers = () => {
 <% }); %>
 
 <% }); %>
+
+<% } %>
 
 <% if (DATA.params) { %>
 
