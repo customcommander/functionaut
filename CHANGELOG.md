@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/customcommander/functionaut/compare/v3.2.0...v3.3.0) (2022-01-13)
+
+
+### Features
+
+* implement `mult` as an operator function. close [#41](https://github.com/customcommander/functionaut/issues/41) ([03fe31f](https://github.com/customcommander/functionaut/commit/03fe31f9d86fe2652bd17845f2895238cf70cac3))
+
 # [3.2.0](https://github.com/customcommander/functionaut/compare/v3.1.0...v3.2.0) (2022-01-09)
 
 
