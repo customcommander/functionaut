@@ -11,8 +11,8 @@ const op = require('./_operator');
  *
  * @example
  * // Add 42 to all numbers.
- * [0, 1, 2].map(add(42));
- * //=> [42, 43, 44]
+ * map(add(42))([0,1,2]);
+ * //=> [42,43,44]
  *
  * @operator
  * @function
