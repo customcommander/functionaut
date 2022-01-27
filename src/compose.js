@@ -20,7 +20,6 @@
  * @public
  * @param  {...function(...?): ?} fn
  * @returns {function(...?): ?}
- * @see concede
  */
 module.exports = (...fn) => (...args) => {
   let i = fn.length - 1;
