@@ -2,17 +2,23 @@ const test = require('tape');
 const td = require('testdouble');
 const {compose} = require('..');
 
-test('compose', t => {
+test('compose(f, g, h)(a, b)', t => {
   const f = td.func();
   const g = td.func();
   const h = td.func();
 
-  td.when(h(30, 10)).thenReturn(40);
-  td.when(g(40)).thenReturn(41);
-  td.when(f(41)).thenReturn(42);
+  const a = Symbol();
+  const b = Symbol();
+  const c = Symbol();
+  const d = Symbol();
+  const e = Symbol();
 
-  const comp = compose(f, g, h);
-  t.true(comp(30, 10) === 42, 'compose(f, g, h)(x) === f(g(h(x)))');
+  td.when(h(a, b)).thenReturn(c);
+  td.when(g(c)).thenReturn(d);
+  td.when(f(d)).thenReturn(e);
+
+  t.true(compose(f, g, h)(a, b) === e,
+    'compose(f, g, h)(a, b) === f(g(h(a, b)))');
 
   t.end();
 });
