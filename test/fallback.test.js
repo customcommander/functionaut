@@ -1,12 +1,17 @@
-const test = require('tape');
-const {fallback: sut} = require('..');
+const testcheck = require('./_check');
+const {fallback: sut, __} = require('..');
 
-test('fallback', t => {
-  const your_name = sut('john doe');
-  t.equal('tom', your_name('tom'));
-  t.equal(0, your_name(0));
-  t.equal(false, your_name(false));
-  t.equal('john doe', your_name(null));
-  t.equal('john doe', your_name(undefined));
-  t.end();
-});
+const verif = (res, a, b) =>
+  Object.is(res, a ?? b);
+
+testcheck('fallback(a, b)',
+  ['primitive', 'primitive'], (a, b) =>
+    verif(sut(a, b), a, b));
+
+testcheck('fallback(b)(a)',
+  ['primitive', 'primitive'], (a, b) =>
+    verif(sut(b)(a), a, b));
+
+testcheck('fallback(a, __)(b)',
+  ['primitive', 'primitive'], (a, b) =>
+    verif(sut(a, __)(b), a, b));

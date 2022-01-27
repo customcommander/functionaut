@@ -3,11 +3,11 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const curry = require('./curry');
+const op = require('./_operator');
 
 /**
  * @summary
- * Returns `x` if `y` is `nil`. Otherwise returns `y`.
+ * Functional equilvant of `a ?? b`.
  *
  * @example
  * const your_name = fallback('john doe');
@@ -18,9 +18,10 @@ const curry = require('./curry');
  * your_name(null);
  * //=> 'john doe'
  *
- * @curried
- * @param {?} x Any
- * @param {?} y Any
+ * @operator
+ * @function
+ * @param {?} a Any
+ * @param {?} b Any
  * @return {?}
  */
-module.exports = curry((x, y) => y == null ? x : y);
+module.exports = op((a, b) => a ?? b);
