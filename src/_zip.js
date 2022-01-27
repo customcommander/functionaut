@@ -17,14 +17,14 @@ module.exports = (a, b, c = null, d = null) => {
   const zipN =
     ( zip4 ? i => [a[i], b[i], c[i], d[i]]
     : zip3 ? i => [a[i], b[i], c[i]]
-          : i => [a[i], b[i]]);
+           : i => [a[i], b[i]]);
 
   // smallest array length is the maximum number
   // of items we can take from each array.
   const len =
     ( zip4 ? Math.min(a.length, b.length, c.length, d.length)
     : zip3 ? Math.min(a.length, b.length, c.length)
-          : Math.min(a.length, b.length));
+           : Math.min(a.length, b.length));
 
   const ret = [];
   for (let i = 0; i < len; i += 1) ret.push(zipN(i));
