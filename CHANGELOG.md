@@ -1,3 +1,19 @@
+# [4.0.0](https://github.com/customcommander/functionaut/compare/v3.3.0...v4.0.0) (2022-01-28)
+
+
+### chore
+
+* refactor `fallback` as an operator function. close [#38](https://github.com/customcommander/functionaut/issues/38) ([38c1bb0](https://github.com/customcommander/functionaut/commit/38c1bb0f8f2f967e72e8cdf830f25a99da439020))
+* remove `concede`. close [#35](https://github.com/customcommander/functionaut/issues/35) ([30c75aa](https://github.com/customcommander/functionaut/commit/30c75aa358fe98ee26cfbd25d10e2103147b9da5))
+* remove support of strings as lists. close [#36](https://github.com/customcommander/functionaut/issues/36) ([1ae4b26](https://github.com/customcommander/functionaut/commit/1ae4b2629ffcda91ec2cb2c4b230c5edf69843cc))
+
+
+### BREAKING CHANGES
+
+* the following functions no longer accept strings as lists: `all`, `any`, `drop`, `filter`, `into`, `map`, `none` and `take`.
+* `fallback` is now an operator function.
+* the `concede` function is no longer available
+
 # [3.3.0](https://github.com/customcommander/functionaut/compare/v3.2.0...v3.3.0) (2022-01-13)
 
 
