@@ -16,12 +16,7 @@ function* iter_idx(xs) {
   for (let x of xs) yield [++i, x];
 }
 
-const whichIter =
-  { '[object String]': iter_idx
-  , '[object Array]': iter_idx
-  , '[object Object]': iter_obj };
-
 module.exports = xs => {
-  const type = Object.prototype.toString.call(xs);
-  return whichIter[type](xs);
+  if (Array.isArray(xs)) return iter_idx(xs);
+  return iter_obj(xs);
 };

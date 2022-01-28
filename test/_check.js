@@ -13,7 +13,6 @@ const jscEnv = {
   logicf: LogicalFalseArbitrary,
   logict: LogicalTrueArbitrary,
   xs: jsc.oneof( jsc.array(jsc.char)
-               , jsc.string
                , jsc.dict(jsc.char)),
   primitive: jsc.oneof( jsc.integer
                       , jsc.string

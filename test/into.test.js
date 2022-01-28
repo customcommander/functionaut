@@ -16,15 +16,12 @@ test('into(ys)(transducer)(xs) -> do not mutate ys', t => {
 
 test('into(ys)(transducer)(xs) -> from any list to any other list', t => {
   t.same(into([])(map(identity))([1,2,3])      , [1,2,3]);
-  t.same(into([])(map(identity))('🌯🍣🌮')      , ['🌯','🍣','🌮']);
   t.same(into([])(map(identity))({x:1,y:2,z:3}), [1,2,3]);
 
   t.same(into('')(map(identity))([1,2,3])      , '123');
-  t.same(into('')(map(identity))('🌯🍣🌮')      , '🌯🍣🌮');
   t.same(into('')(map(identity))({x:1,y:2,z:3}), '123');
 
   t.same(into({})(map(identity))([1,2,3])      , {0:1,1:2,2:3});
-  t.same(into({})(map(identity))('🌯🍣🌮')      , {0:'🌯',1:'🍣',2:'🌮'});
   t.same(into({})(map(identity))({x:1,y:2,z:3}), {x:1,y:2,z:3});
 
   t.end();
@@ -33,7 +30,6 @@ test('into(ys)(transducer)(xs) -> from any list to any other list', t => {
 test('into(ys)(transducer)(xs) -> ys can be non-empty', t => {
   const transducer = map(identity);
   t.same(into([0])(transducer)([1,2,3]), [0,1,2,3]);
-  t.same(into('0')(transducer)('123'), '0123');
   t.same(into({a:0})(transducer)({b:1,c:2,d:3}), {a:0,b:1,c:2,d:3});
   t.end();
 });
@@ -52,7 +48,6 @@ test('into(ys)(transducer)(xs) -> can compose transducers', t => {
   td.when(g('three')).thenReturn(false);
   td.when(g('four')).thenReturn(true);
 
-  t.same(into([])(transducer)('12345')                        , ['two', 'four']);
   t.same(into([])(transducer)(['1','2','3','4','5'])          , ['two', 'four']);
   t.same(into([])(transducer)({a:'1',b:'2',c:'3',d:'4',e:'5'}), ['two', 'four']);
   t.end();

@@ -39,15 +39,6 @@ test('all(pred)(xs)', t => {
     _t.end();
   };
 
-  t.test('strings: true if pred passed for all characters',
-    pass('🌯🥑🍣'));
-
-  t.test('strings: true for empty strings',
-    pass_empty(''));
-
-  t.test('strings: false if pred failed for any character',
-    fail('🍦🥑🍣'));
-
   t.test('arrays: true if pred passed for all elements',
     pass(['🌯', '🥑', '🍣']));
 

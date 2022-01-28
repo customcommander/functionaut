@@ -23,15 +23,12 @@ const T = require('./T');
  * no_x(['a', 'b', 'c']);          //=> true
  * no_x(['a', 'x', 'c']);          //=> false
  *
- * no_x('abc');                    //=> true
- * no_x('axc');                    //=> false
- * 
  * no_x({m: 'a', n: 'b', o: 'c'}); //=> true
  * no_x({m: 'a', n: 'x', o: 'c'}); //=> false
  *
  * @curried
  * @param {function(?): boolean} pred Predicate
- * @param {Array|Object|string} xs List of values
+ * @param {Array|Object} xs List of values
  * @returns {boolean}
  * @see all
  * @see any
