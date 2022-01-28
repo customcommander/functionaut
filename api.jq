@@ -86,4 +86,17 @@ map(select(.longname == "module.exports") | {
   params: params,
   returns: returns,
   examples: examples
-})
+} |
+
+#####################################################################
+### POST PROCESSING RULES                                         ###
+#####################################################################
+
+  # into can be given a symbol as its first argument
+  # but that is private implementation details that must be hidden
+  # from the public api
+
+  if (.function_name == "into" | not) then . else
+    .params |= map(.type -= ["symbol"])
+  end
+)

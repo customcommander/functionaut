@@ -6,8 +6,7 @@
 const __ = require('./__');
 
 /**
- * @param {?} a
- * @param {?} b
+ * @param {function(?, ?): ?} fn
  * @return {?}
  */
 module.exports = fn => function (a, b) {
