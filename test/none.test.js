@@ -13,7 +13,6 @@ test('none(pred)(xs)', t => {
     };
     st.test('arrays' , assert([]));
     st.test('objects', assert({}));
-    st.test('strings', assert(''));
     st.end();
   });
 
@@ -29,7 +28,6 @@ test('none(pred)(xs)', t => {
     };
     st.test('arrays' , assert(['🍦', '🍬', '🥓']));
     st.test('objects', assert({x:'🍦', y:'🍬', z:'🥓'}));
-    st.test('strings', assert('🍦🍬🥓'));
     st.end();
   });
 
@@ -44,7 +42,6 @@ test('none(pred)(xs)', t => {
     };
     st.test('arrays' , assert(['🌯', '🍬', '🥓']));
     st.test('objects', assert({x:'🌯', y:'🍬', z:'🥓'}));
-    st.test('strings', assert('🌯🍬🥓'));
     st.end();
   });
 

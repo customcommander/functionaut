@@ -34,7 +34,7 @@ const Transformer = (xfor, stepFn, resultFn = Transformer.Result, initFn = Trans
   xfor.prototype[SYM_INIT] = initFn;
 };
 
-/** @typedef {Array|Object|string} */
+/** @typedef {Array|Object} */
 Transformer.Iterable;
 
 /** @typedef {function()} */

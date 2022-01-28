@@ -30,7 +30,7 @@ Transformer(Filter, function(acc, value, key) {
  * and returns a new list of the same type. The predicate must return logical true.
  *
  * @example
- * // Works with arrays, objects and strings
+ * // Works with arrays and objects
  * const even = filter(x => x % 2 === 0);
  *
  * even([1, 2, 3, 4]);
@@ -39,14 +39,11 @@ Transformer(Filter, function(acc, value, key) {
  * even({a: 1, b: 2, c: 3, d: 4});
  * //=> {b: 2, d: 4}
  *
- * filter(x => x === "🌯", "🌯🍣🌯🍣🌯🍣");
- * //=> "🌯🌯🌯"
- *
  * @curried
  * @transducer
  * @param {function(*): boolean} pred
- * @param {Array|Object|string} xs
- * @return {Array|Object|string}
+ * @param {Array|Object} xs
+ * @return {Array|Object}
  */
 module.exports = curry((pred, xs) => {
   const transducer = xf => new Filter(pred, xf);

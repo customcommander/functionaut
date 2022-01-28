@@ -27,7 +27,7 @@ Transformer(Mapper, function(acc, value, key) {
  * Return a list of the same type with the result of applying `fn` to each element of `xs`.
  *
  * @example
- * // Works with arrays, objects and strings:
+ * // Works with arrays and objects.
  * const double = map(x => x + x);
  *
  * double([1, 2, 3]);
@@ -36,14 +36,11 @@ Transformer(Mapper, function(acc, value, key) {
  * double({a: 1, b: 2, c: 3});
  * //=> {a: 2, b: 4, c: 6}
  *
- * double("🌯🍣🌮");
- * //=> "🌯🌯🍣🍣🌮🌮"
- *
  * @curried
  * @transducer
  * @param {function()} fn
- * @param {Array|Object|string} xs
- * @return {Array|Object|string}
+ * @param {Array|Object} xs
+ * @return {Array|Object}
  * @see into
  */
 module.exports = curry((fn, xs) => {

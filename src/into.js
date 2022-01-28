@@ -50,11 +50,6 @@ Transformer(Assoc, function(acc, value, key) {
  * //=> [11, 21, 31]
  *
  * @example
- * // Map over the characters and accumulate into a string:
- * into('', map(c => c.repeat(parseInt(c))), '1234');
- * //=> '1223334444'
- *
- * @example
  * // Transducer example: take only the first two elements, increment them and accumulate into a string:
  * into('', compose(take(2), map(inc)), [10, 20, 30]);
  * //=> '1121'
@@ -62,7 +57,7 @@ Transformer(Assoc, function(acc, value, key) {
  * @curried
  * @param {Array|Object|string} init
  * @param {function()} transducer
- * @param {Array|Object|string} xs
+ * @param {Array|Object} xs
  * @return {Array|Object|string}
  */
 module.exports = curry((init, transducer, xs) => {

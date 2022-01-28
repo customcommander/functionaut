@@ -34,8 +34,7 @@ Transformer(Take, function(acc, value, key) {
  * in `xs`.
  *
  * @example
- * // Works with arrays, objects and strings
- *
+ * // Works with arrays and objects.
  * const take2 = take(2);
  *
  * take2([1, 2, 3]);
@@ -44,25 +43,11 @@ Transformer(Take, function(acc, value, key) {
  * take2({a: 1, b: 2, c: 3});
  * //=> {a: 1, b: 2}
  *
- * take2("🌯🍣🌮");
- * //=> "🌯🍣"
- *
- * @example
- * // Emojis aren't single codepoint characters which is why these attempts at extracting the first character fails:
- * "🌯🍣🌮".split("")[0];
- * //=> "�"
- * "🌯🍣🌮".slice(0, 1);
- * //=> "�"
- *
- * // because
- * "🌯".length === 2;
- * //=> true
- *
  * @curried
  * @transducer
  * @param {number} n Number of elements to take.
- * @param {Array|Object|string} xs List to take from.
- * @return {Array|Object|string}
+ * @param {Array|Object} xs List to take from.
+ * @return {Array|Object}
  */
 module.exports = curry((n, xs) => {
   const transducer = xf => new Take(n, xf);

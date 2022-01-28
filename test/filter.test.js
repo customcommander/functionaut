@@ -17,7 +17,6 @@ test('filter(pred)(xs)', t => {
       st_.end();
     };
 
-    st.test('works with strings', assert('🌯🍣🌮', '🌯🍣'));
     st.test('works with arrays', assert(['🌯', '🍣', '🌮'], ['🌯', '🍣']));
     st.test('works with objects', assert({a: '🌯', b: '🍣', c: '🌮'}, {a: '🌯', b: '🍣'}));
     st.end();

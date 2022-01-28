@@ -34,7 +34,7 @@ Transformer(Drop, function(acc, value, key) {
  * When `n` is larger than the number of items `drop` returns an empty list of the same type.
  *
  * @example
- * // Works with arrays, objects and strings
+ * // Works with arrays and objects
  * const drop2 = drop(2);
  *
  * drop2([1, 2, 3]);
@@ -43,14 +43,11 @@ Transformer(Drop, function(acc, value, key) {
  * drop2({a: 1, b: 2, c: 3});
  * //=> {c: 3}
  *
- * drop2("🌯🍣🌮");
- * //=> "🌮"
- *
  * @curried
  * @transducer
  * @param {number} n Number of items to drop.
- * @param {Array|Object|string} xs List to drop from.
- * @return {Array|Object|string}
+ * @param {Array|Object} xs List to drop from.
+ * @return {Array|Object}
  */
 module.exports = curry((n, xs) => {
   const transducer = xf => new Drop(n, xf);

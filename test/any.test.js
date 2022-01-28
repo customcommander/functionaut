@@ -13,7 +13,6 @@ test('any(pred)(xs)', t => {
     };
     st.test('array' , assert([]));
     st.test('object', assert({}));
-    st.test('string', assert(''));
     st.end();
   });
 
@@ -29,7 +28,6 @@ test('any(pred)(xs)', t => {
     };
     st.test('array' , assert(['🍦', '🍬', '🥓']));
     st.test('object', assert({x:'🍦', y:'🍬', z:'🥓'}));
-    st.test('string', assert('🍦🍬🥓'));
     st.end();
   });
 
@@ -45,7 +43,6 @@ test('any(pred)(xs)', t => {
     };
     st.test('array' , assert(['🌯', '💥', '💥']));
     st.test('object', assert({x:'🥑', y:'💥', z:'💥'}));
-    st.test('string', assert('🍣💥💥'));
     st.end();
   });
 

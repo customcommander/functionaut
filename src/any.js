@@ -18,15 +18,12 @@ const T = require('./T');
  * has_x(['a','b','c']);            //=> false
  * has_x(['a','x','c']);            //=> true
  *
- * has_x('abc');                    //=> false
- * has_x('axc');                    //=> true
- *
  * has_x({m: 'a', n: 'b', o: 'c'}); //=> false
  * has_x({m: 'a', n: 'x', o: 'c'}); //=> true
  *
  * @curried
  * @param {function(?): boolean} pred Predicate
- * @param {Array|Object|string} xs List of values
+ * @param {Array|Object} xs List of values
  * @returns {boolean}
  * @see all
  * @see none

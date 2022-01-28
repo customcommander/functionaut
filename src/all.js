@@ -25,14 +25,9 @@ const F = require('./F');
  * allx({a:'x', b: 'x'});         //=> true
  * allx({a:'x', b: 'y', c: 'x'}); //=> false
  *
- * // Checking strings
- * allx('x');                     //=> true
- * allx('xx');                    //=> true
- * allx('xyx');                   //=> false
- *
  * @curried
  * @param {function(?): boolean} pred Predicate
- * @param {Array|Object|string} xs List of values
+ * @param {Array|Object} xs List of values
  * @returns {boolean}
  */
 module.exports = curry((pred, xs) => {
