@@ -55,8 +55,8 @@ Transformer(Assoc, function(acc, value, key) {
  * //=> '1121'
  *
  * @curried
- * @param {Array|Object|string} init
- * @param {function()} transducer
+ * @param {Array|Object|string|symbol} init
+ * @param {function(?): ?} transducer
  * @param {Array|Object} xs
  * @return {Array|Object|string}
  */
