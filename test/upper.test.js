@@ -1,7 +1,6 @@
-const test = require('tape');
-const {upper} = require('..');
+const check = require('./_check');
+const {upper: sut} = require('..');
 
-test('upper returns `s` uppercased', t => {
-  t.same(upper('foo'), 'FOO');
-  t.end();
-});
+check('upper(s)',
+  ['string'], s =>
+    sut(s) === s.toUpperCase());
