@@ -1,7 +1,6 @@
-const test = require('tape');
-const {lower} = require('..');
+const check = require('./_check');
+const {lower: sut} = require('..');
 
-test('lower returns `s` lowercased', t => {
-  t.same(lower('FOO'), 'foo');
-  t.end();
-});
+check('lower(s)',
+  ['string'], s =>
+    sut(s) === s.toLowerCase());
