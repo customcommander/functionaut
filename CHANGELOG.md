@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/customcommander/functionaut/compare/v4.0.0...v4.1.0) (2022-03-23)
+
+
+### Features
+
+* implement `apply` ([6c8a4b4](https://github.com/customcommander/functionaut/commit/6c8a4b4615fbad33f95ee9e8e1eca02175ab4ca6))
+
 # [4.0.0](https://github.com/customcommander/functionaut/compare/v3.3.0...v4.0.0) (2022-01-28)
 
 
