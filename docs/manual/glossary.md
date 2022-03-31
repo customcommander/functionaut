@@ -54,5 +54,13 @@ Operator functions in this library have been inspired by this [answer from Stack
 
 ## predicate
 
-A predicate is a function that uses [logical truth](./glossary.md#logical-truth)
-or [logical falsity](./glossary.md#logical-falsity) to make a decision.
+A function that returns either [logical truth](./glossary.md#logical-truth)
+or [logical falsity](./glossary.md#logical-falsity).
+
+```javascript title="Example of a predicate"
+const is_number = x => typeof x == 'number';
+
+if (is_number(42)) {
+    // …
+}
+```
