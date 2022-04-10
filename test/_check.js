@@ -9,16 +9,19 @@ const LogicalTrueArbitrary =
             , jsc.string
             , jsc.nonshrink(jsc.elements([true, NaN]))]);
 
+const PrimitiveArbitrary =
+  jsc.oneof( jsc.integer
+           , jsc.string
+           , jsc.char
+           , jsc.bool
+           , jsc.falsy);
+
 const jscEnv = {
   logicf: LogicalFalseArbitrary,
   logict: LogicalTrueArbitrary,
-  xs: jsc.oneof( jsc.array(jsc.char)
-               , jsc.dict(jsc.char)),
-  primitive: jsc.oneof( jsc.integer
-                      , jsc.string
-                      , jsc.char
-                      , jsc.bool
-                      , jsc.falsy)
+  xs: jsc.oneof( jsc.array(PrimitiveArbitrary)
+               , jsc.dict(PrimitiveArbitrary)),
+  primitive: PrimitiveArbitrary
 };
 
 module.exports = (statement, arbitraries, verifn) => {

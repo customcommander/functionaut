@@ -1,7 +1,6 @@
 const td = require('testdouble');
 const test = require('tape');
-const testcheck = require('./_check');
-const {all: sut, identity} = require('..');
+const {all: sut} = require('..');
 
 test('all(pred)(xs)', t => {
 
@@ -59,7 +58,3 @@ test('all(pred)(xs)', t => {
 
   t.end();
 });
-
-testcheck('all(pred)(xs) -> true if pred(x) passed for all x of xs',
-  ['xs'], xs =>
-    sut(identity)(xs));
