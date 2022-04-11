@@ -3,34 +3,22 @@
  * @copyright (c) 2021 Julien Gonzalez <hello@spinjs.com>
  */
 
-const iter = require('./_iterable');
-const curry = require('./curry');
-const F = require('./F');
+const allmap = require('./allmap');
 
 /**
  * @summary
- * Returns `true` if predicate passed for all elements of the list.
+ * Returns `true` if each element of a list is logical true.
  *
  * @example
- * // Returns `true` if all elements of a list are equal to `x`:
- * const allx = all(eq('x'));
+ * all([]);                    //> true
+ * all([0, 1, 2]);             //> true
+ * all([0, 1, null]);          //> false
  *
- * // Checking arrays
- * allx(['x']);                   //=> true
- * allx(['x', 'x']);              //=> true
- * allx(['x', 'y', 'x']);         //=> false
+ * all({});                    //> true
+ * all({a: 0, b: 1});          //> true
+ * all({a: 0, b: 1, c: null}); //> false
  *
- * // Checking objects
- * allx({a:'x'});                 //=> true
- * allx({a:'x', b: 'x'});         //=> true
- * allx({a:'x', b: 'y', c: 'x'}); //=> false
- *
- * @curried
- * @param {function(?): boolean} pred Predicate
  * @param {Array|Object} xs List of values
  * @returns {boolean}
  */
-module.exports = curry((pred, xs) => {
-  for (let [_, v] of iter(xs)) if (F(pred(v))) return false;
-  return true;
-});
+module.exports = allmap(x => x);
