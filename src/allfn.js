@@ -4,38 +4,39 @@
  */
 
 const T = require('./T');
+const curry = require('./curry');
 
 /**
  * @summary
- * Returns a function that returns true if all predicates have passed when applied to its arguments.
+ * Checks that all predicates have been satisfied.
  *
  * @description
- * Takes one or more predicates and returns a function
- * that takes any number of arguments and returns `true`
- * if each predicate has returned logical true when applied
- * to these arguments.
+ * Takes an array of predicates and a `x`.
+ * Returns `true` if each predicate passed when applied to `x`.
+ * Returns `false` if one didn't.
  *
  * @example
- * // Make sure that both `x` and `y` are numbers and produce the correct answer when added up.
- * const is_num = x => typeof x == 'number';
+ * // Make sure that `x` is an even number greater than ten.
+ * const check = allfn([ x => typeof x == 'number'
+ *                     , x => x % 2 == 0
+ *                     , x => x > 10 ]);
  *
- * const can_answer =
- *  allfn( (x, y) => is_num(x) && is_num(y) // (1)
- *       , (x, y) => x + y === 42);         // (2)
+ * check('42'); //> false (1)
+ * check(13);   //> false (2)
+ * check(8);    //> false (3)
+ * check(42);   //> true  (4)
  *
- * can_answer(  40,  2); //=> true             (3)
- * can_answer(  20, 30); //=> false            (4)
- * can_answer('40',  2); //=> false            (5)
+ * // 1: **failed:** not a number.
+ * // 2: **failed:** not an even number.
+ * // 3: **failed:** not a number greater than ten.
+ * // 4: **passed:** even number greater than ten.
  *
- * // 1: **1st predicate:** checks both arguments are numbers.
- * // 2: **2nd predicate:** checks numbers add up to 42.
- * // 3: **passed:** both arguments are numbers and add up to 42.
- * // 4: **failed:** both arguments are numbers but do not add up to 42.
- * // 5: **failed:** 1st argument is not a number.
- *
- * @param {...function(...?): boolean} fn One or more predicates
- * @returns {function(...?): boolean}
- * @see anyfn
- * @see nonefn
+ * @function
+ * @curried
+ * @param {Array<function(?): ?>} fs Array of predicates
+ * @param {?} x
+ * @returns {boolean}
+ * @see all
+ * @see allmap
  */
-module.exports = (...fn) => (...args) => fn.every(f => T(f(...args)));
+module.exports = curry((fs, x) => fs.every(f => T(f(x))));

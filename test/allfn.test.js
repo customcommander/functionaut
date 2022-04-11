@@ -1,35 +1,44 @@
-const test = require('tape');
-const td = require('testdouble');
-const {allfn: sut} = require('..');
+const testcheck = require('./_check');
+const {allfn: sut, T} = require('..');
 
-test('allfn(...fn)(...args)', t => {
+testcheck('allfn(fs)(x)', ['[() -> primitive]'], fs => {
 
-  t.test('true when each fn returned logical true when applied to args', st => {
-    const a = Symbol();
-    const b = Symbol();
-    const f = td.func();
-    const g = td.func();
-    const h = td.func();
-    td.when(f(a, b)).thenDo(() => (st.pass('f(a, b) has returned logical true'), NaN));
-    td.when(g(a, b)).thenDo(() => (st.pass('g(a, b) has returned logical true'), 0));
-    td.when(h(a, b)).thenDo(() => (st.pass('h(a, b) has returned logical true'), ''));
-    st.plan(4);
-    st.true(sut(f, g, h)(a, b) === true);
-    st.end();
+  // Expected outcome if fs is empty. So we start with that.
+  let expected = true;
+
+  // A predicate is considered satisfied if it returns logical true.
+  // As soon as a predicate returns logical false we do not call any remaining ones.
+  // At the end `i` will be the number of expected calls.
+  let i = 0;
+  while (i < fs.length && (expected = T(fs[i++]())));
+
+  // Next we need to verify that predicates have been called `i` many times
+  // and that they all have been passed `x` as their parameter.
+  // At the end both `i` and `j` should be the same.
+  const x = Symbol();
+  let j = 0;
+  const spies = fs.map((f, idx) => (y) => {
+    if (y !== x) {
+      throw new Error(`Predicate #${idx} was not applied to 'x'`);
+    }
+    j++;
+    return f();
   });
 
-  t.test('false when any fn returned logical false when applied to args', st => {
-    const a = Symbol();
-    const b = Symbol();
-    const f = td.func();
-    const g = td.func();
-    const h = td.func();
-    td.when(f(a, b)).thenReturn(false);
-    st.true(sut(f, g, h)(a, b) === false, 'false as `f(a, b)` returned logical false');
-    st.true(td.explain(g).callCount === 0, 'g was not called at all');
-    st.true(td.explain(h).callCount === 0, 'h was not called at all');
-    st.end();
-  });
+  let actual;
+  try {
+    actual = sut(spies)(x);
+  } catch (e) {
+    return e.message;
+  }
 
-  t.end();
+  if (i !== j) {
+    throw new Error(`Expected ${i} predicate calls. Got ${j}.`);
+  }
+
+  if (actual !== expected) {
+    throw new Error(`Expected ${expected}. Got ${actual}`);
+  }
+  
+  return true;
 });
