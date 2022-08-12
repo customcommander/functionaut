@@ -7,10 +7,20 @@ clean:; rm -rf dist
 
 .PHONY: build/docs
 build/docs: api.json build/mkdocs.yml
+	mkdir -p $(@D)
 	jq --raw-output '.[].function_name' $< | xargs -I {} $(MAKE) build/docs/api/{}.md
 
-build/mkdocs.yml: docs/mkdocs.yml docs/nav.jq api.json
-	jq --raw-output -f docs/nav.jq api.json | cat $< - >$@
+build/api.json: api.json
+	mkdir -p $(@D)
+	jq 'map(.function_name) | sort_by(ascii_downcase) | map({(.): "api/\(.).md"})' $< >$@
+
+build/mkdocs.json: docs/mkdocs.yml.json build/api.json
+	mkdir -p $(@D)
+	jq --slurpfile api build/api.json '.nav += [{"Flight Manual": $$api[0]}]' $< >$@
+
+build/mkdocs.yml: build/mkdocs.json
+	mkdir -p $(@D)
+	yarn -s js-yaml $< >$@
 
 build/docs/api/%.md: api.json docs/rtfm.ejs
 	mkdir -p $(@D)

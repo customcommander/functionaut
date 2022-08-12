@@ -2,7 +2,4 @@
 
 rm -rf dist
 rm -rf build
-mkdir -p dist
-mkdir -p build/docs/api
-cp -f docs/mkdocs.yml build/
-touch docs/mkdocs.yml
+docker run --rm -v $(pwd):/workspace -w /workspace --entrypoint make customcommander/webdev build/mkdocs.yml

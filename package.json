@@ -23,6 +23,7 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "ejs": "^3.1.6",
+    "js-yaml": "^4.1.0",
     "jsdoc": "^3.6.10",
     "jsverify": "^0.8.4",
     "semantic-release": "^19.0.2",
