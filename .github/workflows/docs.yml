@@ -16,7 +16,7 @@ jobs:
         run: ./init.sh && docker-compose up -d dev docs
 
       - name: Install
-        run: docker-compose exec -T dev yarn
+        run: docker-compose exec -T dev yarn install --frozen-lockfile
 
       - name: Build Docs
         run: docker-compose exec -T dev make build/docs
