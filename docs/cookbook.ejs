@@ -1,0 +1,16 @@
+# Cookbook
+
+<% locals.forEach(recipe => { %>
+
+## <%= recipe.name %>
+
+<% recipe.examples.forEach(ex => { %>
+
+```javascript title="<%= ex.title %>"
+<%- ex.body %>
+```
+
+<% }); %>
+
+
+<% }); %>
