@@ -37,6 +37,9 @@
     },
     {
       "Glossary": "manual/glossary.md"
+    },
+    {
+      "Cookbook": "manual/cookbook.md"
     }
   ]
 }

@@ -2,11 +2,12 @@ CC=java -jar /devtools/closure-compiler/compiler.jar
 
 src_files = $(shell find src -type f -name "*.js")
 dist_files = $(patsubst src/%,dist/%,$(src_files))
+cookbook_files = $(shell find docs/cookbook -type f -name "*.js")
 
 clean:; rm -rf dist
 
 .PHONY: build/docs
-build/docs: api.json build/mkdocs.yml
+build/docs: api.json build/docs/manual/cookbook.md build/mkdocs.yml
 	mkdir -p $(@D)
 	jq --raw-output '.[].function_name' $< | xargs -I {} $(MAKE) build/docs/api/{}.md
 
@@ -26,12 +27,22 @@ build/docs/api/%.md: api.json docs/rtfm.ejs
 	mkdir -p $(@D)
 	FUNC=$* npx ejs --no-with -f $^ >$@
 
+build/cookbook.raw.json: $(cookbook_files)
+	yarn -s jsdoc -X $^ >$@
+
+build/cookbook.json: cookbook.jq build/cookbook.raw.json
+	jq -f $^ >$@
+
+build/docs/manual/cookbook.md: build/cookbook.json docs/cookbook.ejs
+	yarn -s ejs --no-with -f $^ >$@
+
 api.json: api.jq $(dist_files) 
 	npx jsdoc -c jsdoc.json -X $^ | jq -f $< >$@
 
 .PHONY: test
 test: dist
 	yarn -s tape test/*.test.js
+	yarn -s tape docs/cookbook/*.js
 
 .PHONY: dist
 dist: $(dist_files) dist/index.js dist/browser.min.js
