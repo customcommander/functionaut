@@ -21,7 +21,7 @@ build/mkdocs.json: docs/mkdocs.yml.json build/api.json
 
 build/mkdocs.yml: build/mkdocs.json
 	mkdir -p $(@D)
-	yarn -s js-yaml $< >$@
+	npx js-yaml $< >$@
 
 build/docs/api/%.md: api.json docs/rtfm.ejs
 	mkdir -p $(@D)
