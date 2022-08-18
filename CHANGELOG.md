@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/customcommander/functionaut/compare/v4.1.0...v4.2.0) (2022-08-18)
+
+
+### Features
+
+* implement `fold` ([6582c6a](https://github.com/customcommander/functionaut/commit/6582c6a2665bf8b58db5ae05632067c9b0afd97b))
+
 # [4.1.0](https://github.com/customcommander/functionaut/compare/v4.0.0...v4.1.0) (2022-03-23)
 
 
